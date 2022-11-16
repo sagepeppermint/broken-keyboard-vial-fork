@@ -76,14 +76,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         LCA(KC_DEL), _______, _______, _______, _______, _______, SH_TG,
 		_______, _______, _______, _______, _______, _______, _______,
         
-        KC_CAPS_LOCK, KC_LEFT_ANGLE_BRACKET, KC_HOME, LGUI(KC_TAB), KC_END, KC_AUDIO_VOL_UP, KC_PRINT_SCREEN,
-		        _______, _______, _______, _______, _______, _______, _______,
+        KC_CAPS_LOCK, KC_LEFT_ANGLE_BRACKET, KC_HOME, LGUI(KC_TAB), KC_END, KC_AUDIO_VOL_UP, _______,
+		        _______, KC_UNDERSCORE, KC_PLUS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_PIPE, KC_TILDE,
 		        
         _______, KC_MEDIA_PLAY_PAUSE, KC_LEFT, KC_UP, KC_RIGHT, KC_MUTE, KC_PRINT_SCREEN,
 		        _______, KC_MINUS, KC_EQUAL, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_BACKSLASH, KC_GRAVE, 
         
         _______, KC_RIGHT_ANGLE_BRACKET, KC_PAGE_UP, KC_DOWN, KC_PAGE_DOWN, KC_AUDIO_VOL_DOWN, LSG(KC_S),
-		        _______, KC_UNDERSCORE, KC_PLUS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_PIPE, KC_TILDE, 
+		        _______, _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
 		        TT(9), _______, _______, _______, _______, _______, _______
