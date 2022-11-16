@@ -38,8 +38,8 @@
 /*
  * Board identifier.
  */
-#define BOARD_ST_NUCLEO144_F412ZG
-#define BOARD_NAME                  "STMicroelectronics STM32 Nucleo144-F412ZG"
+#define SHAHNETWORK_Broken_keyboard
+#define BOARD_NAME                  "SHAHNETWORK Broken Keyboard"
 
 /*
  * Board oscillators-related settings.

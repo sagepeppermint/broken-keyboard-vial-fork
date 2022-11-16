@@ -1,40 +1,53 @@
 #include QMK_KEYBOARD_H
 
+const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+    {{6,5}, {5,5}, {4,5}, {3,5}, {2,5}, {1,5}, {0,5}},
+    {{6,6}, {5,6}, {4,6}, {3,6}, {2,6}, {1,6}, {0,6}},
+    {{6,7}, {5,7}, {4,7}, {3,7}, {2,7}, {1,7}, {0,7}},
+    {{6,8}, {5,8}, {4,8}, {3,8}, {2,8}, {1,8}, {0,8}},
+    {{6,9}, {5,9}, {4,9}, {3,9}, {2,9}, {1,9}, {0,9}},
+    {{6,0}, {5,0}, {4,0}, {3,0}, {2,0}, {1,0}, {0,0}},
+    {{6,1}, {5,1}, {4,1}, {3,1}, {2,1}, {1,1}, {0,1}},
+    {{6,2}, {5,2}, {4,2}, {3,2}, {2,2}, {1,2}, {0,2}},
+    {{6,3}, {5,3}, {4,3}, {3,3}, {2,3}, {1,3}, {0,3}},
+    {{6,4}, {5,4}, {4,4}, {3,4}, {2,4}, {1,4}, {0,4}},
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [0] = LAYOUT_5x7(
+    [0] = LAYOUT_5x7( // QWERTY
         KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
                 KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
         
-        KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_LEFT_BRACKET,
-                KC_RIGHT_BRACKET, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
+        KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
+                XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
         
-        OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
-                KC_BACKSLASH, KC_H, KC_J, KC_K, KC_L, KC_SCLN, KC_QUOT,
+        KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
+                XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
         
         OSM(MOD_LSFT), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                KC_GRAVE, KC_N, KC_M, KC_COMM, KC_DOT, KC_SLSH, OSM(MOD_RSFT),
+                XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, OSM(MOD_RSFT),
         
-        KC_LCTL, KC_LGUI, KC_LALT, KC_1, KC_2, KC_ENT, KC_3,
-                KC_4, KC_SPACE, KC_5, KC_6, KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, TT(4), TT(5), KC_ENT, TT(3),
+                TT(6), KC_SPACE, TT(7), TT(8), KC_RALT, KC_RGUI, KC_RCTL
         
     ),
 
-    [1] = LAYOUT_5x7(
-        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,
-		KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, _______,                
+    [1] = LAYOUT_5x7( // HALMAK
+        KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
+                KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,                
+        KC_TAB, KC_W, KC_L, KC_R, KC_B, KC_Z, XXXXXXX,
+                XXXXXXX, KC_SEMICOLON, KC_Q, KC_U, KC_D, KC_J, KC_BACKSPACE,
         
-        _______, _______, KC_LEFT, KC_UP, KC_RIGHT, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,                
+        KC_LCTL, KC_S, KC_H, KC_N, KC_T, KC_COMMA, KC_PAGE_UP,
+                XXXXXXX, KC_DOT, KC_A, KC_E, KC_O, KC_I, KC_QUOTE,
         
-        _______, _______, _______, KC_DOWN, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,                
+        OSM(MOD_LSFT), KC_F, KC_M, KC_V, KC_C, KC_SLASH, KC_PAGE_DOWN,
+                XXXXXXX, KC_G, KC_P, KC_X, KC_K, KC_Y, OSM(MOD_RSFT),
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______                
+        KC_LCTL, KC_LGUI, KC_LALT, TT(4), TT(5), KC_ENT, TT(3),
+                TT(6), KC_SPACE, TT(7), TT(8), KC_RALT, KC_RGUI, KC_RCTL
         
     ),
     
@@ -59,15 +72,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
  
-    [3] = LAYOUT_5x7(
-        _______, _______, _______, _______, _______, _______, _______,
+    [3] = LAYOUT_5x7( // LEFT arrows and navigation - RIGHT punctuation not fitting into regular
+        LCA(KC_DEL), _______, _______, _______, _______, _______, SH_TG,
 		_______, _______, _______, _______, _______, _______, _______,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+        KC_CAPS_LOCK, KC_LEFT_ANGLE_BRACKET, KC_HOME, LGUI(KC_TAB), KC_END, KC_AUDIO_VOL_UP, KC_PRINT_SCREEN,
+		        _______, _______, _______, _______, _______, _______, _______,
 		        
+        _______, KC_MEDIA_PLAY_PAUSE, KC_LEFT, KC_UP, KC_RIGHT, KC_MUTE, KC_PRINT_SCREEN,
+		        _______, KC_MINUS, KC_EQUAL, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_BACKSLASH, KC_GRAVE, 
+        
+        _______, KC_RIGHT_ANGLE_BRACKET, KC_PAGE_UP, KC_DOWN, KC_PAGE_DOWN, KC_AUDIO_VOL_DOWN, LSG(KC_S),
+		        _______, KC_UNDERSCORE, KC_PLUS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_PIPE, KC_TILDE, 
+        
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        TT(9), _______, _______, _______, _______, _______, _______
+        
+    ),
+
+ 
+    [4] = LAYOUT_5x7( // F-keys, shifted numbers, numbers
+        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,
+		        KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, _______,
+        
+        _______, KC_EXCLAIM, KC_AT, KC_HASH, KC_DOLLAR, KC_PERCENT, KC_UNDERSCORE,
+		        KC_PLUS, KC_CIRCUMFLEX, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RIGHT_PAREN, _______,
+		        
+        _______, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
+		        KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______,
@@ -78,28 +110,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
  
-    [4] = LAYOUT_5x7(
+    [5] = LAYOUT_5x7( // RIGHT Numpad
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, KC_NUM_LOCK, KC_PSLS, KC_PAST, KC_CALCULATOR, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, KC_P7, KC_P8, KC_P9, KC_PMNS, _______,
 		        
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, KC_P4, KC_P5, KC_P6, KC_PPLS, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, KC_P1, KC_P2, KC_P3, KC_PENT, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______
+		        _______, _______, _______, _______, KC_P0, KC_P0, KC_PDOT
         
     ),
 
  
-    [5] = LAYOUT_5x7(
+    [6] = LAYOUT_5x7( // the RIGHT SH_TG is required to have matching toggle buttons for swap
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        SH_TG, _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______,
@@ -110,26 +142,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______
-        
-    ),
-
- 
-    [6] = LAYOUT_5x7(
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-		        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, TT(9),
 		_______, _______, _______, _______, _______, _______, _______
         
     ),
@@ -173,18 +186,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
   
-    [9] = LAYOUT_5x7(
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+    [9] = LAYOUT_5x7( // macros and configs
+        _______, TG(1), _______, DM_REC1, DM_REC2, _______, _______,
+		        _______, _______, _______, _______, _______, _______, MAGIC_TOGGLE_NKRO,
         
-        _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, DM_PLY1, DM_PLY2, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______,
 		        
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, _______, _______, _______, _______, QK_BOOT,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+        _______, MAGIC_TOGGLE_GUI, MAGIC_TOGGLE_CONTROL_CAPSLOCK, _______, _______, _______, _______,
+		        _______, _______, _______, _______, _______, _______, QK_REBOOT,
         
         _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______
@@ -309,16 +322,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-/*        KC_LCTL, KC_LGUI, KC_LALT, KC_1, KC_2, KC_3, KC_4,
-                KC_1, KC_2, KC_3, KC_4, KC_5, KC_6, KC_7
-                
-XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-	XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-	
-_______, _______, _______, _______, _______, _______, _______,
-	_______, _______, _______, _______, _______, _______, _______,                
-                */
-                
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
