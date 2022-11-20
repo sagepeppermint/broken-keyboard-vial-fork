@@ -75,3 +75,5 @@
 #define ONESHOT_TIMEOUT 2000 // 5000 default
 /* tapping toggle */
 #define TAPPING_TOGGLE 2 // 5 default
+/* tapping settings */
+#define TAPPING_TERM 200
