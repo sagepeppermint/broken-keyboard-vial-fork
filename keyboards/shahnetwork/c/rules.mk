@@ -1,0 +1,9 @@
+# Split keyboard
+SPLIT_KEYBOARD = yes
+SERIAL_DRIVER = usart
+
+# Other
+CAPS_WORD_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes
+SWAP_HANDS_ENABLE = yes
+APPLE_FN_ENABLE = yes
