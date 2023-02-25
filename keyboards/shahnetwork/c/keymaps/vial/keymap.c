@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q,
             KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSPC,
         
-        OSL(5), KC_ENT, MO(6),
+        OSL(5), LT(6, KC_ENT), MO(6),
             KC_BSPC, KC_SPC, OSL(8)
     ),
     
