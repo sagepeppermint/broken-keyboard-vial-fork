@@ -8,7 +8,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_DEL,
         
         KC_TAB, KC_S, KC_R, KC_N, KC_T, KC_M,
-            KC_P, KC_Y, KC_E, KC_I, KC_A, KC_LGUI,
+            KC_P, KC_Y, KC_E, KC_I, KC_A, KC_SLASH,
         
         KC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q,
             KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSPC,
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_DEL,
         
         KC_TAB, KC_S, KC_R, KC_N, KC_T, KC_M,
-            KC_P, KC_Y, KC_E, KC_I, KC_A, KC_HYPR,
+            KC_P, KC_Y, KC_E, KC_I, KC_A, KC_SLASH,
         
         KC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q,
             KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSPC,
