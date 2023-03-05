@@ -13,7 +13,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q,
             KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSPC,
         
-        OSL(4), KC_ENT, MO(6),
+        OSL(4), LT(6, KC_ENT), MO(6),
             KC_BSPC, KC_SPC, OSL(7)
     ),
        
@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B,
             KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
         
-        OSL(4), KC_ENT, MO(6),
+        OSL(4), LT(6, KC_ENT), MO(6),
             KC_BSPC, KC_SPC, OSL(7)
     ),
   
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_BSPC, KC_SPC, OSL(8)
     ),
     
-      [3] = LAYOUT_split_3x6_3( //QWERTY MAC
+      [3] = LAYOUT_split_3x6_3( // QWERTY MAC
         
         KC_ESC, KC_Q, KC_W, KC_E, KC_R, KC_T,
             KC_Y, KC_U, KC_I, KC_O, KC_P, KC_DEL,
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B,
             KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
         
-        OSL(5), KC_ENT, MO(6),
+        OSL(5), LT(6, KC_ENT), MO(6),
             KC_BSPC, KC_SPC, OSL(8)
     ),
     
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        
      [5] = LAYOUT_split_3x6_3( // LEFT MAC
      
-        KC_BRID, KC_BRIU, KC_VOLD, KC_VOLU, KC_MPLY, KC_MUTE, 
+        KC_MUTE, KC_BRID, KC_BRIU, KC_VOLD, KC_VOLU, KC_MPLY,   
             KC_MPRV, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_MNXT, 
         
         OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), KC_CAPS, 
