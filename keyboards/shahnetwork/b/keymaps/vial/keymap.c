@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		        _______, _______, _______, _______, _______, _______, _______,
         
         _______, _______, KC_VOLD, KC_VOLU, KC_MPLY, KC_MUTE, _______,
-		        _______, KC_MPRV, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_MNXT, _______,
+		        _______, KC_MPRV, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_MNXT,
 		        
         _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
 		        _______, KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
