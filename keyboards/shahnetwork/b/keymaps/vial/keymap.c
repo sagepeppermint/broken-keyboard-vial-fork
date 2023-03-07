@@ -22,32 +22,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
                 XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
         
-        OSM(MOD_LCTL), MT(MOD_LGUI, KC_A), MT(MOD_LALT, KC_S), MT(MOD_LSFT, KC_D), MT(MOD_LCTL, KC_F), KC_G, KC_PAGE_UP,
-                XXXXXXX, KC_H, MT(MOD_RCTL, KC_J), MT(MOD_RSFT, KC_K), MT(MOD_LALT, KC_L), MT(MOD_RGUI, KC_SEMICOLON), KC_QUOTE,
+        OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
+                XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
         
-        OSM(MOD_LSFT), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, OSM(MOD_RSFT),
+        KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+                XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
         
-        KC_LCTL, KC_LGUI, KC_LALT, TT(4), TT(5), KC_ENT, TT(3),
-                TT(6), KC_SPACE, TT(7), TT(8), KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, KC_TAB, LT(6, KC_ENT), OSL(4),
+                OSL(5), KC_SPACE, KC_BACKSPACE, TG(6), KC_RALT, KC_RGUI, KC_RCTL
         
     ),
 
-    [1] = LAYOUT_5x7( // HALMAK
+    [1] = LAYOUT_5x7( // DWARF
         KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
                 KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
         
-        KC_TAB, KC_W, KC_L, KC_R, KC_B, KC_Z, XXXXXXX,
-                XXXXXXX, KC_SEMICOLON, KC_Q, KC_U, KC_D, KC_J, KC_BACKSPACE,
+        KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, XXXXXXX,
+                XXXXXXX, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
         
-        KC_LCTL, KC_S, KC_H, KC_N, KC_T, KC_COMMA, KC_PAGE_UP,
-                XXXXXXX, KC_DOT, KC_A, KC_E, KC_O, KC_I, KC_QUOTE,
+        OSM(MOD_LCTL), KC_S, KC_R, KC_N, KC_T, KC_M, KC_PAGE_UP,
+                XXXXXXX, KC_P, KC_Y, KC_E, KC_I, KC_A, KC_SLASH,
         
-        OSM(MOD_LSFT), KC_F, KC_M, KC_V, KC_C, KC_SLASH, KC_PAGE_DOWN,
-                XXXXXXX, KC_G, KC_P, KC_X, KC_K, KC_Y, OSM(MOD_RSFT),
+        KC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+                XXXXXXX, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSPC,
         
-        KC_LCTL, KC_LGUI, KC_LALT, TT(4), TT(5), KC_ENT, TT(3),
-                TT(6), KC_SPACE, TT(7), TT(8), KC_RALT, KC_RGUI, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, KC_TAB, LT(6, KC_ENT), OSL(4),
+                OSL(5), KC_SPACE, KC_BACKSPACE, TG(6), KC_RALT, KC_RGUI, KC_RCTL
         
     ),
     
@@ -72,97 +72,97 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
  
-    [3] = LAYOUT_5x7( // LEFT arrows and navigation - RIGHT punctuation not fitting into regular
-        LCA(KC_DEL), _______, _______, _______, _______, _______, SH_TG,
+    [3] = LAYOUT_5x7(  
+        _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______,
         
-        KC_CAPS_LOCK, KC_LEFT_ANGLE_BRACKET, KC_HOME, LGUI(KC_TAB), KC_END, KC_AUDIO_VOL_UP, _______,
-		        _______, KC_UNDERSCORE, KC_PLUS, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_PIPE, KC_TILDE,
+        _______, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______,
 		        
-        _______, KC_MEDIA_PLAY_PAUSE, KC_LEFT, KC_UP, KC_RIGHT, KC_MUTE, KC_PRINT_SCREEN,
-		        _______, KC_MINUS, KC_EQUAL, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_BACKSLASH, KC_GRAVE, 
+        _______, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______,
         
-        _______, KC_RIGHT_ANGLE_BRACKET, KC_PAGE_UP, KC_DOWN, KC_PAGE_DOWN, KC_AUDIO_VOL_DOWN, LSG(KC_S),
+        _______, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______,
+        
+        _______, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______
+        
+    ),
+
+ 
+    [4] = LAYOUT_5x7( // LEFT
+        _______, _______, _______, _______, _______, _______, _______,
 		        _______, _______, _______, _______, _______, _______, _______,
         
+        _______, _______, KC_VOLD, KC_VOLU, KC_MPLY, KC_MUTE, _______,
+		        _______, KC_MPRV, KC_HOME, KC_PGDN, KC_PGUP, KC_END, KC_MNXT, _______,
+		        
+        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
+		        _______, KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
+        
+        _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), S(G(KC_S)), _______,
+		        _______, KC_PSCR, KC_BSPC, KC_TAB, KC_ENT, _______, _______,
+        
         _______, _______, _______, _______, _______, _______, _______,
-		        TT(9), _______, _______, _______, _______, _______, _______
+		        MO(7), _______, _______, _______, _______, _______, _______
         
     ),
 
  
-    [4] = LAYOUT_5x7( // F-keys, shifted numbers, numbers
-        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,
-		        KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, _______,
+    [5] = LAYOUT_5x7( // RIGHT
+        _______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, _______, _______, _______, _______, _______,
         
-        _______, KC_EXCLAIM, KC_AT, KC_HASH, KC_DOLLAR, KC_PERCENT, KC_UNDERSCORE,
-		        KC_PLUS, KC_CIRCUMFLEX, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RIGHT_PAREN, _______,
+        _______, KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_TILD, _______,
+		        _______, KC_CIRC, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK, _______,
 		        
-        _______, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
-		        KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, _______,
+        _______, KC_MINS, KC_ASTR, KC_EQL, KC_UNDS, KC_DLR, _______,
+		        _______, KC_HASH, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+        _______, KC_PLUS, KC_PIPE, KC_AT, KC_SLSH, KC_PERC, _______,
+		        _______, KC_GRV, KC_BSLS, KC_AMPR, KC_QUES, KC_EXLM, _______,
         
-        _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, MO(7),
 		_______, _______, _______, _______, _______, _______, _______
         
     ),
 
  
-    [5] = LAYOUT_5x7( // RIGHT Numpad
+    [6] = LAYOUT_5x7( // NUMPAD
         _______, _______, _______, _______, _______, _______, _______,
-		        _______, _______, KC_NUM_LOCK, KC_PSLS, KC_PAST, KC_CALCULATOR, _______,
+		        _______, _______, _______, _______, _______, _______, _______,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		        _______, _______, KC_P7, KC_P8, KC_P9, KC_PMNS, _______,
+        KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, _______,
+		        _______, KC_7, KC_8, KC_9, _______, _______, _______,
 		        
-        _______, _______, _______, _______, _______, _______, _______,
-		        _______, _______, KC_P4, KC_P5, KC_P6, KC_PPLS, _______,
+        KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, _______,
+		        _______, KC_4, KC_5, KC_6, _______, _______, _______,
+        
+        _______, DF(0), DF(1), _______, _______, _______, _______,
+		        KC_MINUS, KC_1, KC_2, KC_3, _______, _______, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
-		        _______, _______, KC_P1, KC_P2, KC_P3, KC_PENT, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
-		        _______, _______, _______, _______, KC_P0, KC_P0, KC_PDOT
-        
-    ),
-
- 
-    [6] = LAYOUT_5x7( // the RIGHT SH_TG is required to have matching toggle buttons for swap
-        _______, _______, _______, _______, _______, _______, _______,
-		        SH_TG, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-		        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, TT(9),
-		_______, _______, _______, _______, _______, _______, _______
+		        KC_DOT, KC_0, _______, _______, _______, _______, _______
         
     ),
 
   
-    [7] = LAYOUT_5x7(
+    [7] = LAYOUT_5x7( // FUNCTION
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		        _______, _______, _______, _______, _______, _______, _______,
         
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+        _______, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC, KC_UNDS,
+		        _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PLUS,
 		        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+        _______, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINS,
+		        KC_EQL, KC_6, KC_7, KC_8, KC_9, KC_0, _______,
+        
+        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F11,
+		        KC_F12, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, _______,
         
         _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
-        
-        _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______
+		        _______, _______, _______, _______, _______, _______, _______
         
     ),
 
