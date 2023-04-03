@@ -17,6 +17,7 @@
 
 #include <ch.h>
 #include <hal.h>
+#include <core_cm4.h>
 
 #include "usb_main.h"
 
@@ -198,6 +199,7 @@ void protocol_pre_task(void) {
         /* Woken up */
         // variables has been already cleared by the wakeup hook
         send_keyboard_report();
+        NVIC_SystemReset();
 #    ifdef MOUSEKEY_ENABLE
         mousekey_send();
 #    endif /* MOUSEKEY_ENABLE */
