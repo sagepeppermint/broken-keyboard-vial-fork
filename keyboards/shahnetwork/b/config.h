@@ -77,3 +77,6 @@
 #define TAPPING_TOGGLE 2 // 5 default
 /* tapping settings */
 #define TAPPING_TERM 200
+
+/* fix wakeup issues */
+#define USB_SUSPEND_WAKEUP_DELAY 200
