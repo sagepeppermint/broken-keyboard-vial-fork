@@ -4,8 +4,8 @@
 // communication between sides
 #define SERIAL_USART_TX_PIN GP1
 
-
-#define USB_VBUS_PIN GP19
+#define EE_HANDS
+#define SPLIT_WATCHDOG_ENABLE
 
 /* use 1000hz polling */
 #define USB_POLLING_INTERVAL_MS 1
