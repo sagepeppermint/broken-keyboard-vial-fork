@@ -23,3 +23,4 @@
 /* one shot keys */
 #define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
 #define ONESHOT_TIMEOUT 2000 // 5000 default
+#define TAPPING_TOGGLE 2

@@ -26,7 +26,7 @@ KC_X, KC_J, KC_B, KC_K, KC_Q,
             KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
 MO(8), KC_ENT, OSL(4),
-            OSL(5), KC_SPC, KC_BSPC
+            OSL(5), KC_SPC, TT(8)
 ),
 
 [1] = LAYOUT_split_3x5_3( // DWARF WIN
@@ -39,8 +39,8 @@ KC_S, KC_R, KC_N, KC_T, KC_M,
 KC_X, KC_J, KC_B, KC_K, KC_Q,
             KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-MO(8), KC_ENT, OSL(6),
-            OSL(7), KC_SPC, KC_BSPC
+TG(10), KC_ENT, OSL(6),
+            OSL(7), KC_SPC, TT(8)
 ),
 
 [2] = LAYOUT_split_3x5_3( // QWERTY MAC
@@ -51,10 +51,10 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
             KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON,
             
 KC_Z, KC_X, KC_C, KC_V, KC_B,
-            KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH,
+            KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
 MO(8), KC_ENT, OSL(4),
-            OSL(5), KC_SPC, KC_BSPC
+            OSL(5), KC_SPC, TT(8)
 ),
 
 [3] = LAYOUT_split_3x5_3( // QWERTY WIN
@@ -65,21 +65,21 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
             KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON,
             
 KC_Z, KC_X, KC_C, KC_V, KC_B,
-            KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH,
+            KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-MO(8), KC_ENT, OSL(6),
-            OSL(7), KC_SPC, KC_BSPC
+TG(10), KC_ENT, OSL(6),
+            OSL(7), KC_SPC, TT(8)
 ),
 
 [4] = LAYOUT_split_3x5_3( // LEFT MAC
 KC_BRID, KC_BRIU, KC_VOLD, KC_VOLU, KC_MPLY,
             KC_MUTE, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         
-OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), KC_CAPS,
+OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_HYPR), 
             KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
             
 G(KC_Z), G(KC_X), G(KC_C), G(KC_V), _______,
-            _______, KC_BSPC, KC_TAB, KC_ENT, KC_ESC,
+            KC_CAPS, KC_BSPC, KC_TAB, KC_ENT, KC_ESC,
             
 _______, _______, _______,
             MO(9), _______, _______
@@ -100,14 +100,14 @@ _______, _______, MO(9),
 ),
 
 [6] = LAYOUT_split_3x5_3( // LEFT WIN
-_______, _______, KC_VOLD, KC_VOLU, KC_MPLY,
+KC_ESC, _______, KC_VOLD, KC_VOLU, KC_MPLY,
             KC_MUTE, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
         
-OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS,
+OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
             KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
             
 C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
-            _______, KC_BSPC, KC_TAB, KC_ENT, KC_ESC,
+            KC_CAPS, KC_BSPC, KC_TAB, KC_ENT, KC_ESC,
             
 _______, _______, _______,
             MO(9), _______, _______
@@ -129,16 +129,16 @@ _______, _______, MO(9),
 
 [8] = LAYOUT_split_3x5_3( // NUMPAD
 KC_F1, KC_F2, KC_F3, KC_F4, DF(0),
-            _______, KC_7, KC_8, KC_9, _______,
+            KC_COMMA, KC_7, KC_8, KC_9, KC_BSLS,
         
 KC_F5, KC_F6, KC_F7, KC_F8, DF(1),
-            _______, KC_4, KC_5, KC_6, _______,
+            KC_0, KC_4, KC_5, KC_6, KC_MINS,
             
 KC_F9, KC_F10, KC_F11, KC_F12, DF(2),
-            _______, KC_1, KC_2, KC_3, _______,
+            KC_DOT, KC_1, KC_2, KC_3, KC_SLSH,
             
 _______, _______, DF(3),
-            _______, KC_0, _______
+            _______, _______, _______
 ),
 
 [9] = LAYOUT_split_3x5_3( // BOTH
@@ -155,14 +155,14 @@ _______, _______, _______,
             _______, _______, _______
 ),
 
-[10] = LAYOUT_split_3x5_3( 
-_______, _______, _______, _______, _______,
+[10] = LAYOUT_split_3x5_3( // REPORTING
+KC_F, KC_L, KC_H, KC_D, KC_ESC,
             _______, _______, _______, _______, _______,
         
-_______, _______, _______, _______, _______,
+KC_1, KC_2, KC_3, KC_4, KC_5,
             _______, _______, _______, _______, _______,
             
-_______, _______, _______, _______, _______,
+KC_6, KC_7, KC_8, KC_9, KC_0,
             _______, _______, _______, _______, _______,
             
 _______, _______, _______,
