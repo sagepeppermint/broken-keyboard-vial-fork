@@ -53,8 +53,8 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
 KC_Z, KC_X, KC_C, KC_V, KC_B,
             KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-MO(8), KC_ENT, OSL(4),
-            OSL(5), LT(8, KC_SPC), TT(8)
+_______, LT(8, KC_ENT), LT(4, KC_BSPC),
+            LT(6, KC_TAB), LT(10, KC_SPC), TG(6)
 ),
 
 [3] = LAYOUT_split_3x5_3( // QWERTY WIN
@@ -67,8 +67,8 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
 KC_Z, KC_X, KC_C, KC_V, KC_B,
             KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-TG(10), KC_ENT, OSL(6),
-            OSL(7), LT(8, KC_SPC), TT(8)
+TG(13), LT(9, KC_ENT), LT(5, KC_BSPC),
+            LT(7, KC_TAB), LT(11, KC_SPC), TG(7)
 ),
 
 [4] = LAYOUT_split_3x5_3( // LEFT NAV MAC
