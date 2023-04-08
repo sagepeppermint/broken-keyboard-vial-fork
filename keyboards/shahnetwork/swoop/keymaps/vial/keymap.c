@@ -17,30 +17,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [0] = LAYOUT_split_3x5_3( // DWARF MAC
 KC_F, KC_L, KC_H, KC_D, KC_V,
-            KC_Z, KC_G, KC_O, KC_U, KC_DOT,
+	KC_Z, KC_G, KC_O, KC_U, KC_DOT,
         
 KC_S, KC_R, KC_N, KC_T, KC_M,
-            KC_P, KC_Y, KC_E, KC_I, KC_A,
+	KC_P, KC_Y, KC_E, KC_I, KC_A,
             
 KC_X, KC_J, KC_B, KC_K, KC_Q,
-            KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
+	KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-_______, LT(8, KC_ENT), LT(4, KC_BSPC),
-            LT(6, KC_TAB), LT(10, KC_SPC), TG(6)
+_______, LT(6, KC_ENT), LT(4, KC_BSPC),
+	LT(8, KC_TAB), LT(10, KC_SPC), TG(6)
 ),
 
 [1] = LAYOUT_split_3x5_3( // DWARF WIN
 KC_F, KC_L, KC_H, KC_D, KC_V,
-            KC_Z, KC_G, KC_O, KC_U, KC_DOT,
+	KC_Z, KC_G, KC_O, KC_U, KC_DOT,
         
 KC_S, KC_R, KC_N, KC_T, KC_M,
-            KC_P, KC_Y, KC_E, KC_I, KC_A,
+	KC_P, KC_Y, KC_E, KC_I, KC_A,
             
 KC_X, KC_J, KC_B, KC_K, KC_Q,
-            KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
+	KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-TG(13), LT(9, KC_ENT), LT(5, KC_BSPC),
-            LT(7, KC_TAB), LT(11, KC_SPC), TG(7)
+TG(13), LT(7, KC_ENT), LT(5, KC_BSPC),
+	LT(9, KC_TAB), LT(11, KC_SPC), TG(7)
 ),
 
 [2] = LAYOUT_split_3x5_3( // QWERTY MAC
@@ -59,47 +59,47 @@ _______, LT(8, KC_ENT), LT(4, KC_BSPC),
 
 [3] = LAYOUT_split_3x5_3( // QWERTY WIN
 KC_Q, KC_W, KC_E, KC_R, KC_T,
-            KC_Y, KC_U, KC_I, KC_O, KC_P,
+	KC_Y, KC_U, KC_I, KC_O, KC_P,
         
 KC_A, KC_S, KC_D, KC_F, KC_G,
-            KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON,
+	KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON,
             
 KC_Z, KC_X, KC_C, KC_V, KC_B,
-            KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
+	KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
 TG(13), LT(9, KC_ENT), LT(5, KC_BSPC),
-            LT(7, KC_TAB), LT(11, KC_SPC), TG(7)
+	LT(7, KC_TAB), LT(11, KC_SPC), TG(7)
 ),
 
 [4] = LAYOUT_split_3x5_3( // LEFT NAV MAC
-KC_HOME, KC_PGUP, KC_PGDN, KC_END, KC_ESC,
-            KC_BRIU, KC_VOLD, KC_VOLU, KC_MUTE, KC_MPLY,
-
-KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, KC_DEL,
-            KC_CAPS, OSM(MOD_LGUI), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LCTL),
-
+KC_ESC, KC_VOLD, KC_VOLU, KC_MUTE, KC_MPLY,
+	KC_BRIU, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+	
+OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), KC_CAPS,
+	KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, 
+	
 G(KC_Z), G(KC_X), G(KC_C), G(KC_V), _______,
-            KC_BRID, KC_BSPC, KC_TAB, KC_ENT, _______,
+	KC_BRID, KC_BSPC, KC_TAB, KC_ENT, _______,
 
 _______, _______, _______,
-            MO(12), KC_SPC, _______
+            MO(12), _______, _______
 ),
 
 [5] = LAYOUT_split_3x5_3( // LEFT NAV WIN
-KC_HOME, KC_PGUP, KC_PGDN, KC_END, KC_ESC,
-            _______, KC_VOLD, KC_VOLU, KC_MUTE, KC_MPLY,
-
-KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, KC_DEL,
-            KC_CAPS, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI),
-
+KC_ESC, KC_VOLD, KC_VOLU, KC_MUTE, KC_MPLY,
+	_______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+	
+OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS,
+	KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, 
+	
 C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
-            _______, KC_BSPC, KC_TAB, KC_ENT, _______,
+	_______, KC_BSPC, KC_TAB, KC_ENT, _______,
 
 _______, _______, _______,
-            MO(12), KC_SPC, _______         
+            MO(12), _______, _______
 ),
 
-[6] = LAYOUT_split_3x5_3( // RIGHT NUMPAD MAC
+[6] = LAYOUT_split_3x5_3( // LEFT NUMPAD MAC
 _______, _______, _______, _______, _______,
             KC_COMMA, KC_7, KC_8, KC_9, KC_BSLS,
         
@@ -109,11 +109,11 @@ OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), _______,
 _______, _______, _______, _______, _______,
             KC_DOT, KC_1, KC_2, KC_3, KC_SLSH,
             
-_______, KC_ENT, MO(12),
-            _______, _______, _______
+_______, _______, _______,
+            _______, KC_0, _______
 ),
 
-[7] = LAYOUT_split_3x5_3( // RIGHT NUMPAD WIN
+[7] = LAYOUT_split_3x5_3( // LEFT NUMPAD WIN
 _______, _______, _______, _______, _______,
             KC_COMMA, KC_7, KC_8, KC_9, KC_BSLS,
         
@@ -123,11 +123,11 @@ OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______,
 _______, _______, _______, _______, _______,
             KC_DOT, KC_1, KC_2, KC_3, KC_SLSH,
             
-_______, KC_ENT, MO(12),
-            _______, _______, _______
+_______, _______, _______,
+            _______, KC_0, _______
 ),
 
-[8] = LAYOUT_split_3x5_3( // LEFT SYMBOL MAC
+[8] = LAYOUT_split_3x5_3( // RIGHT SYMBOL MAC
 KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_TILD,
             KC_CIRC, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK,
         
@@ -137,12 +137,12 @@ KC_MINS, KC_ASTR, KC_EQL, KC_UNDS, KC_DLR,
 KC_PLUS, KC_PIPE, KC_AT, KC_SLSH, KC_PERC,
              KC_GRV, KC_BSLS, KC_AMPR, KC_QUES, KC_EXLM,
 
-_______, _______, _______,
-            KC_TAB, KC_SPC, _______
+_______, _______, MO(12),
+            _______, _______, _______
 ),
 
 
-[9] = LAYOUT_split_3x5_3( // LEFT SYMBOL WIN
+[9] = LAYOUT_split_3x5_3( // RIGHT SYMBOL WIN
 KC_LABK, KC_LCBR, KC_LBRC, KC_LPRN, KC_TILD,
             KC_CIRC, KC_RPRN, KC_RBRC, KC_RCBR, KC_RABK,
         
@@ -152,21 +152,21 @@ KC_MINS, KC_ASTR, KC_EQL, KC_UNDS, KC_DLR,
 KC_PLUS, KC_PIPE, KC_AT, KC_SLSH, KC_PERC,
              KC_GRV, KC_BSLS, KC_AMPR, KC_QUES, KC_EXLM,
             
-_______, _______, _______,
-            KC_TAB, KC_SPC, _______
+_______, _______, MO(12),
+            _______, _______, _______
 ),
 
 [10] = LAYOUT_split_3x5_3( // RIGHT SPACE MAC
 _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______,
         
-OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), _______,
-            _______, _______, _______, _______, _______,
+_______, _______, _______, _______, _______,
+            _______, OSM(MOD_LGUI), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LCTL),
             
 _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______,
             
-_______, KC_ENT, KC_BSPC,
+_______, _______, _______,
             _______, _______, _______
 ),
 
@@ -174,13 +174,13 @@ _______, KC_ENT, KC_BSPC,
 _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______,
         
-OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______,
-            _______, _______, _______, _______, _______,
+_______, _______, _______, _______, _______,
+            _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI),
             
 _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______,
             
-_______, KC_ENT, KC_BSPC,
+_______, _______, _______,
             _______, _______, _______
 ),
 

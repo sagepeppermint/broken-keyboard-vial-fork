@@ -31,4 +31,4 @@
 #define TAPPING_TOGGLE 2
 /* tapping things */
 #define PERMISSIVE_HOLD
-#define TAPPING_FORCE_HOLD
+// #define TAPPING_FORCE_HOLD
