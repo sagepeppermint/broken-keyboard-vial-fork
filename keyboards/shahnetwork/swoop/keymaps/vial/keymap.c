@@ -25,8 +25,8 @@ KC_S, KC_R, KC_N, KC_T, KC_M,
 KC_X, KC_J, KC_B, KC_K, KC_Q,
 	KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-_______, LT(6, KC_ENT), LT(4, KC_BSPC),
-	LT(8, KC_TAB), LT(10, KC_SPC), TG(6)
+_______, OSL(6), OSL(4),
+	OSL(8), KC_SPC, TG(6)
 ),
 
 [1] = LAYOUT_split_3x5_3( // DWARF WIN
@@ -39,8 +39,8 @@ KC_S, KC_R, KC_N, KC_T, KC_M,
 KC_X, KC_J, KC_B, KC_K, KC_Q,
 	KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-TG(13), LT(7, KC_ENT), LT(5, KC_BSPC),
-	LT(9, KC_TAB), LT(11, KC_SPC), TG(7)
+TG(13), OSL(7), OSL(5),
+	OSL(9), KC_SPC, TG(7)
 ),
 
 [2] = LAYOUT_split_3x5_3( // QWERTY MAC
@@ -53,8 +53,8 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
 KC_Z, KC_X, KC_C, KC_V, KC_B,
             KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-_______, LT(8, KC_ENT), LT(4, KC_BSPC),
-            LT(6, KC_TAB), LT(10, KC_SPC), TG(6)
+_______, OSL(6), OSL(4),
+	OSL(8), KC_SPC, TG(6)
 ),
 
 [3] = LAYOUT_split_3x5_3( // QWERTY WIN
@@ -67,8 +67,8 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
 KC_Z, KC_X, KC_C, KC_V, KC_B,
 	KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-TG(13), LT(9, KC_ENT), LT(5, KC_BSPC),
-	LT(7, KC_TAB), LT(11, KC_SPC), TG(7)
+TG(13), OSL(7), OSL(5),
+	OSL(9), KC_SPC, TG(7)
 ),
 
 [4] = LAYOUT_split_3x5_3( // LEFT NAV MAC
