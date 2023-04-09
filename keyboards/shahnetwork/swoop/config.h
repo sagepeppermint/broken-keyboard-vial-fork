@@ -10,16 +10,13 @@
 /* set handedness in eeprom */
 #define EE_HANDS
 
-#define USB_VBUS_PIN GP19
-
-#define NO_USB_STARTUP_CHECK
+#define SPLIT_WATCHDOG_ENABLE
 
 /* bootmagic lite keys */
 #define BOOTMAGIC_LITE_ROW 0
 #define BOOTMAGIC_LITE_COLUMN 0
 #define BOOTMAGIC_LITE_ROW_RIGHT 4
 #define BOOTMAGIC_LITE_COLUMN_RIGHT 0
-
 
 /* typing options */
 /* caps word */
