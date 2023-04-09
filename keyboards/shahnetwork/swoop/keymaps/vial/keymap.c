@@ -25,7 +25,7 @@ KC_S, KC_R, KC_N, KC_T, KC_M,
 KC_X, KC_J, KC_B, KC_K, KC_Q,
 	KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-_______, OSL(6), OSL(4),
+_______, OSL(4), OSL(6),
 	OSL(8), KC_SPC, TG(6)
 ),
 
@@ -39,7 +39,7 @@ KC_S, KC_R, KC_N, KC_T, KC_M,
 KC_X, KC_J, KC_B, KC_K, KC_Q,
 	KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON,
             
-TG(13), OSL(7), OSL(5),
+TG(13), OSL(5), OSL(7),
 	OSL(9), KC_SPC, TG(7)
 ),
 
@@ -53,7 +53,7 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
 KC_Z, KC_X, KC_C, KC_V, KC_B,
             KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-_______, OSL(6), OSL(4),
+_______, OSL(4), OSL(6),
 	OSL(8), KC_SPC, TG(6)
 ),
 
@@ -67,7 +67,7 @@ KC_A, KC_S, KC_D, KC_F, KC_G,
 KC_Z, KC_X, KC_C, KC_V, KC_B,
 	KC_N, KC_M, KC_COMMA, KC_DOT, KC_QUOTE,
             
-TG(13), OSL(7), OSL(5),
+TG(13), OSL(5), OSL(7),
 	OSL(9), KC_SPC, TG(7)
 ),
 
@@ -82,7 +82,7 @@ G(KC_Z), G(KC_X), G(KC_C), G(KC_V), _______,
 	KC_BRID, KC_BSPC, KC_TAB, KC_ENT, _______,
 
 _______, _______, _______,
-            MO(12), _______, _______
+            _______, _______, _______
 ),
 
 [5] = LAYOUT_split_3x5_3( // LEFT NAV WIN
@@ -96,7 +96,7 @@ C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
 	_______, KC_BSPC, KC_TAB, KC_ENT, _______,
 
 _______, _______, _______,
-            MO(12), _______, _______
+            _______, _______, _______
 ),
 
 [6] = LAYOUT_split_3x5_3( // LEFT NUMPAD MAC
@@ -110,7 +110,7 @@ _______, _______, _______, _______, _______,
             KC_DOT, KC_1, KC_2, KC_3, KC_SLSH,
             
 _______, _______, _______,
-            _______, KC_0, _______
+             MO(12), KC_0, _______
 ),
 
 [7] = LAYOUT_split_3x5_3( // LEFT NUMPAD WIN
@@ -124,7 +124,7 @@ _______, _______, _______, _______, _______,
             KC_DOT, KC_1, KC_2, KC_3, KC_SLSH,
             
 _______, _______, _______,
-            _______, KC_0, _______
+             MO(12), KC_0, _______
 ),
 
 [8] = LAYOUT_split_3x5_3( // RIGHT SYMBOL MAC

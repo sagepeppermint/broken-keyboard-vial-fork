@@ -4,14 +4,15 @@
 // communication between sides
 #define SERIAL_USART_TX_PIN GP1
 
-#undef  SPLIT_USB_DETECT
-#define USB_VBUS_PIN GP19
-
 /* use 1000hz polling */
 #define USB_POLLING_INTERVAL_MS 1
 
 /* set handedness in eeprom */
 #define EE_HANDS
+
+#define USB_VBUS_PIN GP19
+
+#define NO_USB_STARTUP_CHECK
 
 /* bootmagic lite keys */
 #define BOOTMAGIC_LITE_ROW 0
@@ -30,5 +31,6 @@
 #define ONESHOT_TIMEOUT 500 // 5000 default
 #define TAPPING_TOGGLE 2
 /* tapping things */
-#define HOLD_ON_OTHER_KEY_PRESS
+// #define HOLD_ON_OTHER_KEY_PRESS
 // #define TAPPING_FORCE_HOLD
+

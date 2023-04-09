@@ -19,8 +19,8 @@
         "rows": ["GP4", "GP5", "GP6", "GP7"]
     },
   "usb": {
-    "vid": "0x1804",
-    "pid": "0x3046",
+    "vid": "0x05AC",
+    "pid": "0x024F",
     "device_version": "1.0.0"
   },
   "layouts": {
