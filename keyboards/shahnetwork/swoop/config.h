@@ -1,5 +1,5 @@
 #pragma once
-#include "config_common.h"
+//#include "config_common.h"
 
 // communication between sides
 #define SERIAL_USART_TX_PIN GP1
