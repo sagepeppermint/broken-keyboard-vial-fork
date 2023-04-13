@@ -10,7 +10,8 @@
 /* set handedness in eeprom */
 #define EE_HANDS
 
-#define SPLIT_WATCHDOG_ENABLE
+#undef SPLIT_USB_DETECT 
+#define USB_VBUS_PIN GP19
 
 /* bootmagic lite keys */
 #define BOOTMAGIC_LITE_ROW 0
