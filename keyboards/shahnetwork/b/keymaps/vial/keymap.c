@@ -15,25 +15,7 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-    [0] = LAYOUT_5x7( // QWERTY WIN
-        KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
-                KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
-        
-        KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
-                XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
-        
-        OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
-                XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
-        
-        KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
-        
-        KC_LCTL, KC_LGUI, KC_LALT, KC_TAB, TG(10), LT(8, KC_ENT), OSL(4),
-                OSL(5), KC_SPACE, TG(8), KC_BACKSPACE, KC_RALT, KC_RGUI, KC_RCTL
-        
-    ),
-
-    [1] = LAYOUT_5x7( // DWARF WIN
+    [0] = LAYOUT_5x7( // DWARF WIN
         KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
                 KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
         
@@ -51,28 +33,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         
     ),
     
- 
-    [2] = LAYOUT_5x7( // QWERTY MAC
+    [1] = LAYOUT_5x7( // QWERTY WIN
         KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
                 KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
         
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
                 XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
         
-        OSM(MOD_LGUI), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
+        OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
                 XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
         
         KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
                 XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
         
-        KC_LCTL, KC_LALT, KC_LGUI, KC_TAB, XXXXXXX, LT(8, KC_ENT), OSL(6),
-                OSL(7), KC_SPACE, TG(8), KC_BACKSPACE, KC_RGUI, KC_RALT, KC_RCTL
+        KC_LCTL, KC_LGUI, KC_LALT, KC_TAB, TG(10), LT(8, KC_ENT), OSL(4),
+                OSL(5), KC_SPACE, TG(8), KC_BACKSPACE, KC_RALT, KC_RGUI, KC_RCTL
         
     ),
-
-
  
-    [3] = LAYOUT_5x7(  // DWARF MAC
+    [2] = LAYOUT_5x7(  // DWARF MAC
         KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
                 KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
         
@@ -89,7 +68,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 OSL(7), KC_SPACE, TG(8), KC_BACKSPACE, KC_RGUI, KC_RALT, KC_RCTL
         
     ),
-
+    
+    [3] = LAYOUT_5x7( // QWERTY MAC
+        KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
+                KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
+        
+        KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
+                XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
+        
+        OSM(MOD_LGUI), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
+                XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
+        
+        KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+                XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
+        
+        KC_LCTL, KC_LALT, KC_LGUI, KC_TAB, XXXXXXX, LT(8, KC_ENT), OSL(6),
+                OSL(7), KC_SPACE, TG(8), KC_BACKSPACE, KC_RGUI, KC_RALT, KC_RCTL
+        
+    ),
  
     [4] = LAYOUT_5x7( // LEFT WIN
         _______, _______, _______, _______, _______, _______, _______,
@@ -321,6 +317,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+// Workaround for https://github.com/qmk/qmk_firmware/issues/16406
+void suspend_wakeup_init_user(void) {
+    NVIC_SystemReset();
+}
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
