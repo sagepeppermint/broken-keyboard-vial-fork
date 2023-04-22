@@ -73,7 +73,7 @@ _______, _______, _______,
 
 [4] = LAYOUT_split_3x5_3( // MEDIA
 _______, _______, _______, _______, _______,
-    QK_REBOOT, _______, _______, _______, _______,
+    QK_REBOOT, _______, KC_BRID, KC_BRIU, _______,
 
 KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______,
     _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,
