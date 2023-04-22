@@ -58,17 +58,17 @@ _______, _______, _______,
 ),
 
 [3] = LAYOUT_split_3x5_3( // PINKY
-_______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,
-
+C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
+    _______, C(KC_V), C(KC_C), C(KC_X), C(KC_Z),
+    
 KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______,
     _______, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI,
 
 C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
     _______, C(KC_V), C(KC_C), C(KC_X), C(KC_Z),
 
-_______, _______, _______,
-    _______, _______, _______
+KC_BTN3, KC_BTN1, KC_BTN2,
+    KC_BTN2, KC_BTN1, KC_BTN3
 ),
 
 [4] = LAYOUT_split_3x5_3( // MEDIA
@@ -93,7 +93,7 @@ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______,
     KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT,
 
 DF(0), DF(1), DF(8), DF(5), _______,
-    KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+    _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
 
 _______, _______, _______,
     KC_ENT, KC_BSPC, KC_DEL
@@ -156,18 +156,18 @@ KC_APP, KC_SPC, KC_TAB,
 ),
 
 
-[10] = LAYOUT_split_3x5_3( //  
+[10] = LAYOUT_split_3x5_3( // RIGHT NUMBERS
 _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,
+    _______, KC_7, KC_8, KC_9, _______,
 
 _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,
+    KC_BSPC, KC_4, KC_5, KC_6, KC_ENT,
 
 _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______,
+    _______, KC_1, KC_2, KC_3, _______,
 
 _______, _______, _______,
-    _______, _______, _______
+    _______, KC_0, _______
 ),
 
 [11] = LAYOUT_split_3x5_3( //  
