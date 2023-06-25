@@ -7,12 +7,12 @@ My own custom board :)
 
 Make example for this keyboard:
 
-    make shahnetwork/b:default
+    make shahnetwork/b:vial
 
 Flashing this keyboard:
 
-    make shahnetwork/b:default:dfu-util-split-left
-    make shahnetwork/b:default:dfu-util-split-right
+    make shahnetwork/b:vial:dfu-util-split-left
+    make shahnetwork/b:vial:dfu-util-split-right
 
 ## Bootloader
 
