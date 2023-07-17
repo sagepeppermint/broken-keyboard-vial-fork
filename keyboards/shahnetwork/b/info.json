@@ -1,5 +1,21 @@
 {
-
+    "manufacturer": "SHAHNETWORK",
+    "keyboard_name": "broken keyboard",
+    "maintainer": "sagepeppermint",
+    "features": {
+        "bootmagic": true,
+        "command": false,
+        "console": false,
+        "extrakey": true,
+        "mousekey": true,
+        "nkro": true
+    },
+    "url": "https://github.com/sagepeppermint/qmk_firmware/tree/shah",
+    "usb": {
+        "device_version": "1.0.0",
+        "pid": "0x3334",
+        "vid": "0x1209"
+    },
     "layouts": {
         "LAYOUT_5x7": {
             "layout": [
