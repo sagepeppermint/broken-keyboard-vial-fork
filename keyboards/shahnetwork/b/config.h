@@ -64,25 +64,20 @@
 /* caps word */
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
-/* one shot keys */
-#define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
-#define ONESHOT_TIMEOUT 2000 // 5000 default
-/* tapping toggle */
-#define TAPPING_TOGGLE 5 // 5 default
+#define CAPS_WORD_IDLE_TIMEOUT 1000  // 5000 default
 /* tapping settings */
 #define TAPPING_TERM 150
 /* bilateral combos */
 #define BILATERAL_COMBINATIONS
 #define BILATERAL_COMBINATIONS_LIMIT_CHORD_TO_N_KEYS 4 /* GUI, Alt, Ctrl, Shift */
-//#define BILATERAL_COMBINATIONS_DELAY_MODS_THAT_MATCH (MOD_MASK_GUI|MOD_MASK_ALT) /* GUI and ALT modifiers */
-//#define BILATERAL_COMBINATIONS_DELAY_MATCHED_MODS_BY 120  /* ms */
+#define BILATERAL_COMBINATIONS_DELAY_MODS_THAT_MATCH (MOD_MASK_GUI) /* GUI and ALT modifiers */
+#define BILATERAL_COMBINATIONS_DELAY_MATCHED_MODS_BY 100  /* ms */
 #define BILATERAL_COMBINATIONS_ALLOW_CROSSOVER_AFTER 75   /* ms */
 #define BILATERAL_COMBINATIONS_ALLOW_SAMESIDED_AFTER 500 /* ms */
 #define BILATERAL_COMBINATIONS_TYPING_STREAK_TIMEOUT 175  /* ms */
 #define BILATERAL_COMBINATIONS_TYPING_STREAK_MODMASK (~MOD_MASK_SHIFT)
 
-// WEAR LEVEL BABY
+/* Wear level */
 #define FEE_PAGE_SIZE 0x4000
 #define FEE_PAGE_COUNT 1
 #define FEE_MCU_FLASH_SIZE 512
