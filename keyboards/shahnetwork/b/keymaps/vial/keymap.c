@@ -25,8 +25,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSM(MOD_LCTL), KC_S, KC_R, KC_N, KC_T, KC_M, KC_PAGE_UP,
                 XXXXXXX, KC_P, KC_Y, KC_E, KC_I, KC_A, KC_SLASH,
         
-        KC_LSFT, LGUI_T(KC_X), LALT_T(KC_J), LSFT_T(KC_B), LCTL_T(KC_K), KC_Q, KC_PAGE_DOWN,
-                XXXXXXX, KC_C, RCTL_T(KC_W), RSFT_T(KC_QUOTE), RALT_T(KC_COMMA), RGUI_T(KC_SEMICOLON), SC_SENT,
+        SC_LSPO, LGUI_T(KC_X), LALT_T(KC_J), LSFT_T(KC_B), LCTL_T(KC_K), KC_Q, KC_PAGE_DOWN,
+                XXXXXXX, KC_C, RCTL_T(KC_W), RSFT_T(KC_QUOTE), RALT_T(KC_COMMA), RGUI_T(KC_SEMICOLON), SC_RSPC,
         
         KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, XXXXXXX, LT(4, KC_BSPC), KC_ENT,
                 KC_TAB, LT(5, KC_SPACE), XXXXXXX, XXXXXXX, KC_RALT, KC_RGUI, KC_RCTL
@@ -43,8 +43,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
                 XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
         
-        KC_LSFT, LGUI_T(KC_Z), LALT_T(KC_X), LSFT_T(KC_C), LCTL_T(KC_V), KC_B, KC_PAGE_DOWN,
-                XXXXXXX, KC_N, RCTL_T(KC_M), RSFT_T(KC_COMMA), RALT_T(KC_DOT), RGUI_T(KC_SLASH), SC_SENT,
+        SC_LSPO, LGUI_T(KC_Z), LALT_T(KC_X), LSFT_T(KC_C), LCTL_T(KC_V), KC_B, KC_PAGE_DOWN,
+                XXXXXXX, KC_N, RCTL_T(KC_M), RSFT_T(KC_COMMA), RALT_T(KC_DOT), RGUI_T(KC_SLASH), SC_RSPC,
         
         KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, XXXXXXX, LT(4, KC_BSPC), KC_ENT,
                 KC_TAB, LT(5, KC_SPACE), XXXXXXX, XXXXXXX, KC_RALT, KC_RGUI, KC_RCTL
@@ -97,8 +97,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, KC_F5, KC_F6, KC_F7, KC_F8, KC_SCRL, _______,
 		        _______, KC_GRV, KC_4, KC_5, KC_6, KC_EQL, _______,
         
-        _______, LGUI_T(KC_F9), LALT_T(KC_F10), LSFT_T(KC_F11), LCTL_T(KC_F12),  KC_PAUS, _______,
-		        _______, LCTL_T(KC_SLSH), LSFT_T(KC_1), LALT_T(KC_2), LGUI_T(KC_3), KC_BSLS, _______,
+        CW_TOGG, LGUI_T(KC_F9), LALT_T(KC_F10), LSFT_T(KC_F11), LCTL_T(KC_F12),  KC_PAUS, _______,
+		        _______, LCTL_T(KC_SLSH), LSFT_T(KC_1), LALT_T(KC_2), LGUI_T(KC_3), KC_BSLS, SC_SENT,
         
         _______, _______, _______, _______, _______, _______, _______,
 		        KC_MINS, KC_0, _______, _______, _______, _______, _______
