@@ -68,17 +68,18 @@
 
 /* typing options */
 /* caps word */
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+// #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
+#define CAPS_WORD_IDLE_TIMEOUT 500  // 5000 default
 /* one shot keys */
 #define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
-#define ONESHOT_TIMEOUT 2000 // 5000 default
+#define ONESHOT_TIMEOUT 500 // 5000 default
 /* tapping toggle */
-#define TAPPING_TOGGLE 2 // 5 default
+#define TAPPING_TOGGLE 5 // 5 default
 /* tapping settings */
 #define TAPPING_TERM 200
 /* endgame mod tap settings https://github.com/manna-harbour/qmk_firmware/pull/56 */
+/* 
 #define BILATERAL_COMBINATIONS
 #define BILATERAL_COMBINATIONS_ALLOW_SAMESIDED_AFTER 500
 #define BILATERAL_COMBINATIONS_ALLOW_CROSSOVER_AFTER 1
@@ -86,3 +87,4 @@
 #define BILATERAL_COMBINATIONS_DELAY_MATCHED_MODS_BY 100
 #define BILATERAL_COMBINATIONS_TYPING_STREAK_TIMEOUT 175
 #define BILATERAL_COMBINATIONS_TYPING_STREAK_MODMASK (~MOD_MASK_SHIFT)
+*/
