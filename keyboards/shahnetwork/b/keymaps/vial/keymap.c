@@ -89,15 +89,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  
 	[4] = LAYOUT_5x7( // Left 1
 		_______, _______, _______, _______, _______, _______, _______,
-				_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
+				_______, _______, _______, _______, _______, _______, _______,
 		
-		KC_CAPS, _______, _______, _______, _______, _______, _______,
+		KC_CAPS, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
 				_______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______, _______,
 				
 		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,
 				_______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
 		
-		KC_LSFT, _______, _______, _______, _______, _______, _______,
+		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
 				_______, _______, KC_BACKSPACE, KC_DEL, KC_ENT, _______, KC_RSFT,
 		
 		_______, _______, _______, _______, _______, _______, _______,
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  
 	[5] = LAYOUT_5x7( // Left 2
 		_______, _______, _______, _______, _______, _______, _______,
-				_______, _______, DF(0), DF(1), DF(2), DF(3), _______,
+				_______, _______, TO(0), TO(1), _______, _______, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
@@ -138,7 +138,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_LSFT, KC_SLSH, KC_1, KC_2, KC_3, KC_BSLS, _______,
 				_______, _______, _______, _______, _______, _______, KC_RSFT,
 		
-		_______, _______, _______, _______, _______, KC_0, KC_MINS,
+		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
 				_______, _______, _______, _______, _______, _______, _______
 		
 	),
@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, KC_QUESTION, KC_EXCLAIM, KC_AT, KC_HASH, KC_PIPE, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
-		_______, _______, _______, _______, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
+		_______, _______, _______, KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
 				_______, _______, _______, _______, _______, _______, _______
 		
 	),
@@ -338,10 +338,10 @@ bool oled_task_user(void) {
 
 		switch (get_highest_layer(layer_state)) {
 		case 0:
-			oled_write_P(PSTR("0\n"), false);
+			oled_write_P(PSTR("DWARF\n"), false);
 			break;
 		case 1:
-			oled_write_P(PSTR("1\n"), false);
+			oled_write_P(PSTR("QWERTY\n"), false);
 			break;
 		case 2:
 			oled_write_P(PSTR("2\n"), false);
@@ -350,16 +350,16 @@ bool oled_task_user(void) {
 			oled_write_P(PSTR("3\n"), false);
 			break;
 		case 4:
-			oled_write_P(PSTR("4\n"), false);
+			oled_write_P(PSTR("NAVIGATION\n"), false);
 			break;
 		case 5:
-			oled_write_P(PSTR("5\n"), false);
+			oled_write_P(PSTR("FUNCTION\n"), false);
 			break;
 		case 6:
-			oled_write_P(PSTR("6\n"), false);
+			oled_write_P(PSTR("NUMBER\n"), false);
 			break;
 		case 7:
-			oled_write_P(PSTR("7\n"), false);
+			oled_write_P(PSTR("SYMBOL\n"), false);
 			break;
 		case 8:
 			oled_write_P(PSTR("8\n"), false);
@@ -405,106 +405,3 @@ bool oled_task_user(void) {
 }
 #endif
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		// dwarf
-		case LGUI_T(KC_S):
-			return 50;
-		case LALT_T(KC_R):
-			return 50;
-		case LSFT_T(KC_N):
-			return 50;
-		case LCTL_T(KC_T):
-			return 50;
-		case RCTL_T(KC_Y):
-			return 50;
-		case RSFT_T(KC_E):
-			return 50;
-		case RALT_T(KC_I):
-			return 50;
-		case RGUI_T(KC_A):
-			return 50;
-		// qwerty
-		case LGUI_T(KC_A):
-			return 50; 
-		case LALT_T(KC_S):
-			return 50;
-		case LSFT_T(KC_D):
-			return 50;
-		case LCTL_T(KC_F):
-			return 50;
-		case RCTL_T(KC_J):
-			return 50;
-		case RSFT_T(KC_K):
-			return 50;
-		case RALT_T(KC_L):
-			return 50;
-		case RGUI_T(KC_SEMICOLON):
-			return 50;
-		// else       
-		default:
-			return TAPPING_TERM;
-	}
-}
-
-bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-            // Do not force the mod-tap key press to be handled as a modifier
-            // if any other key was pressed while the mod-tap key is held down.
-		// dwarf
-		case LGUI_T(KC_S):
-			return true;
-		case LALT_T(KC_R):
-			return true;
-		case LSFT_T(KC_N):
-			return true;
-		case LCTL_T(KC_T):
-			return true;
-		case RCTL_T(KC_Y):
-			return true;
-		case RSFT_T(KC_E):
-			return true;
-		case RALT_T(KC_I):
-			return true;
-		case RGUI_T(KC_A):
-			return true;
-		// qwerty
-		case LGUI_T(KC_A):
-			return true; 
-		case LALT_T(KC_S):
-			return true;
-		case LSFT_T(KC_D):
-			return true;
-		case LCTL_T(KC_F):
-			return true;
-		case RCTL_T(KC_J):
-			return true;
-		case RSFT_T(KC_K):
-			return true;
-		case RALT_T(KC_L):
-			return true;
-		case RGUI_T(KC_SEMICOLON):
-			return true;
-		// Force the mod-tap key press to be handled as a modifier if any
-		// other key was pressed while the mod-tap key is held down.
-        default:
-            return false;
-    }
-}
-
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		// Immediately select the hold action when another key is tapped.
-		case LT(4, KC_BSPC):
-			return true;
-		case LT(5, KC_ENT):
-			return true;
-		case LT(7, KC_TAB):
-			return true;
-		case LT(6, KC_SPACE):
-			return true;
-		// Do not select the hold action when another key is tapped.
-		default:
-			return false;
-	}
-}
