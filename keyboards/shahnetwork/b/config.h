@@ -50,7 +50,7 @@
 #define I2C1_SCL_PIN        B6
 #define I2C1_SDA_PIN        B7
 #define OLED_BRIGHTNESS 8 // 128 default?
-#define OLED_TIMEOUT 1000 // ms
+#define OLED_TIMEOUT 2000 // ms
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_LED_STATE_ENABLE
 #endif
@@ -70,25 +70,12 @@
 /* caps word */
 // #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 500  // 5000 default
+#define CAPS_WORD_IDLE_TIMEOUT 1000  // 5000 default
 /* one shot keys */
 #define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
-#define ONESHOT_TIMEOUT 500 // 5000 default
+#define ONESHOT_TIMEOUT 1000 // 5000 default
 /* tapping toggle */
 #define TAPPING_TOGGLE 5 // 5 default
 /* tapping settings */
 #define TAPPING_TERM 200
-#define TAPPING_TERM_PER_KEY
-#define PERMISSIVE_HOLD_PER_KEY
-#define TAPPING_FORCE_HOLD_PER_KEY
-#define RETRO_TAPPING_PER_KEY
-#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
-/* endgame mod tap settings https://github.com/manna-harbour/qmk_firmware/pull/56 */
-#define BILATERAL_COMBINATIONS
-#define BILATERAL_COMBINATIONS_ALLOW_SAMESIDED_AFTER 500
-#define BILATERAL_COMBINATIONS_ALLOW_CROSSOVER_AFTER 50
-#define BILATERAL_COMBINATIONS_DELAY_MODS_THAT_MATCH MOD_MASK_GUI // (MOD_MASK_GUI|MOD_MASK_ALT) // GUI and ALT modifiers
-#define BILATERAL_COMBINATIONS_DELAY_MATCHED_MODS_BY 100
-#define BILATERAL_COMBINATIONS_TYPING_STREAK_TIMEOUT 175
-// #define BILATERAL_COMBINATIONS_TYPING_STREAK_MODMASK (~MOD_MASK_SHIFT)
 
