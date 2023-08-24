@@ -1,6 +1,13 @@
 
 #pragma once
 
+/* USB Device descriptor parameter */
+#define VENDOR_ID       0xABCD
+#define PRODUCT_ID      0x0001
+#define DEVICE_VER      0x0001
+#define MANUFACTURER    SHAHNETWORK
+#define PRODUCT         Broken Keyboard
+
 /* key matrix */
 #define MATRIX_ROWS 10
 #define MATRIX_COLS 7
@@ -43,7 +50,7 @@
 #define I2C1_SCL_PIN        B6
 #define I2C1_SDA_PIN        B7
 #define OLED_BRIGHTNESS 8 // 128 default?
-#define OLED_TIMEOUT 500 // ms
+#define OLED_TIMEOUT 2000 // ms
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_LED_STATE_ENABLE
 #endif
@@ -58,35 +65,17 @@
 #define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
 #define USB_SUSPEND_WAKEUP_DELAY 200 // 0 is default
 //#define SPLIT_WATCHDOG_ENABLE
-//#define SPLIT_WATCHDOG_TIMEOUT 3000
 
 /* typing options */
 /* caps word */
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+// #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_IDLE_TIMEOUT 1000  // 5000 default
+/* one shot keys */
+#define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
+#define ONESHOT_TIMEOUT 1000 // 5000 default
+/* tapping toggle */
+#define TAPPING_TOGGLE 5 // 5 default
 /* tapping settings */
-#define TAPPING_TERM 150
-/* bilateral combos */
-#define BILATERAL_COMBINATIONS
-#define BILATERAL_COMBINATIONS_LIMIT_CHORD_TO_N_KEYS 4 /* GUI, Alt, Ctrl, Shift */
-#define BILATERAL_COMBINATIONS_DELAY_MODS_THAT_MATCH (MOD_MASK_GUI) /* GUI and ALT modifiers */
-#define BILATERAL_COMBINATIONS_DELAY_MATCHED_MODS_BY 100  /* ms */
-#define BILATERAL_COMBINATIONS_ALLOW_CROSSOVER_AFTER 75   /* ms */
-#define BILATERAL_COMBINATIONS_ALLOW_SAMESIDED_AFTER 500 /* ms */
-#define BILATERAL_COMBINATIONS_TYPING_STREAK_TIMEOUT 175  /* ms */
-#define BILATERAL_COMBINATIONS_TYPING_STREAK_MODMASK (~MOD_MASK_SHIFT)
-
-/* Wear level */
-#define FEE_PAGE_SIZE 0x4000
-#define FEE_PAGE_COUNT 1
-#define FEE_MCU_FLASH_SIZE 512
-#define FEE_PAGE_BASE_ADDRESS 0x08004000
-#define WEAR_LEVELING_LEGACY_EMULATION_PAGE_SIZE 16384
-#define WEAR_LEVELING_LEGACY_EMULATION_PAGE_COUNT 3
-#define WEAR_LEVELING_LEGACY_EMULATION_BASE_PAGE_ADDRESS (WEAR_LEVELING_LEGACY_EMULATION_FLASH_BASE + (1 * (WEAR_LEVELING_LEGACY_EMULATION_PAGE_SIZE))) // +16k
-#define WEAR_LEVELING_BACKING_SIZE 49152
-#define WEAR_LEVELING_LOGICAL_SIZE 4096
-
-
+#define TAPPING_TERM 200
 

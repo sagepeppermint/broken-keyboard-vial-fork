@@ -1,11 +1,9 @@
 #pragma once
 
-#define VIAL_KEYBOARD_UID {0xB0, 0x1D, 0x46, 0xC8, 0xD2, 0x92, 0x7F, 0x1C}
-
-#define VIAL_UNLOCK_COMBO_ROWS { 1, 1 }
-#define VIAL_UNLOCK_COMBO_COLS { 0, 1 }
-
-#define DYNAMIC_KEYMAP_LAYER_COUNT 16
+#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD_PER_KEY
+#define TAPPING_FORCE_HOLD_PER_KEY
+#define IGNORE_MOD_TAP_INTERRUPT
 
 /* endgame mod tap settings https://github.com/manna-harbour/qmk_firmware/pull/56 */
 #define BILATERAL_COMBINATIONS
