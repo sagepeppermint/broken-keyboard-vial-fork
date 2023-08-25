@@ -16,7 +16,8 @@ void reset_global_quick_tap_state(void) {
 static uint16_t prev_press_time = 0;
 
 bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
-    if (record->event.pressed) {
+    if (record->event.pressed) { // on keydown
+
         /* Any key down. Recording key press times */
         uint16_t time_diff = record->event.time - prev_press_time;
         prev_press_time = record->event.time;
@@ -24,31 +25,25 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
         if (!gqt_state.disabled) {
             uint16_t quick_tap_ms = get_global_quick_tap_ms(keycode);
             if (quick_tap_ms > 0) {
-                printf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms. ", time_diff, quick_tap_ms);
+                dprintf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms. ", time_diff, quick_tap_ms);
                 if (quick_tap_ms > time_diff) {
-                    printf("Disabling hold-tap for 0x%04X\n", keycode);
+                    dprintf("Disabling hold-tap for 0x%04X\n", keycode);
                     register_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
                     gqt_state.key_registered = true;
                     return false;
                 } else {
-                    printf("Hold-taps and mod combos are allowed for key 0x%04X\n", keycode);
+                    dprintf("Hold-taps and mod combos are allowed for key 0x%04X\n", keycode);
                     gqt_state.disabled = true;
                 }
                 gqt_state.keycode = keycode;
+                
             }
         }
-    } else {
-        /* key up. Cleaning up global_quick_tap_state */
-        if (keycode == gqt_state.keycode) {
-            printf("Global-quick-tap: 0x%04X key released. ", keycode);
-            if (gqt_state.disabled) {
-                printf("Resuming global_quick_tap processing\n");
-            } else if (gqt_state.key_registered) {
-                printf("Unregistering key\n");
-                unregister_code(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-            }
-            reset_global_quick_tap_state();
-        }
+
+    } 
+    else { // on keyup
+    unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+    reset_global_quick_tap_state();   
     }
 
     return true;

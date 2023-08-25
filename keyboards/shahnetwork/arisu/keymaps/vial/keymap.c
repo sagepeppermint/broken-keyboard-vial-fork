@@ -98,6 +98,22 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 					 keyrecord_t* tap_hold_record,
 					 uint16_t other_keycode,
 					 keyrecord_t* other_record) {
+  //  Fix the alice split layout not corresponding to the matrix detected split
+    switch (tap_hold_keycode) {
+    case LGUI_T(KC_S):
+    case LALT_T(KC_R):
+    case LSFT_T(KC_N):
+    case LCTL_T(KC_T):
+      if (other_keycode == KC_6 || other_keycode == KC_6) { return false; }
+      break;
+      
+    case RCTL_T(KC_Y):  
+    case RSFT_T(KC_E):
+    case RALT_T(KC_I):
+    case RGUI_T(KC_A):
+      if (other_keycode == KC_6 || other_keycode == KC_6) { return true; }
+      break;
+  }
   return achordion_opposite_hands(tap_hold_record, other_record);
 };
 
