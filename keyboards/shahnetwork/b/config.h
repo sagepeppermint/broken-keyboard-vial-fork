@@ -61,14 +61,14 @@
 #endif
 
 /* fix USB timeout issues */
-#define SPLIT_USB_TIMEOUT 5000 // 2000 is default
-#define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
+// #define SPLIT_USB_TIMEOUT 5000 // 2000 is default
+// #define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
 #define USB_SUSPEND_WAKEUP_DELAY 200 // 0 is default
-//#define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_WATCHDOG_ENABLE
 
 /* typing options */
 /* caps word */
-// #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_IDLE_TIMEOUT 1000  // 5000 default
 /* one shot keys */

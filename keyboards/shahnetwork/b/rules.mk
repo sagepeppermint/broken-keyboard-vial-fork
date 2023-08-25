@@ -36,12 +36,14 @@ SPLIT_KEYBOARD = yes
 SERIAL_DRIVER = usart
 
 # OLED
-OLED_ENABLE = yes
+OLED_ENABLE = no
 OLED_DRIVER = SSD1306
 
 # Other
 CAPS_WORD_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 SWAP_HANDS_ENABLE = yes
-NO_SUSPEND_POWER_DOWN = yes
-DEFERRED_EXEC_ENABLE = yes
+#NO_SUSPEND_POWER_DOWN = yes
+#DEFERRED_EXEC_ENABLE = yes
+SRC += features/achordion.c
+SRC += features/global_quick_tap.c

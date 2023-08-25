@@ -317,10 +317,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// Workaround for https://github.com/qmk/qmk_firmware/issues/16406
-void suspend_wakeup_init_user(void) {
-	NVIC_SystemReset();
-}
+// // Workaround for https://github.com/qmk/qmk_firmware/issues/16406
+// void suspend_wakeup_init_user(void) {
+// 	NVIC_SystemReset();
+// }
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -406,7 +406,7 @@ bool oled_task_user(void) {
 #endif
 
 
-
+// Permissive hold
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		// Immediately select the hold action when another key is tapped.
@@ -431,3 +431,119 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 			return false;
 	}
 }
+
+// Tapping term per key
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_S):
+        case RGUI_T(KC_A):
+		case LGUI_T(KC_A):
+		case RGUI_T(KC_SEMICOLON):
+            return TAPPING_TERM + 100;
+        default:
+            return TAPPING_TERM;
+    }
+};
+
+
+#include "features/achordion.h"
+#include "features/global_quick_tap.h"
+
+bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
+    if (!process_global_quick_tap(keycode, record)) {return false; }
+//    if (!process_achordion(keycode, record)) { return false; }
+  // Your macros ...
+
+  return true;
+};
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+//    if (!process_global_quick_tap(keycode, record)) {return false; }
+    if (!process_achordion(keycode, record)) { return false; }
+  // Your macros ...
+
+  return true;
+};
+
+void matrix_scan_user(void) {
+  achordion_task();
+};
+
+// Achordion which keys count as tap hold
+bool achordion_chord(uint16_t tap_hold_keycode,
+					 keyrecord_t* tap_hold_record,
+					 uint16_t other_keycode,
+					 keyrecord_t* other_record) {
+	//  Fix the alice split layout not corresponding to the matrix detected split
+    switch (tap_hold_keycode) {
+    case LGUI_T(KC_S):
+    case LALT_T(KC_R):
+    case LSFT_T(KC_N):
+    case LCTL_T(KC_T):
+      if (other_keycode == KC_Z || other_keycode == KC_P) { return true; }
+      break;
+      
+    case RCTL_T(KC_Y):  
+    case RSFT_T(KC_E):
+    case RALT_T(KC_I):
+    case RGUI_T(KC_A):
+      if (other_keycode == KC_Z || other_keycode == KC_P) { return false; }
+      break;
+  }
+    return achordion_opposite_hands(tap_hold_record, other_record);
+};
+
+// Achordion time to decide tap vs hold (on top of normal tapping term)
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  return 300;  // ms
+};
+
+// Achordion eager mods define the modifiers themselves
+bool achordion_eager_mod(uint8_t mod) {
+  switch (mod) {
+	case MOD_LSFT:
+	case MOD_RSFT:
+	case MOD_LCTL:
+	case MOD_RCTL:
+	case MOD_LALT:
+	case MOD_RALT:
+//	case MOD_LGUI:
+//	case MOD_RGUI:
+	  return true;  // Eagerly apply mods.
+
+	default:
+	  return false;
+  }
+};
+ 
+
+// Global quick tap keys
+uint16_t get_global_quick_tap_ms(uint16_t keycode) {
+    switch (keycode) {
+        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
+        /* case KEYCODE: */
+        /*     return 150; */
+        case LGUI_T(KC_S):
+        case LALT_T(KC_R):
+        case LSFT_T(KC_N):
+        case LCTL_T(KC_T):
+        case RCTL_T(KC_Y):
+        case RSFT_T(KC_E):
+        case RALT_T(KC_I):
+        case RGUI_T(KC_A): 
+            return 150;
+        default:
+            return 0;  // global_quick_tap is not applied
+    }
+};
+
+/*
+// To enable debug, can delete
+ void keyboard_post_init_user(void) {
+   // Customise these values to desired behaviour
+    debug_enable=true;
+    debug_keyboard=true;
+
+ };
+ */
