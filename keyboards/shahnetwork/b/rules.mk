@@ -28,6 +28,6 @@ CAPS_WORD_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 SWAP_HANDS_ENABLE = yes
 #NO_SUSPEND_POWER_DOWN = yes
-
+REPEAT_KEY_ENABLE = yes
 SRC += features/achordion.c
 SRC += features/global_quick_tap.c

@@ -1,5 +1,11 @@
 #include QMK_KEYBOARD_H
 
+enum custom_keycodes {
+    M_KEYBOARD = SAFE_RANGE,
+    M_UPDIR,
+    // Other custom keys...
+};
+
 const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 	{{6,5}, {5,5}, {4,5}, {3,5}, {2,5}, {1,5}, {0,5}},
 	{{6,6}, {5,6}, {4,6}, {3,6}, {2,6}, {1,6}, {0,6}},
@@ -28,8 +34,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
 				XXXXXXX, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
 	
@@ -108,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  
 	[5] = LAYOUT_5x7( // Left 2
 		QK_BOOT, _______, _______, _______, _______, _______, _______,
-				_______, _______, TO(0), TO(1), _______, _______, _______,
+				_______, _______, TO(0), TO(1), _______, _______, KC_INS,
 		
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
@@ -464,8 +470,13 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) { return false; }
+    
   // Your macros ...
-
+    switch (keycode) {
+        case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
+        case M_UPDIR: SEND_STRING(/*.*/"./"); break;
+    }
+    
   return true;
 };
 
@@ -533,6 +544,43 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
             return 0;  // global_quick_tap is not applied
     }
 };
+
+// Repeat key alternate
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+    if ((mods & MOD_MASK_CTRL)) {  // Was Ctrl held?
+        switch (keycode) {
+            case KC_Y: return C(KC_Z);  // Ctrl + Y reverses to Ctrl + Z.
+            case KC_Z: return C(KC_Y);  // Ctrl + Z reverses to Ctrl + Y.
+        }
+    }
+    
+    bool shifted = (mods & MOD_MASK_SHIFT);  // Was Shift held?
+    switch (keycode) {
+        case KC_TAB:
+            if (shifted) {        // If the last key was Shift + Tab,
+                return KC_TAB;    // ... the reverse is Tab.
+            } else {              // Otherwise, the last key was Tab,
+                return S(KC_TAB); // ... and the reverse is Shift + Tab.
+            }
+    }
+    
+    // same finger bigrams dwarf
+    if (IS_LAYER_ON(0)) {
+        switch (keycode) {
+            case KC_U: return KC_I;  // For "UI" bigram.
+            case LALT_T(KC_R): return KC_L;  // For "RL" bigram.
+            case KC_O: return KC_E;  // For "OE" bigram.
+            case RSFT_T(KC_E): return KC_O;  // For "EO" bigram.
+        }
+    }
+    
+    switch (keycode) {
+        case KC_K: return M_KEYBOARD;
+        case KC_DOT: return M_UPDIR;
+    }
+
+    return KC_TRNS;  // Defer to default definitions.
+}
 
 
 // To enable debug, can delete
