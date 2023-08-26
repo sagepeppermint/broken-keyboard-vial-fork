@@ -26,13 +26,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
 		
 		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, XXXXXXX,
-				XXXXXXX, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
+				KC_MPLY, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
 		
 		OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
-				XXXXXXX, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
+				KC_VOLU, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
 		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-				XXXXXXX, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
+				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
 		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
 				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
@@ -116,13 +116,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		QK_BOOT, _______, _______, _______, _______, _______, _______,
 				_______, _______, TO(0), TO(1), _______, _______, KC_INS,
 		
-		_______, _______, _______, _______, _______, _______, _______,
+		KC_CAPS, _______, _______, _______, _______, _______, _______,
 				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
 				
-		_______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,
+		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,
 				_______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, _______,
 		
-		_______, _______, _______, _______, _______, _______, _______,
+		KC_LSFT, _______, _______, _______, _______, _______, _______,
 				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
@@ -154,13 +154,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
-		_______, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
+		KC_CAPS, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 				
-		_______, KC_TILDE, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PLUS, _______,
+		KC_ESC, KC_TILDE, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PLUS, _______,
 				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 		
-		_______, KC_QUESTION, KC_EXCLAIM, KC_AT, KC_HASH, KC_PIPE, _______,
+		KC_LSFT, KC_QUESTION, KC_EXCLAIM, KC_AT, KC_HASH, KC_PIPE, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
 		_______, _______, _______, KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
@@ -471,7 +471,7 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) { return false; }
     
-  // Your macros ...
+  // Macros
     switch (keycode) {
         case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
         case M_UPDIR: SEND_STRING(/*.*/"./"); break;
@@ -489,7 +489,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 					 keyrecord_t* tap_hold_record,
 					 uint16_t other_keycode,
 					 keyrecord_t* other_record) {   
-    if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
+    if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; } // Ignore bottom row and thumbcluster
     return achordion_opposite_hands(tap_hold_record, other_record);
 };
 
@@ -523,6 +523,7 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
         /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
         /* case KEYCODE: */
         /*     return 150; */
+		// DWARF
         case LGUI_T(KC_S):
         case LALT_T(KC_R):
         case LSFT_T(KC_N):
@@ -531,6 +532,7 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
         case RSFT_T(KC_E):
         case RALT_T(KC_I):
         case RGUI_T(KC_A): 
+		// QWERTY
         case LGUI_T(KC_A):
         case LALT_T(KC_S):
         case LSFT_T(KC_D):
