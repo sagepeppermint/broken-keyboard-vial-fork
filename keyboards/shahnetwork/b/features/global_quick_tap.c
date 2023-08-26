@@ -17,7 +17,11 @@ static uint16_t prev_press_time = 0;
 
 bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
 
-    if (record->event.key.row % (MATRIX_ROWS / 2) >= 4) { dprintln("Global-quick-tap: skip bottom rows"); return true; }
+    if (record->event.key.row % (MATRIX_ROWS / 2) >= 4) { 
+        dprintln("Global-quick-tap: skip bottom rows"); 
+        return true; 
+        }
+        
     if (record->event.pressed) { // on keydown
 
         /* Any key down. Recording key press times */
@@ -43,10 +47,26 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
         }
 
     } 
-    else { // on keyup
-    unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-    reset_global_quick_tap_state();   
+    // else { // on keyup
+    // unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+    // reset_global_quick_tap_state();   
+    // }
+
+    else {
+        /* key up. Cleaning up global_quick_tap_state */
+        if (keycode == gqt_state.keycode) {
+            printf("Global-quick-tap: 0x%04X key released. ", keycode);
+            if (gqt_state.disabled) {
+                printf("Resuming global_quick_tap processing\n");
+            } else if (gqt_state.key_registered) {
+                printf("Unregistering key\n");
+                unregister_code(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+            }
+            reset_global_quick_tap_state();
+        }
     }
+
+
 
     return true;
 };
