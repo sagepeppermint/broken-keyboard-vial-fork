@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  
 	[5] = LAYOUT_5x7( // Left 2
-		QK_BOOT, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, TO(0), TO(1), _______, _______, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 		
 		KC_LSFT, KC_SLSH, KC_1, KC_2, KC_3, KC_BSLS, _______,
-				_______, _______, KC_BACKSPACE, _______, _______, _______, KC_RSFT,
+				_______, _______, _______, _______, _______, _______, KC_RSFT,
 		
 		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
 				_______, _______, _______, _______, _______, _______, _______
@@ -411,31 +411,25 @@ bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		// Immediately select the hold action when another key is tapped.
 		case LT(4, KC_BSPC):
+			return true;
 		case LT(5, KC_ENT):
+			return true;
 		case LT(7, KC_TAB):
+			return true;
 		case LT(6, KC_SPACE):
+			return true;
 		case LSFT_T(KC_N):
+		    return true;
 		case RSFT_T(KC_E):
+		    return true;
 		case LSFT_T(KC_D):
+			return true;
 		case RSFT_T(KC_K):
 			return true;
 		// Do not select the hold action when another key is tapped.
 		default:
 			return false;
 	}
-}
-
-// Quick tapping term
-uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LT(4, KC_BSPC):
-		case LT(5, KC_ENT):
-		case LT(7, KC_TAB):
-		case LT(6, KC_SPACE):
-			return 0;
-        default:
-            return QUICK_TAP_TERM;
-    }
 }
 
 // Tapping term per key
@@ -457,12 +451,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_global_quick_tap(keycode, record)) {return false; }
+//    if (!process_achordion(keycode, record)) { return false; }
+  // Your macros ...
 
   return true;
 };
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+//    if (!process_global_quick_tap(keycode, record)) {return false; }
     if (!process_achordion(keycode, record)) { return false; }
   // Your macros ...
 
@@ -477,8 +474,23 @@ void matrix_scan_user(void) {
 bool achordion_chord(uint16_t tap_hold_keycode,
 					 keyrecord_t* tap_hold_record,
 					 uint16_t other_keycode,
-					 keyrecord_t* other_record) {   
-    if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
+					 keyrecord_t* other_record) {
+	//  Fix the alice split layout not corresponding to the matrix detected split
+    switch (tap_hold_keycode) {
+    case LGUI_T(KC_S):
+    case LALT_T(KC_R):
+    case LSFT_T(KC_N):
+    case LCTL_T(KC_T):
+      if (other_keycode == KC_Z || other_keycode == KC_P) { return true; }
+      break;
+      
+    case RCTL_T(KC_Y):  
+    case RSFT_T(KC_E):
+    case RALT_T(KC_I):
+    case RGUI_T(KC_A):
+      if (other_keycode == KC_Z || other_keycode == KC_P) { return false; }
+      break;
+  }
     return achordion_opposite_hands(tap_hold_record, other_record);
 };
 
@@ -520,26 +532,18 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
         case RSFT_T(KC_E):
         case RALT_T(KC_I):
         case RGUI_T(KC_A): 
-        case LGUI_T(KC_A):
-        case LALT_T(KC_S):
-        case LSFT_T(KC_D):
-        case LCTL_T(KC_F):
-        case RCTL_T(KC_J):
-        case RSFT_T(KC_K):
-        case RALT_T(KC_L):
-        case RGUI_T(KC_SEMICOLON):
             return 150;
         default:
             return 0;  // global_quick_tap is not applied
     }
 };
 
-
+/*
 // To enable debug, can delete
  void keyboard_post_init_user(void) {
    // Customise these values to desired behaviour
     debug_enable=true;
-    debug_keyboard=false;
-    debug_matrix=false;
- };
+    debug_keyboard=true;
 
+ };
+ */

@@ -16,8 +16,6 @@ void reset_global_quick_tap_state(void) {
 static uint16_t prev_press_time = 0;
 
 bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
-
-    if (record->event.key.row % (MATRIX_ROWS / 2) >= 4) { dprintln("Global-quick-tap: skip bottom rows"); return true; }
     if (record->event.pressed) { // on keydown
 
         /* Any key down. Recording key press times */

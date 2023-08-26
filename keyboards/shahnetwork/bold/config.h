@@ -1,4 +1,11 @@
+
 #pragma once
+
+/* USB Device descriptor parameter */
+#define VENDOR_ID       0xABCD
+#define PRODUCT_ID      0x0001
+#define DEVICE_VER      0x0001
+
 
 /* key matrix */
 #define MATRIX_ROWS 10
@@ -42,7 +49,7 @@
 #define I2C1_SCL_PIN        B6
 #define I2C1_SDA_PIN        B7
 #define OLED_BRIGHTNESS 8 // 128 default?
-#define OLED_TIMEOUT 500 // ms
+#define OLED_TIMEOUT 2000 // ms
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_LED_STATE_ENABLE
 #endif
@@ -57,28 +64,18 @@
 // #define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
 #define USB_SUSPEND_WAKEUP_DELAY 200 // 0 is default
 #define SPLIT_WATCHDOG_ENABLE
-// #define SPLIT_WATCHDOG_TIMEOUT 3000
+#define SPLIT_WATCHDOG_TIMEOUT 3000
 
 /* typing options */
 /* caps word */
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
+#define CAPS_WORD_IDLE_TIMEOUT 1000  // 5000 default
 /* one shot keys */
 #define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
-#define ONESHOT_TIMEOUT 2000 // 5000 default
+#define ONESHOT_TIMEOUT 1000 // 5000 default
 /* tapping toggle */
 #define TAPPING_TOGGLE 5 // 5 default
 /* tapping settings */
 #define TAPPING_TERM 200
 
-// WEAR LEVEL BABY
-#define FEE_PAGE_SIZE 0x4000
-#define FEE_PAGE_COUNT 1
-#define FEE_MCU_FLASH_SIZE 512
-#define FEE_PAGE_BASE_ADDRESS 0x08004000
-#define WEAR_LEVELING_LEGACY_EMULATION_PAGE_SIZE 16384
-#define WEAR_LEVELING_LEGACY_EMULATION_PAGE_COUNT 3
-#define WEAR_LEVELING_LEGACY_EMULATION_BASE_PAGE_ADDRESS (WEAR_LEVELING_LEGACY_EMULATION_FLASH_BASE + (1 * (WEAR_LEVELING_LEGACY_EMULATION_PAGE_SIZE))) // +16k
-#define WEAR_LEVELING_BACKING_SIZE 49152
-#define WEAR_LEVELING_LOGICAL_SIZE 4096

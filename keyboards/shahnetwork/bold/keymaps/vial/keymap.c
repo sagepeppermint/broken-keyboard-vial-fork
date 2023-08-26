@@ -25,11 +25,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				XXXXXXX, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
-		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-				XXXXXXX, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
+		KC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+				XXXXXXX, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, XXXXXXX, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
 	
@@ -43,11 +43,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		OSM(MOD_LCTL), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
 				XXXXXXX, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 		
-		SC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-				XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
+		KC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+				XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, XXXXXXX, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, XXXXXXX, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
  
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
  
 	[5] = LAYOUT_5x7( // Left 2
-		QK_BOOT, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, TO(0), TO(1), _______, _______, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 		
 		KC_LSFT, KC_SLSH, KC_1, KC_2, KC_3, KC_BSLS, _______,
-				_______, _______, KC_BACKSPACE, _______, _______, _______, KC_RSFT,
+				_______, _______, _______, _______, _______, _______, KC_RSFT,
 		
 		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
 				_______, _______, _______, _______, _______, _______, _______
@@ -317,10 +317,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// // Workaround for https://github.com/qmk/qmk_firmware/issues/16406
-// void suspend_wakeup_init_user(void) {
-// 	NVIC_SystemReset();
-// }
+// Workaround for https://github.com/qmk/qmk_firmware/issues/16406
+void suspend_wakeup_init_user(void) {
+	NVIC_SystemReset();
+}
 
 #ifdef OLED_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -404,142 +404,4 @@ bool oled_task_user(void) {
 	return false;
 }
 #endif
-
-
-// Permissive hold
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		// Immediately select the hold action when another key is tapped.
-		case LT(4, KC_BSPC):
-		case LT(5, KC_ENT):
-		case LT(7, KC_TAB):
-		case LT(6, KC_SPACE):
-		case LSFT_T(KC_N):
-		case RSFT_T(KC_E):
-		case LSFT_T(KC_D):
-		case RSFT_T(KC_K):
-			return true;
-		// Do not select the hold action when another key is tapped.
-		default:
-			return false;
-	}
-}
-
-// Quick tapping term
-uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LT(4, KC_BSPC):
-		case LT(5, KC_ENT):
-		case LT(7, KC_TAB):
-		case LT(6, KC_SPACE):
-			return 0;
-        default:
-            return QUICK_TAP_TERM;
-    }
-}
-
-// Tapping term per key
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LGUI_T(KC_S):
-        case RGUI_T(KC_A):
-		case LGUI_T(KC_A):
-		case RGUI_T(KC_SEMICOLON):
-            return TAPPING_TERM + 100;
-        default:
-            return TAPPING_TERM;
-    }
-};
-
-
-#include "features/achordion.h"
-#include "features/global_quick_tap.h"
-
-bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_global_quick_tap(keycode, record)) {return false; }
-
-  return true;
-};
-
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_achordion(keycode, record)) { return false; }
-  // Your macros ...
-
-  return true;
-};
-
-void matrix_scan_user(void) {
-  achordion_task();
-};
-
-// Achordion which keys count as tap hold
-bool achordion_chord(uint16_t tap_hold_keycode,
-					 keyrecord_t* tap_hold_record,
-					 uint16_t other_keycode,
-					 keyrecord_t* other_record) {   
-    if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; }
-    return achordion_opposite_hands(tap_hold_record, other_record);
-};
-
-// Achordion time to decide tap vs hold (on top of normal tapping term)
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 300;  // ms
-};
-
-// Achordion eager mods define the modifiers themselves
-bool achordion_eager_mod(uint8_t mod) {
-  switch (mod) {
-	case MOD_LSFT:
-	case MOD_RSFT:
-	case MOD_LCTL:
-	case MOD_RCTL:
-	case MOD_LALT:
-	case MOD_RALT:
-//	case MOD_LGUI:
-//	case MOD_RGUI:
-	  return true;  // Eagerly apply mods.
-
-	default:
-	  return false;
-  }
-};
- 
-
-// Global quick tap keys
-uint16_t get_global_quick_tap_ms(uint16_t keycode) {
-    switch (keycode) {
-        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
-        /* case KEYCODE: */
-        /*     return 150; */
-        case LGUI_T(KC_S):
-        case LALT_T(KC_R):
-        case LSFT_T(KC_N):
-        case LCTL_T(KC_T):
-        case RCTL_T(KC_Y):
-        case RSFT_T(KC_E):
-        case RALT_T(KC_I):
-        case RGUI_T(KC_A): 
-        case LGUI_T(KC_A):
-        case LALT_T(KC_S):
-        case LSFT_T(KC_D):
-        case LCTL_T(KC_F):
-        case RCTL_T(KC_J):
-        case RSFT_T(KC_K):
-        case RALT_T(KC_L):
-        case RGUI_T(KC_SEMICOLON):
-            return 150;
-        default:
-            return 0;  // global_quick_tap is not applied
-    }
-};
-
-
-// To enable debug, can delete
- void keyboard_post_init_user(void) {
-   // Customise these values to desired behaviour
-    debug_enable=true;
-    debug_keyboard=false;
-    debug_matrix=false;
- };
 
