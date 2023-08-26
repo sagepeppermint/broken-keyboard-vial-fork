@@ -34,8 +34,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
 				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, QK_REPEAT_KEY, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, QK_ALT_REPEAT_KEY, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
 	
@@ -566,7 +566,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
             }
     }
     
-    // same finger bigrams dwarf
+    // Same finger bigrams DWARF
     if (IS_LAYER_ON(0)) {
         switch (keycode) {
             case KC_U: return KC_I;  // For "UI" bigram.
@@ -576,12 +576,31 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         }
     }
     
+    // Macros
     switch (keycode) {
         case KC_K: return M_KEYBOARD;
         case KC_DOT: return M_UPDIR;
     }
+    
+    // Opposites
+    switch (keycode) {
+        case KC_LEFT: return KC_RGHT;
+        case KC_RGHT: return KC_LEFT;
+        case KC_UP: return KC_DOWN;
+        case KC_DOWN: return KC_UP;
+        case KC_HOME: return KC_END;
+        case KC_END: return KC_HOME;
+        case KC_PGUP: return KC_PGDN;
+        case KC_PGDN: return KC_PGUP;
+        
+    // Completions
+        case KC_LCBR: return KC_RCBR;
+        case KC_LBRC: return KC_RBRC;
+        case KC_LEFT_PAREN: return KC_RIGHT_PAREN;
+    }
+    
 
-    return KC_TRNS;  // Defer to default definitions.
+    return KC_NO;  // Defer to default definitions.
 }
 
 
