@@ -70,17 +70,15 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_global_quick_tap(keycode, record)) {return false; }
-//    if (!process_achordion(keycode, record)) { return false; }
-  // Your macros ...
 
   return true;
 };
 
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-//    if (!process_global_quick_tap(keycode, record)) {return false; }
+
     if (!process_achordion(keycode, record)) { return false; }
-  // Your macros ...
+  //  macros ...
 
   return true;
 };
@@ -110,6 +108,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
       if (other_keycode == KC_Z || other_keycode == KC_P) { return false; }
       break;
   }
+    if (tap_hold_record->event.key.row % (MATRIX_ROWS) >= 4) { return true; } // Ignore bottom row and thumbcluster
     return achordion_opposite_hands(tap_hold_record, other_record);
 };
 
