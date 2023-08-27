@@ -25,17 +25,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
 				KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
 		
-		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, XXXXXXX,
-				KC_MPLY, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
+		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_LPRN,
+				KC_RPRN, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
 		
 		OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				KC_VOLU, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
-		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
+		KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_SENT,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, QK_REPEAT_KEY, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, QK_ALT_REPEAT_KEY, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
 	
@@ -43,17 +43,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
 				KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
 		
-		KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
-				XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
+		KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_LPRN,
+				KC_RPRN, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
 		
 		OSM(MOD_LCTL), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
-				XXXXXXX, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
+				KC_VOLU, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 		
-		SC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-				XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
+		KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+				KC_VOLD, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_SENT,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, XXXXXXX, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), XXXXXXX, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
  
@@ -97,14 +97,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
-		KC_CAPS, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
-				_______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______, _______,
+		_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
+				_______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
 				
-		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,
-				_______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
+		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
+				_______, KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
 		
-		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
-				_______, _______, KC_BACKSPACE, KC_DEL, KC_ENT, _______, KC_RSFT,
+		_______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
+				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
 		
 		_______, _______, _______, _______, _______, _______, _______,
 				KC_TAB, KC_SPACE, _______, _______, _______, _______, _______
@@ -116,14 +116,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		QK_BOOT, _______, _______, _______, _______, _______, _______,
 				_______, _______, TO(0), TO(1), _______, _______, KC_INS,
 		
-		KC_CAPS, _______, _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______,
 				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
 				
-		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,
+		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
 				_______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, _______,
 		
-		KC_LSFT, _______, _______, _______, _______, _______, _______,
-				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
+		_______, _______, _______, _______, _______, _______, _______,
+				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, KC_RSFT,
 		
 		_______, _______, _______, _______, _______, _______, _______,
 				KC_TAB, KC_SPACE, _______, _______, _______, _______, _______
@@ -135,14 +135,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
-		KC_CAPS, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
+		_______, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 				
-		KC_ESC, KC_GRV, KC_4, KC_5, KC_6, KC_EQL, _______,
+		KC_ESC, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
 				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 		
-		KC_LSFT, KC_SLSH, KC_1, KC_2, KC_3, KC_BSLS, _______,
-				_______, _______, KC_BACKSPACE, _______, _______, _______, KC_RSFT,
+		_______, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
+				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
 		
 		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
 				_______, _______, _______, _______, _______, _______, _______
@@ -154,14 +154,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
-		KC_CAPS, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
+		_______, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 				
-		KC_ESC, KC_TILDE, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PLUS, _______,
+		KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
 				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 		
-		KC_LSFT, KC_QUESTION, KC_EXCLAIM, KC_AT, KC_HASH, KC_PIPE, _______,
-				_______, _______, _______, _______, _______, _______, _______,
+		_______, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
+				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
 		
 		_______, _______, _______, KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
 				_______, _______, _______, _______, _______, _______, _______
@@ -603,7 +603,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_NO;  // Defer to default definitions.
 }
 
-
+/* 
 // To enable debug, can delete
  void keyboard_post_init_user(void) {
    // Customise these values to desired behaviour
@@ -612,3 +612,4 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     debug_matrix=false;
  };
 
+ */
