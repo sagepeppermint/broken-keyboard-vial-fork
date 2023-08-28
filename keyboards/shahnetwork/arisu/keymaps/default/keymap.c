@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[4] = LAYOUT( // Left spacebar mod
 		_______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, _______, _______, _______, _______, _______, _______, _______, _______, 
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
-		_______, KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, _______, _______, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______, _______, 
+		_______, KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_DEL, KC_BSPC, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______, _______, 
 		         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, _______, _______, _______, _______, _______, _______, KC_PGUP, _______, 
 		         _______, _______,          _______, _______, _______, _______,                         KC_HOME, KC_PGDN, KC_END
 	),
