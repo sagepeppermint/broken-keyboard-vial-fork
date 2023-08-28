@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		         _______, _______,          _______, _______, _______, _______,                                     _______, _______, _______
 	),
 
-	[3] = 		LAYOUT( // Right mod
+	[3] = LAYOUT( // Right mod
 		DF(0), _______, KC_F1,   KC_F2,   KC_F3,    KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,  KC_F12,  KC_GRV, 
 		DF(1), KC_CAPS, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_PSCR, KC_SCRL, KC_PAUS, QK_BOOT, 
 		DF(2), _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______, _______, _______, _______,  KC_HOME, KC_END,  _______, 
@@ -41,7 +41,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, _______, _______, _______, _______, _______, _______, _______, _______, 
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, 
 		_______, KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_DEL, KC_BSPC, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______, _______, 
-		         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, _______, _______, _______, _______, _______, _______, KC_PGUP, _______, 
+		         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), QK_REP, QK_REP, QK_AREP, _______, _______, _______, _______, KC_PGUP, _______, 
 		         _______, _______,          _______, _______, _______, _______,                         KC_HOME, KC_PGDN, KC_END
 	),
 
@@ -80,6 +80,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+// Capsword
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+		case KC_SLSH: // For PET/CT etc.
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
 
 /* 
 // Permissive hold
