@@ -19,4 +19,3 @@
 #define TAPPING_TOGGLE 5 // 5 default
 /* tapping settings */
 #define TAPPING_TERM 200
-
