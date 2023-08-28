@@ -11,6 +11,7 @@
         "mousekey": true,
         "nkro": true,
         "rgb_matrix": true,
+        "console": true,
     },
     "matrix_pins": {
         "cols": ["A3", "A4", "A5", "A6", "B12", "B13", "B4", "B5", "B6", "B7", "B8", "B9", "C13", "C14", "C15"],
