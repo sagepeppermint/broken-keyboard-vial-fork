@@ -9,4 +9,5 @@ OPT_DEFS += -DCORTEX_ENABLE_WFI_IDLE=TRUE
 
 # Other
 CAPS_WORD_ENABLE = yes
-REPEAT_KEY_ENABLE = yes
+SRC += features/achordion.c
+SRC += features/global_quick_tap.c
