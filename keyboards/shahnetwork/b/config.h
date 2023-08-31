@@ -61,9 +61,9 @@
 
 /* typing options */
 /* caps word */
-#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
-#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
+//#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+//#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+//#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
 /* one shot keys */
 #define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
 #define ONESHOT_TIMEOUT 2000 // 5000 default
