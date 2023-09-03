@@ -22,8 +22,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, XXXXXXX,
 				XXXXXXX, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
 		
-		OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
-				XXXXXXX, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
+		OSM(MOD_LCTL), KC_S, KC_R, KC_N, KC_T, KC_M, KC_PAGE_UP,
+				XXXXXXX, KC_P, KC_Y, KC_E, KC_I, KC_A, KC_ENT,
 		
 		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
 				XXXXXXX, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
@@ -40,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, XXXXXXX,
 				XXXXXXX, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
 		
-		OSM(MOD_LCTL), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
-				XXXXXXX, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
+		OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
+				XXXXXXX, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
 		
 		SC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
 				XXXXXXX, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
@@ -92,13 +92,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, _______, _______, _______, _______, _______,
 		
 		KC_CAPS, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
-				_______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______, _______,
+				_______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
 				
 		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), _______, _______,
-				_______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
+				_______, KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
 		
 		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
-				_______, _______, KC_BACKSPACE, KC_DEL, KC_ENT, _______, KC_RSFT,
+				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
 		
 		_______, _______, _______, _______, _______, _______, _______,
 				KC_TAB, KC_SPACE, _______, _______, _______, _______, _______
@@ -132,10 +132,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_CAPS, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 				
-		KC_ESC, KC_GRV, KC_4, KC_5, KC_6, KC_EQL, _______,
+		KC_ESC, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
 				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 		
-		KC_LSFT, KC_SLSH, KC_1, KC_2, KC_3, KC_BSLS, _______,
+		KC_LSFT, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
 				_______, _______, _______, _______, _______, _______, KC_RSFT,
 		
 		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
@@ -404,6 +404,27 @@ bool oled_task_user(void) {
 			oled_scroll_left();  // Turns on scrolling
 	}
 	return false;
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case KC_SLASH:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
 }
 #endif
 
