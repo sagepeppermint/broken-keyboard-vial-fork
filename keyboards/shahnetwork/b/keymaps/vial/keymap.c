@@ -406,6 +406,8 @@ bool oled_task_user(void) {
 	return false;
 }
 
+#endif
+
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -426,5 +428,4 @@ bool caps_word_press_user(uint16_t keycode) {
             return false;  // Deactivate Caps Word.
     }
 }
-#endif
 

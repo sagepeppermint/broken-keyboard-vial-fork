@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	QK_BOOT,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  KC_F11,  KC_F12,  KC_INS, KC_DEL,   DF(0),
 	KC_CAPS, _______, _______, _______, _______, _______, _______, KC_7, KC_8, KC_9, KC_PSCR, KC_SCRL, KC_PAUS,  _______,                   DF(1),
 	_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______, KC_4, KC_5, KC_6, _______, _______, _______,                             DF(2),
-	_______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, KC_0, KC_1, KC_2, KC_3, _______, _______,          KC_PGUP, 
+	_______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, KC_0, KC_1, KC_2, KC_3, _______, _______,                      KC_PGUP, 
 	_______, _______,          _______, _______,          _______,          _______,                            KC_HOME, KC_PGDN, KC_END 
   ),
 
@@ -64,12 +64,26 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
+// Permissive hold per key
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		// Immediately select the hold action when another key is tapped.
+		case LSFT_T(KC_N):
+		case RSFT_T(KC_E):
+			return true;
+		// Do not select the hold action when another key is tapped.
+		default:
+			return false;
+	}
+};
+
+
 
 #include "features/achordion.h"
 #include "features/global_quick_tap.h"
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_global_quick_tap(keycode, record)) {return false; }
+//    if (!process_global_quick_tap(keycode, record)) {return false; }
 
   return true;
 };
@@ -109,6 +123,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
       break;
   }
     if (tap_hold_record->event.key.row % (MATRIX_ROWS) >= 4) { return true; } // Ignore bottom row and thumbcluster
+    if (other_record->event.key.row % (MATRIX_ROWS) >= 4) { return true; } // Ignore bottom row and thumbcluster
     return achordion_opposite_hands(tap_hold_record, other_record);
 };
 
@@ -155,6 +170,29 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
             return 0;  // global_quick_tap is not applied
     }
 };
+
+// Caps word
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case KC_SLASH:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+};
+
 
 /*
 // To enable debug, can delete

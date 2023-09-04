@@ -57,7 +57,7 @@
 // #define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
 #define USB_SUSPEND_WAKEUP_DELAY 200 // 0 is default
 #define SPLIT_WATCHDOG_ENABLE
-// #define SPLIT_WATCHDOG_TIMEOUT 3000
+#define SPLIT_WATCHDOG_TIMEOUT 3000
 
 /* typing options */
 /* caps word */

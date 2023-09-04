@@ -31,11 +31,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				KC_VOLU, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
-		KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_SENT,
+		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, KC_DEL, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_ESC, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
 	
@@ -49,11 +49,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		OSM(MOD_LCTL), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
 				KC_VOLU, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 		
-		KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-				KC_VOLD, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_SENT,
+		SC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+				KC_VOLD, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_ESC, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_DEL, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LCTL, KC_LGUI, KC_LALT, KC_DEL, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
+				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_ESC, KC_RALT, KC_RGUI, KC_RCTL
 		
 	),
  
@@ -98,13 +98,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, _______, _______, _______, _______, _______,
 		
 		_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
-				_______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
+				_______, _______, KC_PGDN, KC_UP, KC_PGUP, KC_HOME, _______,
 				
-		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
-				_______, KC_DEL, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
+		KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
+				_______, _______, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, _______,
 		
-		_______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
-				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
+		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
+				_______, _______, KC_BACKSPACE, KC_DEL, KC_TAB, KC_ENT, KC_RSFT,
 		
 		_______, _______, _______, _______, _______, _______, _______,
 				KC_TAB, KC_SPACE, _______, _______, _______, _______, _______
@@ -119,10 +119,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
 				
-		KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
+		KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
 				_______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, _______,
 		
-		_______, _______, _______, _______, _______, _______, _______,
+		KC_LSFT, _______, _______, _______, _______, _______, _______,
 				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, KC_RSFT,
 		
 		_______, _______, _______, _______, _______, _______, _______,
@@ -139,10 +139,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, _______, _______, _______, _______, _______,
 				
 		KC_ESC, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
-				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
+				_______, _______, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
 		
-		_______, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
-				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
+		KC_LSFT, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
+				_______, _______, KC_BACKSPACE, KC_DEL, KC_TAB, KC_ENT, KC_RSFT,
 		
 		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
 				_______, _______, _______, _______, _______, _______, _______
@@ -158,10 +158,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, _______, _______, _______, _______, _______,
 				
 		KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
-				_______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
+				_______, _______, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
 		
-		_______, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
-				_______, _______, KC_BACKSPACE, KC_TAB, KC_ENT, _______, KC_RSFT,
+		KC_LSFT, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
+				_______, _______, KC_BACKSPACE, KC_DEL, KC_TAB, KC_ENT, KC_RSFT,
 		
 		_______, _______, _______, KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
 				_______, _______, _______, _______, _______, _______, _______
@@ -412,7 +412,7 @@ bool oled_task_user(void) {
 #endif
 
 
-// Permissive hold
+// Permissive hold per key
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		// Immediately select the hold action when another key is tapped.
@@ -459,14 +459,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 
 #include "features/achordion.h"
-#include "features/global_quick_tap.h"
-
-bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_global_quick_tap(keycode, record)) {return false; }
-
-  return true;
-};
-
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) { return false; }
@@ -490,6 +482,7 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 					 uint16_t other_keycode,
 					 keyrecord_t* other_record) {   
     if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; } // Ignore bottom row and thumbcluster
+    if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; } // Ignore bottom row and thumbcluster
     return achordion_opposite_hands(tap_hold_record, other_record);
 };
 
@@ -515,37 +508,7 @@ bool achordion_eager_mod(uint8_t mod) {
 	  return false;
   }
 };
- 
 
-// Global quick tap keys
-uint16_t get_global_quick_tap_ms(uint16_t keycode) {
-    switch (keycode) {
-        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
-        /* case KEYCODE: */
-        /*     return 150; */
-		// DWARF
-        case LGUI_T(KC_S):
-        case LALT_T(KC_R):
-        case LSFT_T(KC_N):
-        case LCTL_T(KC_T):
-        case RCTL_T(KC_Y):
-        case RSFT_T(KC_E):
-        case RALT_T(KC_I):
-        case RGUI_T(KC_A): 
-		// QWERTY
-        case LGUI_T(KC_A):
-        case LALT_T(KC_S):
-        case LSFT_T(KC_D):
-        case LCTL_T(KC_F):
-        case RCTL_T(KC_J):
-        case RSFT_T(KC_K):
-        case RALT_T(KC_L):
-        case RGUI_T(KC_SEMICOLON):
-            return 150;
-        default:
-            return 0;  // global_quick_tap is not applied
-    }
-};
 
 // Repeat key alternate
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
@@ -603,7 +566,28 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_NO;  // Defer to default definitions.
 }
 
-/* 
+// Caps word
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        // Keycodes that continue Caps Word, with shift applied.
+        case KC_A ... KC_Z:
+        case KC_MINS:
+            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+            return true;
+
+        // Keycodes that continue Caps Word, without shifting.
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+        case KC_UNDS:
+        case KC_SLASH:
+            return true;
+
+        default:
+            return false;  // Deactivate Caps Word.
+    }
+}
+
 // To enable debug, can delete
  void keyboard_post_init_user(void) {
    // Customise these values to desired behaviour
@@ -612,4 +596,3 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     debug_matrix=false;
  };
 
- */
