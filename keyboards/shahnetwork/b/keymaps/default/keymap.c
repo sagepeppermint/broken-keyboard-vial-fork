@@ -3,6 +3,7 @@
 enum custom_keycodes {
     M_KEYBOARD = SAFE_RANGE,
     M_UPDIR,
+    CAPS_WORD_LOCK,
     // Other custom keys...
 };
 
@@ -22,7 +23,7 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[0] = LAYOUT_5x7( // DWARF WIN
-		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, CAPS_WORD_LOCK,
 				TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
 		
 		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
@@ -452,6 +453,21 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
+// Hold on other key press per key
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		// Immediately select the hold action when another key is pressed.
+		case LT(4, KC_BSPC):
+		case LT(5, KC_DEL):
+		case LT(7, KC_ENT):
+		case LT(6, KC_SPACE):
+			return true;
+		default:
+			return false;
+	}
+};
+
+
 // Tapping term per key
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -497,6 +513,82 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 #include "features/achordion.h"
 #include "features/global_quick_tap.h"
 
+
+
+// CAPS_WORD_LOCK: A "smart" Caps Lock key that only capitalizes the next identifier you type
+// and then toggles off Caps Lock automatically when you're done.
+bool caps_word_lock_on;
+
+void caps_word_lock_enable(void) {
+    caps_word_lock_on = true;
+    if (!(host_keyboard_led_state().caps_lock)) {
+        tap_code(KC_CAPS);
+    }
+}
+
+void caps_word_lock_disable(void) {
+    caps_word_lock_on = false;
+    unregister_mods(MOD_MASK_SHIFT);
+    if (host_keyboard_led_state().caps_lock) {
+        tap_code(KC_CAPS);
+    }
+}
+
+inline uint8_t get_tap_kc(uint16_t dual_role_key) {
+    // Used to extract the basic tapping keycode from a dual-role key.
+    // Example: get_tap_kc(MT(MOD_RSFT, KC_E)) == KC_E
+    return dual_role_key & 0xFF;
+}
+
+static void process_caps_word_lock(uint16_t keycode, const keyrecord_t *record) {
+    // Update caps word state
+    if (caps_word_lock_on) {
+        switch (keycode) {
+            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+            case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
+                // Earlier return if this has not been considered tapped yet
+                if (record->tap.count == 0) { return; }
+                // Get the base tapping keycode of a mod- or layer-tap key
+                keycode = get_tap_kc(keycode);
+                break;
+            default:
+                break;
+        }
+
+        switch (keycode) {
+            // Keycodes to shift
+            case KC_A ... KC_Z:
+                if (record->event.pressed) {
+                    if (get_oneshot_mods() & MOD_MASK_SHIFT) {
+                        caps_word_lock_disable();
+                        add_oneshot_mods(MOD_MASK_SHIFT);
+                    }
+                }
+            // Keycodes that enable caps word but shouldn't get shifted
+            case KC_MINS:
+            case KC_BSPC:
+            case KC_UNDS:
+            case KC_PIPE:
+            case CAPS_WORD_LOCK:
+            case KC_LPRN:
+            case KC_RPRN:
+                // If chording mods, disable caps word
+                if (record->event.pressed && (get_mods() != MOD_LSFT) && (get_mods() != 0)) {
+                    caps_word_lock_disable();
+                }
+                break;
+            default:
+                // Any other keycode should automatically disable caps
+                if (record->event.pressed && !(get_oneshot_mods() & MOD_MASK_SHIFT)) {
+                    caps_word_lock_disable();
+                }
+                break;
+        }
+    }
+}
+
+
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
     // enable global quick tap before other processing. Note this will not work properly with capsword.
     if (!process_global_quick_tap(keycode, record)) {return false; }
@@ -505,12 +597,27 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) { return false; }
-    
+    process_caps_word_lock(keycode, record);
   // Macros
     switch (keycode) {
     case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
     case M_UPDIR: SEND_STRING(/*.*/"./"); break;
+    case CAPS_WORD_LOCK:
+        // Toggle `caps_word_lock_on`
+        if (record->event.pressed) {
+            if (caps_word_lock_on) {
+                caps_word_lock_disable();
+                return false;
+            } else {
+                caps_word_lock_enable();
+                return false;
+            }
+        }
+        return false;
     }
+    
+    
+     
     
   return true;
 };
@@ -531,7 +638,16 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 
 // Achordion time to decide tap vs hold (on top of normal tapping term)
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 300;  // ms
+    switch (tap_hold_keycode){
+    // Thumb keys
+	case LT(4, KC_BSPC):
+	case LT(5, KC_DEL):
+	case LT(7, KC_ENT): 
+	case LT(6, KC_SPACE):
+		return 0; // disable for these buttons
+	default:
+        return 300;  // ms
+    }
 };
 
 // Achordion eager mods define the modifiers themselves
@@ -637,15 +753,32 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
         /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
         /* case KEYCODE: */
         /*     return 150; */
-        // DWARF
-        case LGUI_T(KC_S):
-        case LALT_T(KC_R):
-        case LSFT_T(KC_N):
-        case LCTL_T(KC_T):
-        case RCTL_T(KC_Y):
-        case RSFT_T(KC_E):
-        case RALT_T(KC_I):
-        case RGUI_T(KC_A): 
+        // DWARF hrm
+		case LGUI_T(KC_S): 
+		case LALT_T(KC_R):
+		case LSFT_T(KC_N): 
+		case LCTL_T(KC_T):
+		case RCTL_T(KC_Y): 
+		case RSFT_T(KC_E):
+		case RALT_T(KC_I): 
+		case RGUI_T(KC_A):
+		case LT(10, KC_K):
+		case LT(10, KC_W):
+		case LSFT_T(KC_X):
+		case RSFT_T(KC_SEMICOLON):
+		// QWERTY hrm
+		case LGUI_T(KC_A):
+		case LALT_T(KC_S):
+		case LSFT_T(KC_D):
+		case LCTL_T(KC_F):
+		case RCTL_T(KC_J):
+		case RSFT_T(KC_K):
+		case RALT_T(KC_L): 
+		case RGUI_T(KC_SEMICOLON):
+		case LT(10, KC_V):
+		case LT(10, KC_M):
+		case LSFT_T(KC_Z):
+		case RSFT_T(KC_SLASH):
             return 150;
         default:
             return 0;  // global_quick_tap is not applied
