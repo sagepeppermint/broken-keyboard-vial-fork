@@ -22,23 +22,25 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[0] = LAYOUT_5x7( // DWARF WIN
-		KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
-				KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
+		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, TG(8),
+				_______, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
 		
-		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_LPRN,
-				KC_RPRN, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BACKSPACE,
+		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
+				KC_CAPS, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
 		
-		OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
-				KC_VOLU, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
+		KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
+				KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
 		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-				KC_VOLD, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
+				KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_DEL, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_ESC, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LBRC, KC_LEFT, KC_RIGHT, 
+		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
+        LT(7, KC_ENT), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
+        KC_DOWN, KC_UP, KC_RBRC
 		
 	),
-	
+		
 	[1] = LAYOUT_5x7( // QWERTY WIN
 		KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
 				KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
@@ -98,38 +100,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 				_______, _______, _______, _______, _______, _______, _______,
 		
 		_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
-				_______, _______, KC_PGDN, KC_UP, KC_PGUP, KC_HOME, _______,
+				_______, _______, KC_HOME, _______, KC_END, _______, _______,
 				
-		KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
-				_______, _______, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, _______,
+		_______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
+				_______, _______, KC_LEFT, KC_UP, KC_RIGHT, _______, _______,
 		
 		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
-				_______, _______, KC_BACKSPACE, KC_DEL, KC_TAB, KC_ENT, KC_RSFT,
+				_______, _______, KC_PGDN, KC_DOWN, KC_PGUP, _______, KC_RSFT,
 		
-		_______, _______, _______, _______, _______, _______, _______,
-				KC_TAB, KC_SPACE, _______, _______, _______, _______, _______
+		_______, _______, _______, 
+		_______, _______, _______, _______,
+        KC_ENT, KC_SPACE, _______, _______, 
+        _______, _______, _______
 		
 	),
-
  
 	[5] = LAYOUT_5x7( // Left 2
 		QK_BOOT, _______, _______, _______, _______, _______, _______,
-				_______, _______, TO(0), TO(1), _______, _______, KC_INS,
+				_______, _______, TO(0), TO(1), _______, _______, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
-				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
+				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
 				
 		KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
-				_______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, _______,
+				_______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, KC_INS,
 		
 		KC_LSFT, _______, _______, _______, _______, _______, _______,
-				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, KC_RSFT,
+				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, KC_RSFT,
 		
-		_______, _______, _______, _______, _______, _______, _______,
-				KC_TAB, KC_SPACE, _______, _______, _______, _______, _______
+		_______, _______, _______, 
+		_______, _______, _______, _______,
+        KC_ENT, KC_SPACE, _______, _______, 
+        _______, _______, _______
 		
 	),
-
 
 	  [6] = LAYOUT_5x7( // Right 1
 		_______, _______, _______, _______, _______, _______, _______,
@@ -169,21 +173,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
  
-	[8] = LAYOUT_5x7(
+	[8] = LAYOUT_5x7( // Numpad
 		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		    _______, KC_NUM, KC_BSPC, KC_PSLS, KC_PAST, KC_CALC, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		    _______, _______, KC_P7, KC_P8, KC_P9, KC_PMNS, _______,
 				
 		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		    _______, _______, KC_P4, KC_P5, KC_P6, KC_PPLS, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		    _______, _______, KC_P1, KC_P2, KC_P3, KC_PENT, _______,
 		
-		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______
+		_______, _______, _______, 
+		_______, _______, _______, _______,
+		TG(8), KC_P0, _______, _______, 
+		KC_P0, KC_P0, KC_PDOT
 		
 	),
 
@@ -459,14 +465,21 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 
 #include "features/achordion.h"
+#include "features/global_quick_tap.h"
+
+bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // enable global quick tap before other processing. Note this will not work properly with capsword.
+    if (!process_global_quick_tap(keycode, record)) {return false; }
+    return true;
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) { return false; }
     
   // Macros
     switch (keycode) {
-        case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
-        case M_UPDIR: SEND_STRING(/*.*/"./"); break;
+    case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
+    case M_UPDIR: SEND_STRING(/*.*/"./"); break;
     }
     
   return true;
@@ -588,6 +601,27 @@ bool caps_word_press_user(uint16_t keycode) {
     }
 }
 
+// Global quick tap keys
+uint16_t get_global_quick_tap_ms(uint16_t keycode) {
+    switch (keycode) {
+        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
+        /* case KEYCODE: */
+        /*     return 150; */
+        // DWARF
+        case LGUI_T(KC_S):
+        case LALT_T(KC_R):
+        case LSFT_T(KC_N):
+        case LCTL_T(KC_T):
+        case RCTL_T(KC_Y):
+        case RSFT_T(KC_E):
+        case RALT_T(KC_I):
+        case RGUI_T(KC_A): 
+            return 150;
+        default:
+            return 0;  // global_quick_tap is not applied
+    }
+};
+
 // To enable debug, can delete
  void keyboard_post_init_user(void) {
    // Customise these values to desired behaviour
@@ -595,4 +629,5 @@ bool caps_word_press_user(uint16_t keycode) {
     debug_keyboard=false;
     debug_matrix=false;
  };
+
 

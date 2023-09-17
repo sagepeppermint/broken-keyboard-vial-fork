@@ -22,6 +22,8 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
         return true; 
         }
         
+    uint16_t quick_tap_ms = get_global_quick_tap_ms(keycode);
+    
     if (record->event.pressed) { // on keydown
 
         /* Any key down. Recording key press times */
@@ -29,7 +31,7 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
         prev_press_time = record->event.time;
 
         if (!gqt_state.disabled) {
-            uint16_t quick_tap_ms = get_global_quick_tap_ms(keycode);
+
             if (quick_tap_ms > 0) {
                 dprintf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms. ", time_diff, quick_tap_ms);
                 if (quick_tap_ms > time_diff) {
@@ -48,8 +50,11 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
 
     } 
     else { // on keyup
-    unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-    reset_global_quick_tap_state();   
+        if (quick_tap_ms > 0) {
+            dprintf("Unregister  key 0x%04X\n", keycode);
+            unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+            reset_global_quick_tap_state();  
+        }
     }
 
     return true;
