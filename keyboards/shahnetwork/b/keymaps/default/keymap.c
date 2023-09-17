@@ -22,8 +22,8 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[0] = LAYOUT_5x7( // DWARF WIN
-		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, TG(8),
-				_______, KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
+		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+				TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
 		
 		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
 				KC_CAPS, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
@@ -31,8 +31,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
-		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-				KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
+		SC_LSPO, LSFT_T(KC_X), KC_J, KC_B, LT(10, KC_K), KC_Q, KC_PAGE_DOWN,
+				KC_END, KC_C, LT(10, KC_W), KC_QUOTE, KC_COMMA, RSFT_T(KC_SEMICOLON), SC_RSPC,
 		
 		KC_LBRC, KC_LEFT, KC_RIGHT, 
 		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -42,20 +42,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 		
 	[1] = LAYOUT_5x7( // QWERTY WIN
-		KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5, KC_MINUS,
-				KC_EQUAL, KC_6, KC_7, KC_8, KC_9, KC_0, KC_DEL,
+		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+				TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
 		
-		KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_LPRN,
-				KC_RPRN, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BACKSPACE,
+		KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_GRV,
+				KC_CAPS, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
 		
-		OSM(MOD_LCTL), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
-				KC_VOLU, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
+		KC_ESC, LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
+				KC_HOME, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 		
-		SC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-				KC_VOLD, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
+		SC_LSPO, LSFT_T(KC_Z), KC_X, KC_C, LT(10, KC_V), KC_B, KC_PAGE_DOWN,
+				KC_END, KC_N, LT(10, KC_M), KC_COMMA, KC_DOT, RSFT_T(KC_SLASH), SC_RSPC,
 		
-		KC_LCTL, KC_LGUI, KC_LALT, KC_DEL, QK_REPEAT_KEY, LT(4, KC_BSPC), LT(5, KC_ENT),
-				LT(7, KC_TAB), LT(6, KC_SPACE), QK_ALT_REPEAT_KEY, KC_ESC, KC_RALT, KC_RGUI, KC_RCTL
+		KC_LBRC, KC_LEFT, KC_RIGHT, 
+		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
+        LT(7, KC_ENT), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
+        KC_DOWN, KC_UP, KC_RBRC
 		
 	),
  
@@ -95,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		
 	),
  
-	[4] = LAYOUT_5x7( // Left 1
+	[4] = LAYOUT_5x7( // Left main
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
@@ -115,17 +117,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		
 	),
  
-	[5] = LAYOUT_5x7( // Left 2
+	[5] = LAYOUT_5x7( // Left alt
 		QK_BOOT, _______, _______, _______, _______, _______, _______,
 				_______, _______, TO(0), TO(1), _______, _______, _______,
 		
-		_______, _______, _______, _______, _______, _______, _______,
+		_______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
 				_______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
 				
 		KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
 				_______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, KC_INS,
 		
-		KC_LSFT, _______, _______, _______, _______, _______, _______,
+		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
 				_______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, KC_RSFT,
 		
 		_______, _______, _______, 
@@ -135,40 +137,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		
 	),
 
-	  [6] = LAYOUT_5x7( // Right 1
+	  [6] = LAYOUT_5x7( // Right main
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
 		_______, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 				
-		KC_ESC, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
-				_______, _______, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+		_______, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
+				_______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
 		
 		KC_LSFT, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
 				_______, _______, KC_BACKSPACE, KC_DEL, KC_TAB, KC_ENT, KC_RSFT,
 		
-		_______, _______, _______, KC_DOT, _______, KC_0, KC_MINS,
-				_______, _______, _______, _______, _______, _______, _______
+		_______, _______, _______, 
+		KC_DOT, _______, KC_0, KC_MINS,
+		_______, _______, _______, _______, 
+		_______, _______, _______
 		
 	),
 
 
-	  [7] = LAYOUT_5x7( // Right 2
+	  [7] = LAYOUT_5x7( // Right alt
 		_______, _______, _______, _______, _______, _______, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 		
 		_______, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
 				_______, _______, _______, _______, _______, _______, _______,
 				
-		KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
-				_______, _______, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+		_______, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
+				_______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
 		
 		KC_LSFT, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
 				_______, _______, KC_BACKSPACE, KC_DEL, KC_TAB, KC_ENT, KC_RSFT,
 		
-		_______, _______, _______, KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
-				_______, _______, _______, _______, _______, _______, _______
+		_______, _______, _______, 
+		KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
+		_______, _______, _______, _______, 
+		_______, _______, _______
 		
 	),
 
@@ -213,21 +219,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 
  
-	[10] = LAYOUT_5x7(
+	[10] = LAYOUT_5x7( // Shortcut
 		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+			_______, _______, _______, _______, _______, _______, _______,
 		
 		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+			_______, _______, _______, _______, _______, _______, _______,
 				
-		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		_______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
+			_______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
 		
-		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______,
+		KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, _______,
+			_______, _______, C(KC_V), C(KC_C), C(KC_X), C(KC_Z), KC_RSFT,
 		
-		_______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______
+		_______, _______, _______, 
+		_______, _______, _______, _______,
+		_______, _______, _______, _______, 
+		_______, _______, _______
 		
 	),
 
@@ -341,7 +349,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 	}
 
 	return rotation;
-}
+};
 
 bool oled_task_user(void) {
 	if (is_keyboard_left()) {
@@ -414,50 +422,72 @@ bool oled_task_user(void) {
 			oled_scroll_left();  // Turns on scrolling
 	}
 	return false;
-}
+};
 #endif
-
 
 // Permissive hold per key
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		// Immediately select the hold action when another key is tapped.
-		case LT(4, KC_BSPC):
-		case LT(5, KC_ENT):
-		case LT(7, KC_TAB):
-		case LT(6, KC_SPACE):
 		case LSFT_T(KC_N):
 		case RSFT_T(KC_E):
 		case LSFT_T(KC_D):
 		case RSFT_T(KC_K):
 			return true;
-		// Do not select the hold action when another key is tapped.
 		default:
 			return false;
 	}
-}
+};
 
 // Quick tapping term
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LT(4, KC_BSPC):
-		case LT(5, KC_ENT):
-		case LT(7, KC_TAB):
+		case LT(5, KC_DEL):
+		case LT(7, KC_ENT):
 		case LT(6, KC_SPACE):
-			return 0;
+			return QUICK_TAP_TERM; // nothing for now, 0 to disable
         default:
             return QUICK_TAP_TERM;
     }
-}
+};
 
 // Tapping term per key
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LGUI_T(KC_S):
-        case RGUI_T(KC_A):
+		// DWARF hrm
+		case LGUI_T(KC_S): 
+		case LALT_T(KC_R):
+		case LSFT_T(KC_N): 
+		case LCTL_T(KC_T):
+		case RCTL_T(KC_Y): 
+		case RSFT_T(KC_E):
+		case RALT_T(KC_I): 
+		case RGUI_T(KC_A):
+		case LT(10, KC_K):
+		case LT(10, KC_W):
+		case LSFT_T(KC_X):
+		case RSFT_T(KC_SEMICOLON):
+		// QWERTY hrm
 		case LGUI_T(KC_A):
+		case LALT_T(KC_S):
+		case LSFT_T(KC_D):
+		case LCTL_T(KC_F):
+		case RCTL_T(KC_J):
+		case RSFT_T(KC_K):
+		case RALT_T(KC_L): 
 		case RGUI_T(KC_SEMICOLON):
-            return TAPPING_TERM + 100;
+		case LT(10, KC_V):
+		case LT(10, KC_M):
+		case LSFT_T(KC_Z):
+		case RSFT_T(KC_SLASH):
+            return 300;
+		// Thumb keys
+		case LT(4, KC_BSPC):
+		case LT(5, KC_DEL):
+		case LT(7, KC_ENT): 
+		case LT(6, KC_SPACE):
+			return 175;
         default:
             return TAPPING_TERM;
     }
