@@ -509,85 +509,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
-
 #include "features/achordion.h"
 #include "features/global_quick_tap.h"
-
-
-
-// CAPS_WORD_LOCK: A "smart" Caps Lock key that only capitalizes the next identifier you type
-// and then toggles off Caps Lock automatically when you're done.
-bool caps_word_lock_on;
-
-void caps_word_lock_enable(void) {
-    caps_word_lock_on = true;
-    if (!(host_keyboard_led_state().caps_lock)) {
-        tap_code(KC_CAPS);
-    }
-}
-
-void caps_word_lock_disable(void) {
-    caps_word_lock_on = false;
-    unregister_mods(MOD_MASK_SHIFT);
-    if (host_keyboard_led_state().caps_lock) {
-        tap_code(KC_CAPS);
-    }
-}
-
-inline uint8_t get_tap_kc(uint16_t dual_role_key) {
-    // Used to extract the basic tapping keycode from a dual-role key.
-    // Example: get_tap_kc(MT(MOD_RSFT, KC_E)) == KC_E
-    return dual_role_key & 0xFF;
-}
-
-static void process_caps_word_lock(uint16_t keycode, const keyrecord_t *record) {
-    // Update caps word state
-    if (caps_word_lock_on) {
-        switch (keycode) {
-            case QK_MOD_TAP ... QK_MOD_TAP_MAX:
-            case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
-            case QK_ONE_SHOT_LAYER ... QK_ONE_SHOT_LAYER_MAX:
-                // Earlier return if this has not been considered tapped yet
-                if (record->tap.count == 0) { return; }
-                // Get the base tapping keycode of a mod- or layer-tap key
-                keycode = get_tap_kc(keycode);
-                break;
-            default:
-                break;
-        }
-
-        switch (keycode) {
-            // Keycodes to shift
-            case KC_A ... KC_Z:
-                if (record->event.pressed) {
-                    if (get_oneshot_mods() & MOD_MASK_SHIFT) {
-                        caps_word_lock_disable();
-                        add_oneshot_mods(MOD_MASK_SHIFT);
-                    }
-                }
-            // Keycodes that enable caps word but shouldn't get shifted
-            case KC_MINS:
-            case KC_BSPC:
-            case KC_UNDS:
-            case KC_PIPE:
-            case CAPS_WORD_LOCK:
-            case KC_LPRN:
-            case KC_RPRN:
-                // If chording mods, disable caps word
-                if (record->event.pressed && (get_mods() != MOD_LSFT) && (get_mods() != 0)) {
-                    caps_word_lock_disable();
-                }
-                break;
-            default:
-                // Any other keycode should automatically disable caps
-                if (record->event.pressed && !(get_oneshot_mods() & MOD_MASK_SHIFT)) {
-                    caps_word_lock_disable();
-                }
-                break;
-        }
-    }
-}
-
+#include "features/caps_word_lock.c"
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
     // enable global quick tap before other processing. Note this will not work properly with capsword.
@@ -668,7 +592,6 @@ bool achordion_eager_mod(uint8_t mod) {
   }
 };
 
-
 // Repeat key alternate
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     if ((mods & MOD_MASK_CTRL)) {  // Was Ctrl held?
@@ -725,7 +648,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_NO;  // Defer to default definitions.
 }
 
-// Caps word
+/* // Caps word
 bool caps_word_press_user(uint16_t keycode) {
     switch (keycode) {
         // Keycodes that continue Caps Word, with shift applied.
@@ -745,7 +668,7 @@ bool caps_word_press_user(uint16_t keycode) {
         default:
             return false;  // Deactivate Caps Word.
     }
-}
+} */
 
 // Global quick tap keys
 uint16_t get_global_quick_tap_ms(uint16_t keycode) {
@@ -783,6 +706,12 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
         default:
             return 0;  // global_quick_tap is not applied
     }
+};
+
+// Combos
+const uint16_t PROGMEM combo1[] = {KC_H, KC_D, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(combo1, CAPS_WORD_LOCK),
 };
 
 // To enable debug, can delete
