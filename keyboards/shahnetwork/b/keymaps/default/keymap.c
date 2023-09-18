@@ -23,11 +23,11 @@ const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[0] = LAYOUT_5x7( // DWARF WIN
-		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, CAPS_WORD_LOCK,
+		KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
 				TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
 		
 		KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
-				KC_CAPS, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
+				CAPS_WORD_LOCK, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
 		
 		KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
