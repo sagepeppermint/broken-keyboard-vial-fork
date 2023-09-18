@@ -32,8 +32,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
-		SC_LSPO, LSFT_T(KC_X), KC_J, KC_B, LT(10, KC_K), KC_Q, KC_PAGE_DOWN,
-				KC_END, KC_C, LT(10, KC_W), KC_QUOTE, KC_COMMA, RSFT_T(KC_SEMICOLON), SC_RSPC,
+		SC_LSPO, KC_X, KC_J, KC_B, LT(10, KC_K), KC_Q, KC_PAGE_DOWN,
+				KC_END, KC_C, LT(10, KC_W), KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
 		KC_LBRC, KC_LEFT, KC_RIGHT, 
 		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -52,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
 				KC_HOME, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 		
-		SC_LSPO, LSFT_T(KC_Z), KC_X, KC_C, LT(10, KC_V), KC_B, KC_PAGE_DOWN,
-				KC_END, KC_N, LT(10, KC_M), KC_COMMA, KC_DOT, RSFT_T(KC_SLASH), SC_RSPC,
+		SC_LSPO, KC_Z, KC_X, KC_C, LT(10, KC_V), KC_B, KC_PAGE_DOWN,
+				KC_END, KC_N, LT(10, KC_M), KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
 		
 		KC_LBRC, KC_LEFT, KC_RIGHT, 
 		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -482,8 +482,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case RGUI_T(KC_A):
 		case LT(10, KC_K):
 		case LT(10, KC_W):
-		case LSFT_T(KC_X):
-		case RSFT_T(KC_SEMICOLON):
 		// QWERTY hrm
 		case LGUI_T(KC_A):
 		case LALT_T(KC_S):
@@ -495,8 +493,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case RGUI_T(KC_SEMICOLON):
 		case LT(10, KC_V):
 		case LT(10, KC_M):
-		case LSFT_T(KC_Z):
-		case RSFT_T(KC_SLASH):
             return 300;
 		// Thumb keys
 		case LT(4, KC_BSPC):
@@ -524,9 +520,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     process_caps_word_lock(keycode, record);
   // Macros
     switch (keycode) {
-    case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
-    case M_UPDIR: SEND_STRING(/*.*/"./"); break;
-    case CAPS_WORD_LOCK:
+    
+	case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
+    
+	case M_UPDIR: SEND_STRING(/*.*/"./"); break;
+    
+	case CAPS_WORD_LOCK:
         // Toggle `caps_word_lock_on`
         if (record->event.pressed) {
             if (caps_word_lock_on) {
@@ -537,7 +536,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 return false;
             }
         }
-        return false;
+        return false; break;
+
+
+
     }
     
     
@@ -687,8 +689,6 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
 		case RGUI_T(KC_A):
 		case LT(10, KC_K):
 		case LT(10, KC_W):
-		case LSFT_T(KC_X):
-		case RSFT_T(KC_SEMICOLON):
 		// QWERTY hrm
 		case LGUI_T(KC_A):
 		case LALT_T(KC_S):
@@ -700,8 +700,6 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
 		case RGUI_T(KC_SEMICOLON):
 		case LT(10, KC_V):
 		case LT(10, KC_M):
-		case LSFT_T(KC_Z):
-		case RSFT_T(KC_SLASH):
             return 150;
         default:
             return 0;  // global_quick_tap is not applied
