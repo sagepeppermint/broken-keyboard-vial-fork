@@ -1,0 +1,13 @@
+#pragma once
+
+#define VIAL_KEYBOARD_UID {0xB0, 0x1D, 0x46, 0xC8, 0xD2, 0x92, 0x7F, 0x1C}
+
+#define VIAL_UNLOCK_COMBO_ROWS { 1, 1 }
+#define VIAL_UNLOCK_COMBO_COLS { 0, 1 }
+
+#define DYNAMIC_KEYMAP_LAYER_COUNT 16
+
+/* caps word */
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
