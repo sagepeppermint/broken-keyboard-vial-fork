@@ -32,13 +32,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
 				KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 		
-		SC_LSPO, KC_X, KC_J, KC_B, LT(10, KC_K), KC_Q, KC_PAGE_DOWN,
-				KC_END, KC_C, LT(10, KC_W), KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
+		SC_LSPO, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+				KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, SC_RSPC,
 		
 		KC_LBRC, KC_LEFT, KC_RIGHT, 
 		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
         LT(7, KC_ENT), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
-        KC_DOWN, KC_UP, KC_RBRC
+        KC_UP, KC_DOWN, KC_RBRC
 		
 	),
 		
@@ -52,13 +52,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC, LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
 				KC_HOME, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 		
-		SC_LSPO, KC_Z, KC_X, KC_C, LT(10, KC_V), KC_B, KC_PAGE_DOWN,
-				KC_END, KC_N, LT(10, KC_M), KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
+		SC_LSPO, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+				KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, SC_RSPC,
 		
 		KC_LBRC, KC_LEFT, KC_RIGHT, 
 		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
         LT(7, KC_ENT), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
-        KC_DOWN, KC_UP, KC_RBRC
+        KC_UP, KC_DOWN, KC_RBRC
 		
 	),
  
@@ -480,8 +480,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case RSFT_T(KC_E):
 		case RALT_T(KC_I): 
 		case RGUI_T(KC_A):
-		case LT(10, KC_K):
-		case LT(10, KC_W):
 		// QWERTY hrm
 		case LGUI_T(KC_A):
 		case LALT_T(KC_S):
@@ -491,8 +489,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case RSFT_T(KC_K):
 		case RALT_T(KC_L): 
 		case RGUI_T(KC_SEMICOLON):
-		case LT(10, KC_V):
-		case LT(10, KC_M):
             return 300;
 		// Thumb keys
 		case LT(4, KC_BSPC):
@@ -687,8 +683,6 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
 		case RSFT_T(KC_E):
 		case RALT_T(KC_I): 
 		case RGUI_T(KC_A):
-		case LT(10, KC_K):
-		case LT(10, KC_W):
 		// QWERTY hrm
 		case LGUI_T(KC_A):
 		case LALT_T(KC_S):
@@ -698,8 +692,6 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
 		case RSFT_T(KC_K):
 		case RALT_T(KC_L): 
 		case RGUI_T(KC_SEMICOLON):
-		case LT(10, KC_V):
-		case LT(10, KC_M):
             return 150;
         default:
             return 0;  // global_quick_tap is not applied
