@@ -1,24 +1,18 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-    M_KEYBOARD = SAFE_RANGE,
+    CAPS_WORD_LOCK = SAFE_RANGE,
     M_UPDIR,
-    CAPS_WORD_LOCK,
+    M_KEYBOARD,
     // Other custom keys...
 };
 
-const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
-	{{6,5}, {5,5}, {4,5}, {3,5}, {2,5}, {1,5}, {0,5}},
-	{{6,6}, {5,6}, {4,6}, {3,6}, {2,6}, {1,6}, {0,6}},
-	{{6,7}, {5,7}, {4,7}, {3,7}, {2,7}, {1,7}, {0,7}},
-	{{6,8}, {5,8}, {4,8}, {3,8}, {2,8}, {1,8}, {0,8}},
-	{{6,9}, {5,9}, {4,9}, {3,9}, {2,9}, {1,9}, {0,9}},
-	{{6,0}, {5,0}, {4,0}, {3,0}, {2,0}, {1,0}, {0,0}},
-	{{6,1}, {5,1}, {4,1}, {3,1}, {2,1}, {1,1}, {0,1}},
-	{{6,2}, {5,2}, {4,2}, {3,2}, {2,2}, {1,2}, {0,2}},
-	{{6,3}, {5,3}, {4,3}, {3,3}, {2,3}, {1,3}, {0,3}},
-	{{6,4}, {5,4}, {4,4}, {3,4}, {2,4}, {1,4}, {0,4}},
-};
+#include "features/swap_hands.c"
+#include "features/achordion.h"
+#include "features/global_quick_tap.h"
+#include "features/caps_word_lock.c"
+#include "features/oled.c"
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -343,89 +337,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // 	NVIC_SystemReset();
 // }
 
-#ifdef OLED_ENABLE
-oled_rotation_t oled_init_user(oled_rotation_t rotation) {
-	if (!is_keyboard_left()) {
-		return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
-	}
-
-	return rotation;
-};
-
-bool oled_task_user(void) {
-	if (is_keyboard_left()) {
-		// Host Keyboard Layer Status
-		oled_write_P(PSTR("Layer: "), false);
-
-		switch (get_highest_layer(layer_state)) {
-		case 0:
-			oled_write_P(PSTR("DWARF\n"), false);
-			break;
-		case 1:
-			oled_write_P(PSTR("QWERTY\n"), false);
-			break;
-		case 2:
-			oled_write_P(PSTR("2\n"), false);
-			break;
-		case 3:
-			oled_write_P(PSTR("3\n"), false);
-			break;
-		case 4:
-			oled_write_P(PSTR("NAVIGATION\n"), false);
-			break;
-		case 5:
-			oled_write_P(PSTR("FUNCTION\n"), false);
-			break;
-		case 6:
-			oled_write_P(PSTR("NUMBER\n"), false);
-			break;
-		case 7:
-			oled_write_P(PSTR("SYMBOL\n"), false);
-			break;
-		case 8:
-			oled_write_P(PSTR("8\n"), false);
-			break;
-		case 9:
-			oled_write_P(PSTR("9\n"), false);
-			break;
-		case 10:
-			oled_write_P(PSTR("10\n"), false);
-			break;
-		case 11:
-			oled_write_P(PSTR("11\n"), false);
-			break;
-		case 12:
-			oled_write_P(PSTR("12\n"), false);
-			break;
-		case 13:
-			oled_write_P(PSTR("13\n"), false);
-			break;
-		case 14:
-			oled_write_P(PSTR("14\n"), false);
-			break;
-		case 15:
-			oled_write_P(PSTR("15\n"), false);
-			break;
-		default:
-			// Or use the write_ln shortcut over adding '\n' to the end of your string
-			oled_write_ln_P(PSTR("Undefined"), false);
-		}
-
-		// Host Keyboard LED Status
-		led_t led_state = host_keyboard_led_state();
-		oled_write_P(led_state.num_lock ? PSTR("NUM ") : PSTR("    "), false);
-		oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
-		oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
-		
-		return false;
-	} else {
-		oled_write_P(PSTR("Broken Keyboard\n  SHAHNETWORK"), false);
-			oled_scroll_left();  // Turns on scrolling
-	}
-	return false;
-};
-#endif
-
 // Permissive hold per key
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
@@ -467,7 +378,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 	}
 };
 
-
 // Tapping term per key
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -501,9 +411,36 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
-#include "features/achordion.h"
-#include "features/global_quick_tap.h"
-#include "features/caps_word_lock.c"
+// Global quick tap keys
+uint16_t get_global_quick_tap_ms(uint16_t keycode) {
+    switch (keycode) {
+        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
+        /* case KEYCODE: */
+        /*     return 150; */
+        // DWARF hrm
+		case LGUI_T(KC_S): 
+		case LALT_T(KC_R):
+		case LSFT_T(KC_N): 
+		case LCTL_T(KC_T):
+		case RCTL_T(KC_Y): 
+		case RSFT_T(KC_E):
+		case RALT_T(KC_I): 
+		case RGUI_T(KC_A):
+		// QWERTY hrm
+		case LGUI_T(KC_A):
+		case LALT_T(KC_S):
+		case LSFT_T(KC_D):
+		case LCTL_T(KC_F):
+		case RCTL_T(KC_J):
+		case RSFT_T(KC_K):
+		case RALT_T(KC_L): 
+		case RGUI_T(KC_SEMICOLON):
+            return 150;
+        default:
+            return 0;  // global_quick_tap is not applied
+    }
+};
+
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
     // enable global quick tap before other processing. Note this will not work properly with capsword.
@@ -514,6 +451,7 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_achordion(keycode, record)) { return false; }
     process_caps_word_lock(keycode, record);
+
   // Macros
     switch (keycode) {
     
@@ -530,13 +468,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             } else {
                 caps_word_lock_enable();
                 return false;
-            }
-        }
+            }}
         return false; break;
 
 
 
-    }
+    };
     
     
      
@@ -572,7 +509,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     }
 };
 
-// Achordion eager mods define the modifiers themselves
+// Achordion eager mods, define the modifiers themselves
 bool achordion_eager_mod(uint8_t mod) {
   switch (mod) {
 	case MOD_LSFT:
@@ -646,58 +583,6 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
     return KC_NO;  // Defer to default definitions.
 }
 
-/* // Caps word
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-        case KC_MINS:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
-
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_DEL:
-        case KC_UNDS:
-        case KC_SLASH:
-            return true;
-
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-} */
-
-// Global quick tap keys
-uint16_t get_global_quick_tap_ms(uint16_t keycode) {
-    switch (keycode) {
-        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
-        /* case KEYCODE: */
-        /*     return 150; */
-        // DWARF hrm
-		case LGUI_T(KC_S): 
-		case LALT_T(KC_R):
-		case LSFT_T(KC_N): 
-		case LCTL_T(KC_T):
-		case RCTL_T(KC_Y): 
-		case RSFT_T(KC_E):
-		case RALT_T(KC_I): 
-		case RGUI_T(KC_A):
-		// QWERTY hrm
-		case LGUI_T(KC_A):
-		case LALT_T(KC_S):
-		case LSFT_T(KC_D):
-		case LCTL_T(KC_F):
-		case RCTL_T(KC_J):
-		case RSFT_T(KC_K):
-		case RALT_T(KC_L): 
-		case RGUI_T(KC_SEMICOLON):
-            return 150;
-        default:
-            return 0;  // global_quick_tap is not applied
-    }
-};
-
 // Combos
 const uint16_t PROGMEM combo1[] = {KC_H, KC_D, COMBO_END};
 combo_t key_combos[] = {
@@ -711,5 +596,4 @@ combo_t key_combos[] = {
     debug_keyboard=false;
     debug_matrix=false;
  };
-
 
