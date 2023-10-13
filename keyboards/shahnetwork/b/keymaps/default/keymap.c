@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_LBRC, KC_LEFT, KC_RIGHT, 
 		KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
         LT(7, KC_ENT), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
-        KC_UP, KC_DOWN, KC_RBRC
+        KC_DOWN, KC_UP, KC_RBRC
 		
 	),
 		
@@ -358,7 +358,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 		case LT(5, KC_DEL):
 		case LT(7, KC_ENT):
 		case LT(6, KC_SPACE):
-			return QUICK_TAP_TERM; // nothing for now, 0 to disable
+			return 0; // 0 to disable
         default:
             return QUICK_TAP_TERM;
     }
