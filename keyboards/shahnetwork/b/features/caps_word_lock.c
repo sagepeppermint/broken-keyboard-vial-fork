@@ -52,15 +52,16 @@ static void process_caps_word_lock(uint16_t keycode, const keyrecord_t *record) 
             // Keycodes that enable caps word but shouldn't get shifted
             case KC_1 ... KC_0:
             case KC_MINS:
+            case KC_EQL:
             case KC_BSPC:
             case KC_DEL:
             case KC_SLASH:
             case KC_BSLS:
             case CAPS_WORD_LOCK:
                 // If chording mods, disable caps word
-                if (record->event.pressed && (get_mods() != MOD_LSFT) && (get_mods() != 0)) {
-                    caps_word_lock_disable();
-                }
+                // if (record->event.pressed && (get_mods() != MOD_LSFT) && (get_mods() != 0)) {
+                //     caps_word_lock_disable();
+                // }
                 break;
             default:
                 // Any other keycode should automatically disable caps

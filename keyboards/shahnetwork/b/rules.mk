@@ -32,3 +32,4 @@ REPEAT_KEY_ENABLE = yes
 
 SRC += features/achordion.c
 SRC += features/global_quick_tap.c
+SRC += features/select_word.c

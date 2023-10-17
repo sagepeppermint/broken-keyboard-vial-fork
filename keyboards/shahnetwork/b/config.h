@@ -65,12 +65,14 @@
 //#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 //#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
 /* one shot keys */
-#define ONESHOT_TAP_TOGGLE 5  // Tapping this number of times holds the key until tapped once again
-#define ONESHOT_TIMEOUT 1000 // 5000 default
+#define ONESHOT_TAP_TOGGLE 10 // Tapping this number of times holds the key until tapped once again
+#define ONESHOT_TIMEOUT 500 // 5000 default
 /* tapping toggle */
 #define TAPPING_TOGGLE 5 // 5 default
 /* tapping settings */
 #define TAPPING_TERM 200
+/* select word */
+#define SELECT_WORD_TIMEOUT 2000  // When idle, clear state after 2 seconds.
 
 // WEAR LEVEL BABY
 #define FEE_PAGE_SIZE 0x4000
