@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
                 _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
 
-        CAPS_WORD_LOCK, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), SELECTWORD, _______,
+        SELECTWORD, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), SELECTWORD, _______,
                 _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
 
         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, _______,
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______,
 
         _______, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
-                _______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), CAPS_WORD_LOCK,
+                _______, _______, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
 
         _______, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
                 _______, _______, _______, _______, _______, _______, _______,
@@ -361,11 +361,15 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // achordion
     if (!process_achordion(keycode, record)) { return false; };
+    // caps word lock
     process_caps_word_lock(keycode, record);
+    if (!process_caps_word_lock_shortcuts(keycode, record)) { return false; };
+    // select word
     if (!process_select_word(keycode, record, SELECTWORD)) { return false; };
 
-  // Macros
+    // Macros
     switch (keycode) {
 
     case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
