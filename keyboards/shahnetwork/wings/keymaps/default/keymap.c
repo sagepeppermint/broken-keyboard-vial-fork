@@ -164,8 +164,8 @@ bool achordion_eager_mod(uint8_t mod) {
 	case MOD_RSFT:
 	case MOD_LCTL:
 	case MOD_RCTL:
-//	case MOD_LALT:
-//	case MOD_RALT:
+	case MOD_LALT:
+	case MOD_RALT:
 //	case MOD_LGUI:
 //	case MOD_RGUI:
 	  return true;  // Eagerly apply mods.
@@ -221,7 +221,7 @@ bool caps_word_press_user(uint16_t keycode) {
 */
 
 
-// To enable debug, can delete
+/* // To enable debug, can delete
  void keyboard_post_init_user(void) {
    // Customise these values to desired behaviour
     debug_enable=true;
@@ -229,3 +229,4 @@ bool caps_word_press_user(uint16_t keycode) {
 
  };
 
+ */
