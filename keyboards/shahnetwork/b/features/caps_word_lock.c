@@ -45,7 +45,7 @@ static void process_caps_word_lock(uint16_t keycode, const keyrecord_t *record) 
                 if (record->event.pressed) {
                     if (get_oneshot_mods() & MOD_MASK_SHIFT) {
                         caps_word_lock_disable();
-                        add_oneshot_mods(MOD_MASK_SHIFT);
+                        add_oneshot_mods(MOD_MASK_SHIFT); // if OSM-shift, disable caps word but allow OSM for next letter
                     }
                 }
                 break;
