@@ -6,4 +6,3 @@
 #define QUICK_TAP_TERM_PER_KEY
 
 #define QUICK_TAP_TERM 175
-#define COMBO_TERM 25 // 50
