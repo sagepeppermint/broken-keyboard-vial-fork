@@ -76,6 +76,7 @@ static void process_caps_word_lock(uint16_t keycode, const keyrecord_t *record) 
 bool process_caps_word_lock_shortcuts(uint16_t keycode, keyrecord_t* record) {
     
     if (!caps_word_lock_on){
+        
         // Double tapping left shift turns on Caps Word Lock. This also seems to work with OSM of both LSFT and RSFT
         if (record->event.pressed) {
             static bool     tapped = false;
@@ -91,25 +92,12 @@ bool process_caps_word_lock_shortcuts(uint16_t keycode, keyrecord_t* record) {
                 tapped = false; // Reset when any other key is pressed.
             }
         }
-/*     #ifdef BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-        // Many keyboards enable the Command feature by default, which also
-        // uses left+right shift. It can be configured to use a different
-        // key combination by defining IS_COMMAND(). We make a non-fatal
-        // warning if Command is enabled but IS_COMMAND() is *not* defined.
-#    if defined(COMMAND_ENABLE) && !defined(IS_COMMAND)
-#        pragma message "BOTH_SHIFTS_TURNS_ON_CAPS_WORD and Command should not be enabled at the same time, since both use the Left Shift + Right Shift key combination. Please disable Command, or ensure that `IS_COMMAND` is not set to (get_mods() == MOD_MASK_SHIFT)."
-#    else
-        if (mods == MOD_MASK_SHIFT
-#        ifdef COMMAND_ENABLE
-            // Don't activate Caps Word at the same time as Command.
-            && !(IS_COMMAND())
-#        endif // COMMAND_ENABLE
-        ) {
-            caps_word_on();
+
+        // BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+        if (mods == MOD_MASK_SHIFT) {
+            caps_word_lock_enable();
         }
-#    endif     // defined(COMMAND_ENABLE) && !defined(IS_COMMAND)
-#endif         // BOTH_SHIFTS_TURNS_ON_CAPS_WORD
- */
+
     }
 
     return true;
