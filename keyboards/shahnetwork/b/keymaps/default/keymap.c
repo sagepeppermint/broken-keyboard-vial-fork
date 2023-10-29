@@ -32,8 +32,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, MT(MOD_RSFT, KC_DEL),
         
         KC_LBRC, KC_LEFT, KC_RIGHT, 
-        KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
-        LT(7, KC_ENT), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
+        KC_LCTL, KC_LALT, LT(4, KC_ENT), LT(5, _______),
+        LT(7, _______), LT(6, KC_SPACE), KC_RGUI, KC_RCTL, 
         KC_DOWN, KC_UP, KC_RBRC
         
     ),

@@ -93,11 +93,6 @@ bool process_caps_word_lock_shortcuts(uint16_t keycode, keyrecord_t* record) {
             }
         }
 
-        // BOTH_SHIFTS_TURNS_ON_CAPS_WORD
-        if (mods == MOD_MASK_SHIFT) {
-            caps_word_lock_enable();
-        }
-
     }
 
     return true;
