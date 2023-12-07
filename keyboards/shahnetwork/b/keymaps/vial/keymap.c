@@ -5,7 +5,6 @@ enum custom_keycodes {
     SELECTWORD,
     M_UPDIR,
     M_KEYBOARD,
-    // Other custom keys...
 };
 
 #include "features/swap_hands.c"
@@ -316,7 +315,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     ),
 
-
 };
 
 // Workaround for https://github.com/qmk/qmk_firmware/issues/16406
@@ -422,19 +420,19 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
 
 // Achordion eager mods, define the modifiers themselves
 bool achordion_eager_mod(uint8_t mod) {
-  switch (mod) {
-	case MOD_LSFT:
-	case MOD_RSFT:
-	case MOD_LCTL:
-	case MOD_RCTL:
-	case MOD_LALT:
-	case MOD_RALT:
-//	case MOD_LGUI:
-//	case MOD_RGUI:
-	  return true;  // Eagerly apply mods
-	default:
-	  return false;
-  }
+    switch (mod) {
+        case MOD_LSFT:
+        case MOD_RSFT:
+        case MOD_LCTL:
+        case MOD_RCTL:
+        case MOD_LALT:
+        case MOD_RALT:
+//      case MOD_LGUI:
+//      case MOD_RGUI:
+        return true;    // Eagerly apply mods
+    default:
+        return false;
+    }
 };
 
 // Repeat key alternate
@@ -489,17 +487,5 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case KC_LEFT_PAREN: return KC_RIGHT_PAREN;
     }
 
-
     return KC_NO;  // Defer to default definitions.
 }
-
-
-// To enable debug, can delete
- void keyboard_post_init_user(void) {
-   // Customise these values to desired behaviour
-    debug_enable=true;
-    debug_keyboard=false;
-    debug_matrix=false;
- };
-
-
