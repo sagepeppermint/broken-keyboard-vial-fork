@@ -44,16 +44,15 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
                     gqt_state.disabled = true;
                 }
                 gqt_state.keycode = keycode;
-                
             }
         }
-
     } 
     else { // on keyup
         if (quick_tap_ms > 0) {
             dprintf("Unregister  key 0x%04X\n", keycode);
             unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-            reset_global_quick_tap_state();  
+            if (gqt_state.disabled) { reset_global_quick_tap_state(); }
+              
         }
     }
 
