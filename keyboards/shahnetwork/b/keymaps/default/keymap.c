@@ -3,13 +3,10 @@
 enum custom_keycodes {
     CAPS_WORD_LOCK = SAFE_RANGE,
     SELECTWORD,
-    M_UPDIR,
-    M_KEYBOARD,
     // Other custom keys...
 };
 
 #include "features/swap_hands.c"
-#include "features/achordion.h"
 #include "features/global_quick_tap.h"
 #include "features/caps_word_lock.c"
 #include "features/oled.c"
@@ -105,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
                 _______, _______, KC_PGDN, KC_UP, KC_PGUP, KC_HOME, _______,
                 
-        KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
+        KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
                 _______, _______, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, _______,
         
         KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
@@ -125,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
                 _______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
                 
-        KC_ESC, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
+        KC_ESC, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), KC_CAPS, _______,
                 _______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, KC_INS,
         
         KC_LSFT, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
@@ -146,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______,
                 
         KC_ESC, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
-                _______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+                _______, KC_CAPS, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
         
         KC_LSFT, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
                 _______, _______, SELECTWORD, _______, _______, _______, KC_RSFT,
@@ -167,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______,
                 
         KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
-                _______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+                _______, KC_CAPS, OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
         
         KC_LSFT, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
                 _______, _______, SELECTWORD, _______, _______, _______, KC_RSFT,
@@ -343,20 +340,6 @@ void suspend_wakeup_init_user(void) {
     NVIC_SystemReset();
 }
 
-// Permissive hold per key
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        // Immediately select the hold action when another key is tapped.
-        case LSFT_T(KC_N):
-        case RSFT_T(KC_E):
-        case LSFT_T(KC_D):
-        case RSFT_T(KC_K):
-            return false;
-        default:
-            return false;
-    }
-};
-
 // Quick tapping term
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -407,43 +390,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 };
 
-// Global quick tap keys
-uint16_t get_global_quick_tap_ms(uint16_t keycode) {
-    switch (keycode) {
-        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
-        /* case KEYCODE: */
-        /*     return 150; */
-        // DWARF hrm
-        case LGUI_T(KC_S): 
-        case LALT_T(KC_R):
-        case LSFT_T(KC_N): 
-        case LCTL_T(KC_T):
-        case RCTL_T(KC_Y): 
-        case RSFT_T(KC_E):
-        case RALT_T(KC_I): 
-        case RGUI_T(KC_A):
-        // QWERTY hrm
-        case LGUI_T(KC_A):
-        case LALT_T(KC_S):
-        case LSFT_T(KC_D):
-        case LCTL_T(KC_F):
-        case RCTL_T(KC_J):
-        case RSFT_T(KC_K):
-        case RALT_T(KC_L): 
-        case RGUI_T(KC_SEMICOLON):
-            return 150;
-        default:
-            return 0;  // global_quick_tap is not applied
-    }
-};
-
-
-bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // enable global quick tap before other processing. Note this will not work properly with capsword.
-    if (!process_global_quick_tap(keycode, record)) {return false; }
-    return true;
-};
-
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     // caps word lock
     process_caps_word_lock(keycode, record);
@@ -453,10 +399,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
   // Macros
     switch (keycode) {
-    
-    case M_KEYBOARD: SEND_STRING(/*k*/"eyboard"); break;
-    
-    case M_UPDIR: SEND_STRING(/*.*/"./"); break;
     
     case CAPS_WORD_LOCK:
         // Toggle `caps_word_lock_on`
@@ -479,7 +421,7 @@ void matrix_scan_user(void) {
     select_word_task();
 };
 
-/* 
+
 // To enable debug, can delete
  void keyboard_post_init_user(void) {
    // Customise these values to desired behaviour
@@ -487,4 +429,3 @@ void matrix_scan_user(void) {
     debug_keyboard=false;
     debug_matrix=false;
  };
- */
