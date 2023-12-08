@@ -340,6 +340,36 @@ void suspend_wakeup_init_user(void) {
     NVIC_SystemReset();
 }
 
+// Global quick tap keys
+uint16_t get_global_quick_tap_ms(uint16_t keycode) {
+    switch (keycode) {
+        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
+        /* case KEYCODE: */
+        /*     return 150; */
+        // DWARF hrm
+        case LGUI_T(KC_S):
+        case LALT_T(KC_R):
+        case LSFT_T(KC_N):
+        case LCTL_T(KC_T):
+        case RCTL_T(KC_Y):
+        case RSFT_T(KC_E):
+        case RALT_T(KC_I):
+        case RGUI_T(KC_A):
+        // QWERTY hrm
+        case LGUI_T(KC_A):
+        case LALT_T(KC_S):
+        case LSFT_T(KC_D):
+        case LCTL_T(KC_F):
+        case RCTL_T(KC_J):
+        case RSFT_T(KC_K):
+        case RALT_T(KC_L):
+        case RGUI_T(KC_SEMICOLON):
+            return 150;
+        default:
+            return 0;  // global_quick_tap is not applied
+    }
+};
+
 // Quick tapping term
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -388,6 +418,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         default:
             return TAPPING_TERM;
     }
+};
+
+bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // enable global quick tap before other processing. Note this will not work properly with capsword.
+    if (!process_global_quick_tap(keycode, record)) {return false; }
+    return true;
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {

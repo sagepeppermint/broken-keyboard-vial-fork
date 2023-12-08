@@ -3,14 +3,12 @@
 
 static struct {
     bool disabled;
-    bool key_registered;
-    bool double_pressed
-} gqt_state = {false, false, false};
+    bool multi;
+} gqt_state = {false, false};
 
 void reset_global_quick_tap_state(void) {
     gqt_state.disabled = false;
-    gqt_state.key_registered = false;
-    gqt_state.double_pressed = false;
+    gqt_state.multi = false;
 }
 
 static uint16_t prev_press_time = 0;
@@ -31,34 +29,36 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
         prev_press_time = record->event.time;
 
         if (quick_tap_ms > 0) {
-            dprintf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms.", time_diff, quick_tap_ms);
+            dprintf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms. ", time_diff, quick_tap_ms);
             if ((quick_tap_ms > time_diff) && !gqt_state.disabled) {
                 dprintf("Disabling hold-tap for 0x%04X\n", keycode);
                 register_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-                gqt_state.key_registered = true;
                 return false;
             } else {
                 dprintf("Hold-taps and mod combos are allowed for key 0x%04X\n", keycode);
-                if (!gqt_state.disabled){gqt_state.disabled = true};
-                if (gqt_state.disabled){gqt_state.double_pressed = true};
+                if (gqt_state.disabled){
+                    gqt_state.multi = true; 
+                    dprintf("multi = true\n");
+                } else {
+                    gqt_state.disabled = true;
+                    dprintf("disabled = true\n");
+                }
             }
         }
     }
     else { // on keyup
         if (quick_tap_ms > 0) {
-            if (gqt_state.key_registered){
-                dprintf("Unregister key 0x%04X\n", keycode);
-                unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-                gqt_state.key_registered = false;
+            dprintf("Unregister key 0x%04X\n", keycode);
+            unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+            if (gqt_state.disabled){
+                if (gqt_state.multi) {
+                    gqt_state.multi = false;
+                    dprintf("Disabling multi\n");
+                } else {
+                    gqt_state.disabled = false;
+                    dprintf("Re-enabling GQT\n");
+                }
             }
-            if (gqt_state.disabled && !gqt_state.double_pressed){
-                gqt_state.disabled = false;
-            }
-            if (gqt_state.double_pressed){
-                gqt_state.double_pressed = false;
-            }
-            
-//            reset_global_quick_tap_state();
         }
     }
 
