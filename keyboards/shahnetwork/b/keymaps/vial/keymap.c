@@ -26,12 +26,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, KC_S, KC_R, KC_N, KC_T, KC_M, KC_PAGE_UP,
                 KC_HOME, KC_P, KC_Y, KC_E, KC_I, KC_A, KC_SLASH,
 
-        MT(MOD_LSFT, KC_BSPC), KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSFT,
 
         KC_LBRC, KC_LEFT, KC_RIGHT,
-        KC_LCTL, KC_LALT, KC_ENT, OSL(4),
-        OSL(5), KC_SPACE, KC_RGUI, KC_RCTL,
+        KC_LCTL, KC_LALT, KC_BSPC, LT(4, KC_DEL),
+        LT(5, KC_ENT), KC_SPACE, KC_RGUI, KC_RCTL,
         KC_DOWN, KC_UP, KC_RBRC
 
     ),
@@ -46,12 +46,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
                 KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
 
-        MT(MOD_LSFT, KC_BSPC), KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSFT,
 
         KC_LBRC, KC_LEFT, KC_RIGHT,
-        KC_LCTL, KC_LALT, KC_ENT, OSL(4),
-        OSL(5), KC_SPACE, KC_RGUI, KC_RCTL,
+        KC_LCTL, KC_LALT, KC_BSPC, LT(4, KC_DEL),
+        LT(5, KC_ENT), KC_SPACE, KC_RGUI, KC_RCTL,
         KC_DOWN, KC_UP, KC_RBRC
 
     ),
@@ -66,12 +66,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
                 KC_HOME, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
 
-        MT(MOD_LSFT, KC_BSPC), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSFT,
 
         KC_LBRC, KC_LEFT, KC_RIGHT,
-        KC_LCTL, KC_LALT, KC_ENT, OSL(4),
-        OSL(5), KC_SPACE, KC_RGUI, KC_RCTL,
+        KC_LCTL, KC_LALT, KC_BSPC, LT(4, KC_DEL),
+        LT(5, KC_ENT), KC_SPACE, KC_RGUI, KC_RCTL,
         KC_DOWN, KC_UP, KC_RBRC
 
     ),
@@ -86,12 +86,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC, LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
                 KC_HOME, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
 
-        MT(MOD_LSFT, KC_BSPC), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSFT,
 
         KC_LBRC, KC_LEFT, KC_RIGHT,
-        KC_LCTL, KC_LALT, KC_ENT, OSL(4),
-        OSL(5), KC_SPACE, KC_RGUI, KC_RCTL,
+        KC_LCTL, KC_LALT, KC_BSPC, LT(4, KC_DEL),
+        LT(5, KC_ENT), KC_SPACE, KC_RGUI, KC_RCTL,
         KC_DOWN, KC_UP, KC_RBRC
 
     ),
@@ -106,12 +106,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), SELECTWORD, _______,
                 _______, KC_END, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______,
 
-        _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), S(G(KC_S)), _______,
+        _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
                 _______, KC_DEL, KC_BACKSPACE, KC_TAB, KC_ENT, _______, _______,
 
         _______, _______, _______,
         _______, _______, _______, _______,
-        OSL(6), _______, _______, _______,
+        MO(6), _______, _______, _______,
         _______, _______, _______
 
     ),
@@ -131,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______,
 
         _______, _______, _______,
-        _______, _______, KC_0, OSL(6),
+        _______, _______, KC_0, MO(6),
         _______, _______, _______, _______,
         _______, _______, _______
 
@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______,
         _______, _______, _______, _______,
         TG(8), KC_P0, _______, _______,
-        KC_P0, KC_P0, KC_PDOT
+        _______, _______, KC_PDOT
 
     ),
 
@@ -414,8 +414,8 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     switch (tap_hold_keycode){
     // Thumb keys
-	case MT(MOD_LSFT, KC_BSPC):
-	case MT(MOD_RSFT, KC_DEL):
+	case LT(4, KC_DEL):
+	case LT(5, KC_ENT):
 		return 0; // disable for these buttons
 	default:
         return 300;  // ms
