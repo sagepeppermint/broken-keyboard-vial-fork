@@ -2,23 +2,25 @@
 
 
 static struct {
-    uint16_t keycode;
     bool disabled;
-    bool key_registered;
-} gqt_state = {0, false, false};
+    bool multi;
+} gqt_state = {false, false};
 
 void reset_global_quick_tap_state(void) {
-    gqt_state.keycode = 0;
     gqt_state.disabled = false;
-    gqt_state.key_registered = false;
+    gqt_state.multi = false;
 }
 
 static uint16_t prev_press_time = 0;
 
 bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
-    uint16_t quick_tap_ms = get_global_quick_tap_ms(keycode);
-    
 
+    if (record->event.key.row % (MATRIX_ROWS) >= 4) { // disable bottom row
+        dprintln("Global-quick-tap: skip bottom rows"); 
+        return true; 
+    }
+
+    uint16_t quick_tap_ms = get_global_quick_tap_ms(keycode);
     
     
     if (record->event.pressed) { // on keydown
@@ -26,48 +28,43 @@ bool process_global_quick_tap(uint16_t keycode, keyrecord_t* record) {
         /* Any key down. Recording key press times */
         uint16_t time_diff = record->event.time - prev_press_time;
         prev_press_time = record->event.time;
-        
-        switch (keycode) {
-		case LT(4, KC_BSPC):
-            gqt_state.disabled = true;
-            dprintf("Disabling Global-quick-tap for 0x%04X\n", keycode);
-            break;
-	    }
-        
-        if (!gqt_state.disabled) {
-            if (quick_tap_ms > 0) { // only apply to keys with defined global quick tap time
-                dprintf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms.\n", time_diff, quick_tap_ms);
-                if (quick_tap_ms > time_diff) { // pressed fast during typing
-                    dprintf("Disabling hold-tap for 0x%04X\n", keycode);
-                    register_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-                    gqt_state.key_registered = true;
-                    return false; // halt further processing, this is why capsword doenst work....
-                } else { // pressed slow enough to register
-                    dprintf("Hold-taps and mod combos are allowed for key 0x%04X\n", keycode);
-                    gqt_state.disabled = true; // disable global quick tap whilst a key is held
+
+        if (quick_tap_ms > 0) {
+            dprintf("Global-quick-tap: Last key press was %dms ago, global_quick_tap is %dms. ", time_diff, quick_tap_ms);
+            if ((quick_tap_ms > time_diff) && !gqt_state.disabled) {
+                dprintf("Disabling hold-tap for 0x%04X\n", keycode);
+                register_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+                return false;
+            } else {
+                dprintf("Hold-taps and mod combos are allowed for key 0x%04X\n", keycode);
+                if (gqt_state.disabled){
+                    gqt_state.multi = true; 
+                    dprintf("multi = true\n");
+                } else {
+                    gqt_state.disabled = true;
+                    dprintf("disabled = true\n");
                 }
-                gqt_state.keycode = keycode;
             }
         }
     }
-     
     else { // on keyup
-    
-        switch (keycode) {
-		case LT(4, KC_BSPC):
-			reset_global_quick_tap_state();
-			break;
-	    }
-	    
         if (quick_tap_ms > 0) {
-            dprintf("Unregister  key 0x%04X\n", keycode);
+            dprintf("Unregister key 0x%04X\n", keycode);
             unregister_code16(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
-            reset_global_quick_tap_state();  
+            if (gqt_state.disabled){
+                if (gqt_state.multi) {
+                    gqt_state.multi = false;
+                    dprintf("Disabling multi\n");
+                } else {
+                    gqt_state.disabled = false;
+                    dprintf("Re-enabling GQT\n");
+                }
+            }
         }
     }
 
     return true;
-};
+}
 
 __attribute__((weak))
 uint16_t get_global_quick_tap_ms(uint16_t keycode) {
