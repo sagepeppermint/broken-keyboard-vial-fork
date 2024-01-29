@@ -67,7 +67,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, QK_BOOT, DF(0), DF(1), QK_REBOOT, _______,
             _______, _______, _______, _______, _______, _______,
         
-        _______, OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_HYPR),
+        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
             _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______,
         
         _______, _______, _______, _______, _______, _______,
@@ -80,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      [5] = LAYOUT_split_3x6_3( // NAVIGATION
      
         _______, _______, _______, _______, _______, _______,
-            S(G(KC_Z)), G(KC_V), G(KC_C), G(KC_X), G(KC_Z), _______,
+            S(G(KC_Z)), C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
         
-        _______, OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_HYPR),
+        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
             KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
         
         _______, _______, _______, _______, _______, _______,
@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [6] = LAYOUT_split_3x6_3( // MOUSE
         
         _______, _______, _______, _______, _______, _______,
-            S(G(KC_Z)), G(KC_V), G(KC_C), G(KC_X), G(KC_Z), _______,
+            S(G(KC_Z)), C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
         
-        _______, OSM(MOD_LCTL), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LGUI), OSM(MOD_HYPR),
+        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
             _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______,
         
         _______, _______, _______, _______, _______, _______,
@@ -112,8 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR,
             _______, _______, _______, _______, _______, _______,
         
-        _______, KC_COLN, KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,
-            OSM(MOD_HYPR), OSM(MOD_LGUI), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LCTL), _______,
+        _______, KC_QUESTION, KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,
+            OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
         
         _______, KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_PIPE,
             _______, _______, _______, _______, _______, _______,
@@ -127,8 +127,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,
             _______, _______, _______, _______, _______, _______,
         
-        _______, KC_SCLN, KC_4, KC_5, KC_6, KC_EQL,
-            OSM(MOD_HYPR), OSM(MOD_LGUI), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LCTL), _______,
+        _______, KC_SLASH, KC_4, KC_5, KC_6, KC_EQL,
+            OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
         
         _______, KC_GRV, KC_1, KC_2, KC_3, KC_BSLS,
             _______, _______, _______, _______, _______, _______,
@@ -142,8 +142,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_F12, KC_F7, KC_F8, KC_F9, KC_PSCR,
             _______, _______, _______, _______, _______, _______,
         
-        _______, KC_F11, KC_F4, KC_F5, KC_F6, KC_SLCK,
-            OSM(MOD_HYPR), OSM(MOD_LGUI), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LCTL), _______,
+        _______, KC_F11, KC_F4, KC_F5, KC_F6, KC_SCRL,
+            OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
         
         _______, KC_F10, KC_F1, KC_F2, KC_F3, KC_PAUS,
             _______, _______, _______, _______, _______, _______,

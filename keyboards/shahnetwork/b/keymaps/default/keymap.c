@@ -25,8 +25,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSM(MOD_LCTL), LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M, KC_PAGE_UP,
                 KC_HOME, KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
         
-        MT(MOD_LSFT, KC_BSPC), KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSFT,
         
         KC_LBRC, KC_LEFT, KC_RIGHT, 
         KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -45,8 +45,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSM(MOD_LCTL), KC_S, KC_R, KC_N, KC_T, KC_M, KC_PAGE_UP,
                 KC_HOME, KC_P, KC_Y, KC_E, KC_I, KC_A, KC_SLASH,
         
-        MT(MOD_LSFT, KC_BSPC), KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
-                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q, KC_PAGE_DOWN,
+                KC_END, KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSFT,
         
         KC_LBRC, KC_LEFT, KC_RIGHT, 
         KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -65,8 +65,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSM(MOD_LCTL), LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G, KC_PAGE_UP,
                 KC_HOME, KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
         
-        MT(MOD_LSFT, KC_BSPC), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSFT,
         
         KC_LBRC, KC_LEFT, KC_RIGHT, 
         KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -85,8 +85,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         OSM(MOD_LCTL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_PAGE_UP,
                 KC_HOME, KC_H, KC_J, KC_K, KC_L, KC_SEMICOLON, KC_QUOTE,
         
-        MT(MOD_LSFT, KC_BSPC), KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
-                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, MT(MOD_RSFT, KC_DEL),
+        KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B, KC_PAGE_DOWN,
+                KC_END, KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSFT,
         
         KC_LBRC, KC_LEFT, KC_RIGHT, 
         KC_LCTL, KC_LALT, LT(4, KC_BSPC), LT(5, KC_DEL),
@@ -391,8 +391,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
         case LT(5, KC_DEL):
         case LT(7, KC_ENT):
         case LT(6, KC_SPACE):
-        case MT(MOD_LSFT, KC_BSPC):
-        case MT(MOD_RSFT, KC_DEL):
             return true;
         default:
             return false;
@@ -456,12 +454,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 void matrix_scan_user(void) {
     select_word_task();
 };
-
-
-// To enable debug, can delete
- void keyboard_post_init_user(void) {
-   // Customise these values to desired behaviour
-    debug_enable=true;
-    debug_keyboard=false;
-    debug_matrix=false;
- };
