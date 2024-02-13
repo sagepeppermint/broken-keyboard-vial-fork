@@ -29,19 +29,19 @@ bool oled_task_user(void) {
 			oled_write_P(PSTR("NAVIGATION\n"), false);
 			break;
 		case 5:
-			oled_write_P(PSTR("FUNCTION\n"), false);
+			oled_write_P(PSTR("MEDIA\n"), false);
 			break;
 		case 6:
-			oled_write_P(PSTR("NUMBER\n"), false);
+			oled_write_P(PSTR("MOUSE\n"), false);
 			break;
 		case 7:
-			oled_write_P(PSTR("SYMBOL\n"), false);
+			oled_write_P(PSTR("NUMBER\n"), false);
 			break;
 		case 8:
-			oled_write_P(PSTR("NUMPAD\n"), false);
+			oled_write_P(PSTR("SYMBOL\n"), false);
 			break;
 		case 9:
-			oled_write_P(PSTR("9\n"), false);
+			oled_write_P(PSTR("FUCNTION\n"), false);
 			break;
 		case 10:
 			oled_write_P(PSTR("10\n"), false);

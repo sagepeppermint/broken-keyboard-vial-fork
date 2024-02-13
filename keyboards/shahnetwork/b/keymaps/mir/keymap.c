@@ -330,7 +330,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Workaround for https://github.com/qmk/qmk_firmware/issues/16406
 void suspend_wakeup_init_user(void) {
     NVIC_SystemReset();
-}
+};
 
 // Global quick tap keys
 uint16_t get_global_quick_tap_ms(uint16_t keycode) {
@@ -361,6 +361,66 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
             return 0;  // global_quick_tap is not applied
     }
 };
+
+// Quick tapping term
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(5, KC_ESC):
+        case LT(4, KC_SPACE):
+        case LT(6, KC_TAB):
+        case LT(8, KC_ENT):
+        case LT(7, KC_BSPC):
+        case LT(9, KC_DEL):
+            return 0; // 0 to disable tap to repeat
+        default:
+            return QUICK_TAP_TERM;
+    }
+};
+
+// Hold on other key press per key
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Immediately select the hold action when another key is pressed.
+        case LT(5, KC_ESC):
+        case LT(4, KC_SPACE):
+        case LT(6, KC_TAB):
+        case LT(8, KC_ENT):
+        case LT(7, KC_BSPC):
+        case LT(9, KC_DEL):
+            return true;
+        default:
+            return false;
+    }
+};
+
+// Permissive hold
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Immediately select the hold action when another key is tapped.
+        case LSFT_T(KC_N):
+        case RSFT_T(KC_E):
+        case LSFT_T(KC_D):
+        case RSFT_T(KC_K):
+            return true;
+        // Do not select the hold action when another key is tapped.
+        default:
+            return false;
+    }
+};
+
+// Tapping term per key
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_S):
+        case RGUI_T(KC_A):
+		case LGUI_T(KC_A):
+		case RGUI_T(KC_SEMICOLON):
+            return TAPPING_TERM + 100;
+        default:
+            return TAPPING_TERM;
+    }
+};
+
 
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
     // enable global quick tap before other processing. Note this will not work properly with capsword.
@@ -408,9 +468,9 @@ void matrix_scan_user(void) {
 
 // Achordion which keys count as tap hold
 bool achordion_chord(uint16_t tap_hold_keycode,
-					 keyrecord_t* tap_hold_record,
-					 uint16_t other_keycode,
-					 keyrecord_t* other_record) {
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
     if (tap_hold_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; } // Ignore bottom row and thumbcluster
     if (other_record->event.key.row % (MATRIX_ROWS / 2) >= 4) { return true; } // Ignore bottom row and thumbcluster
     return achordion_opposite_hands(tap_hold_record, other_record);
@@ -420,10 +480,10 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     switch (tap_hold_keycode){
     // Thumb keys
-	case LT(4, KC_DEL):
-	case LT(5, KC_ENT):
-		return 0; // disable for these buttons
-	default:
+    case LT(4, KC_DEL):
+    case LT(5, KC_ENT):
+        return 0; // disable for these buttons
+    default:
         return 300;  // ms
     }
 };
@@ -435,8 +495,8 @@ bool achordion_eager_mod(uint8_t mod) {
         case MOD_RSFT:
         case MOD_LCTL:
         case MOD_RCTL:
-        case MOD_LALT:
-        case MOD_RALT:
+//      case MOD_LALT:
+//      case MOD_RALT:
 //      case MOD_LGUI:
 //      case MOD_RGUI:
         return true;    // Eagerly apply mods
