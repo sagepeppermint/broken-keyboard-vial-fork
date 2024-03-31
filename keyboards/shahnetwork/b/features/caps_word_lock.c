@@ -81,7 +81,7 @@ bool process_caps_word_lock_shortcuts(uint16_t keycode, keyrecord_t* record) {
         if (record->event.pressed) {
             static bool     tapped = false;
             static uint16_t timer  = 0;
-            if (keycode == KC_LSFT || keycode == OSM(MOD_LSFT)) {
+            if (keycode == KC_LSFT || KC_RSFT || keycode == OSM(MOD_LSFT)) {
                 if (tapped && !timer_expired(record->event.time, timer)) {
                     // Left shift was double tapped, activate Caps Word.
                     caps_word_lock_enable();
