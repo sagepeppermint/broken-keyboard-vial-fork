@@ -336,9 +336,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // Workaround for https://github.com/qmk/qmk_firmware/issues/16406
-void suspend_wakeup_init_user(void) {
-    NVIC_SystemReset();
-}
+// void suspend_wakeup_init_user(void) {
+//     NVIC_SystemReset();
+// }
 
 // Global quick tap keys
 uint16_t get_global_quick_tap_ms(uint16_t keycode) {
