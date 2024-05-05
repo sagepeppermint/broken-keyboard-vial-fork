@@ -151,7 +151,8 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 // Achordion time to decide tap vs hold (on top of normal tapping term)
 uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
     switch (tap_hold_keycode) {
-    case LT(4, KC_BSPC):
+    case LSFT_T(KC_BSPC):
+    case RSFT_T(KC_DEL):
         return 0; // Bypasses achordion for these keys and eliminates additional input lag
     }
     return 300;  // ms
