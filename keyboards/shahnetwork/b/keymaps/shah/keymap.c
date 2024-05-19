@@ -16,7 +16,7 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [0] = LAYOUT_5x7( // DWARF HRM
-        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
                 TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [1] = LAYOUT_5x7( // DWARF
-        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
                 TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
@@ -56,7 +56,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
         
     [2] = LAYOUT_5x7( // QWERTY HRM
-        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
                 TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_GRV,
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [3] = LAYOUT_5x7( // QWERTY
-        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
                 TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_GRV,
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______,
                 
         _______, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
-                _______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+                _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
         _______, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
                 _______, _______, SELECTWORD, _______, _______, _______, _______,
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 _______, _______, _______, _______, _______, _______, _______,
                 
         KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
-                _______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+                _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
         _______, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
                 _______, _______, SELECTWORD, _______, _______, _______, _______,
@@ -225,7 +225,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, _______, _______, _______, _______, _______,
                 
         _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
-            _______, KC_CAPS, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI, _______,
+            _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______, _______,
             _______, _______, C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
@@ -336,9 +336,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // Workaround for https://github.com/qmk/qmk_firmware/issues/16406
-// void suspend_wakeup_init_user(void) {
-//     NVIC_SystemReset();
-// }
+void suspend_wakeup_init_user(void) {
+    NVIC_SystemReset();
+}
 
 // Global quick tap keys
 uint16_t get_global_quick_tap_ms(uint16_t keycode) {
