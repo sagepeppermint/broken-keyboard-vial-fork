@@ -6,8 +6,11 @@ enum custom_keycodes {
     // Other custom keys...
 };
 
+#include "features/swap_hands.c"
 #include "features/global_quick_tap.h"
 #include "features/caps_word_lock.c"
+#include "features/oled.c"
+#include "features/select_word.h"
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -15,27 +18,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V,                                       KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
     KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M,       KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
     KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q,                                      KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSFT,
-                              QK_BOOT,   LT(4, KC_BSPC),  LT(5, KC_ENT),        LT(3, KC_TAB), LT(2, KC_SPACE), QK_BOOT
+                              KC_ESC,   LT(4, KC_BSPC),  LT(5, KC_ENT),        LT(3, KC_TAB), LT(2, KC_SPACE), KC_DEL
     ),
 
     [1] = LAYOUT_split_3x6_3( // QWERTY
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,                                       KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
     KC_ESC, LGUI_T(KC_A), LALT_T(KC_S), LSFT_T(KC_D), LCTL_T(KC_F), KC_G,       KC_H, RCTL_T(KC_J), RSFT_T(KC_K), RALT_T(KC_L), RGUI_T(KC_SEMICOLON), KC_QUOTE,
     KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B,                                      KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, KC_RSFT,
-                              QK_BOOT,   LT(4, KC_BSPC),  LT(5, KC_ENT),        LT(3, KC_TAB), LT(2, KC_SPACE), QK_BOOT
+                              KC_ESC,   LT(4, KC_BSPC),  LT(5, KC_ENT),        LT(3, KC_TAB), LT(2, KC_SPACE), KC_DEL
     ),
 
     [2] = LAYOUT_split_3x6_3( // right main
     XXXXXXX, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS,                    KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, XXXXXXX,
-    XXXXXXX, KC_GRV, KC_1, KC_2, KC_3, KC_EQL,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_GRV, KC_1, KC_2, KC_3, KC_EQL,                      XXXXXXX, SELECTWORD, CAPS_WORD_LOCK, XXXXXXX, XXXXXXX, XXXXXXX,
                                           KC_DOT, KC_0, KC_MINS,    _______, _______, _______
     ),
 
     [3] = LAYOUT_split_3x6_3( // right inner
     XXXXXXX, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR,        XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE,        KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, XXXXXXX,
-    XXXXXXX, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS,                     XXXXXXX, SELECTWORD, CAPS_WORD_LOCK, XXXXXXX, XXXXXXX, XXXXXXX,
                             KC_LEFT_PAREN, KC_RIGHT_PAREN, KC_UNDERSCORE,       _______, _______, _______
     ),
 
@@ -99,7 +102,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case LT(5, KC_ENT):
         case LT(3, KC_TAB):
         case LT(2, KC_SPACE):
-            return 0; // 0 to disable
+            return QUICK_TAP_TERM; // 0 to disable
         default:
             return QUICK_TAP_TERM;
     }

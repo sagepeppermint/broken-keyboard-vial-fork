@@ -14,22 +14,22 @@ bool oled_task_user(void) {
 
 		switch (get_highest_layer(layer_state)) {
 		case 0:
-			oled_write_P(PSTR("DWARF HRM\n"), false);
-			break;
-		case 1:
 			oled_write_P(PSTR("DWARF\n"), false);
 			break;
+		case 1:
+			oled_write_P(PSTR("QWERTY\n"), false);
+			break;
 		case 2:
-			oled_write_P(PSTR("QWERTY HRM\n"), false);
+			oled_write_P(PSTR("NUMBER\n"), false);
 			break;
 		case 3:
-			oled_write_P(PSTR("QWERTY\n"), false);
+			oled_write_P(PSTR("SYMBOL\n"), false);
 			break;
 		case 4:
 			oled_write_P(PSTR("NAVIGATION\n"), false);
 			break;
 		case 5:
-			oled_write_P(PSTR("MEDIA\n"), false);
+			oled_write_P(PSTR("FUNCTION\n"), false);
 			break;
 		case 6:
 			oled_write_P(PSTR("MOUSE\n"), false);
@@ -74,7 +74,7 @@ bool oled_task_user(void) {
 		
 		return false;
 	} else {
-		oled_write_P(PSTR("Broken Keyboard\n  SHAHNETWORK"), false);
+		oled_write_P(PSTR("  Corchim\n  SHAHNETWORK"), false);
 			oled_scroll_left();  // Turns on scrolling
 	}
 	return false;
