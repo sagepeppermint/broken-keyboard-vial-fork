@@ -102,7 +102,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
         case LT(5, KC_ENT):
         case LT(3, KC_TAB):
         case LT(2, KC_SPACE):
-            return QUICK_TAP_TERM; // 0 to disable
+            return 0; // 0 to disable
         default:
             return QUICK_TAP_TERM;
     }
