@@ -16,7 +16,7 @@
         "cols": ["GP6", "GP7", "GP8", "GP9", "GP29", "GP28"],
         "rows": ["GP2", "GP3", "GP4", "GP5"]
     },
-    "processor": "RP2040",
+    "development_board": "kb2040",
     "url": "https://github.com/sagepeppermint/qmk_firmware/tree/master/keyboards/shahnetwork/c",
     "usb": {
         "device_version": "1.0.0",
