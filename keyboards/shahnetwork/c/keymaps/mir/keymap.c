@@ -1,5 +1,8 @@
 #include QMK_KEYBOARD_H
 
+#include "features/global_quick_tap.h"
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       
      [0] = LAYOUT_split_3x6_3( // DWARF HRM
@@ -67,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, QK_BOOT, DF(0), DF(1), QK_REBOOT, _______,
             _______, DF(2), DF(3), _______, _______, _______,
         
-        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
+        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_HYPR,
             _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______,
         
         _______, _______, _______, _______, _______, _______,
@@ -82,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______,
             S(G(KC_Z)), C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
         
-        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
+        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_HYPR,
             KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
         
         _______, _______, _______, _______, _______, _______,
@@ -97,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______,
             S(G(KC_Z)), C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
         
-        _______, OSM(MOD_LGUI), OSM(MOD_LALT), OSM(MOD_LSFT), OSM(MOD_LCTL), OSM(MOD_HYPR),
+        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_HYPR,
             _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______,
         
         _______, _______, _______, _______, _______, _______,
@@ -113,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, _______, _______, _______, _______,
         
         _______, KC_QUESTION, KC_DLR, KC_PERC, KC_CIRC, KC_PLUS,
-            OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
+            KC_HYPR, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
         _______, KC_TILD, KC_EXLM, KC_AT, KC_HASH, KC_PIPE,
             _______, _______, _______, _______, _______, _______,
@@ -128,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, _______, _______, _______, _______,
         
         _______, KC_SLASH, KC_4, KC_5, KC_6, KC_EQL,
-            OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
+            KC_HYPR, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
         _______, KC_GRV, KC_1, KC_2, KC_3, KC_BSLS,
             _______, _______, _______, _______, _______, _______,
@@ -143,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, _______, _______, _______, _______,
         
         _______, KC_F11, KC_F4, KC_F5, KC_F6, KC_SCRL,
-            OSM(MOD_HYPR), OSM(MOD_LCTL), OSM(MOD_LSFT), OSM(MOD_LALT), OSM(MOD_LGUI), _______,
+            KC_HYPR, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
         _______, KC_F10, KC_F1, KC_F2, KC_F3, KC_PAUS,
             _______, _______, _______, _______, _______, _______,
@@ -204,6 +207,102 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void suspend_wakeup_init_user(void) {
     NVIC_SystemReset();
 };
+
+// Global quick tap keys
+uint16_t get_global_quick_tap_ms(uint16_t keycode) {
+    switch (keycode) {
+        /* Example: KEYCODE will not be considered for hold-tap if the last key press was less than 150ms ago */
+        /* case KEYCODE: */
+        /*     return 150; */
+        // DWARF hrm
+        case LGUI_T(KC_S):
+        case LALT_T(KC_R):
+        case LSFT_T(KC_N):
+        case LCTL_T(KC_T):
+        case RCTL_T(KC_Y):
+        case RSFT_T(KC_E):
+        case RALT_T(KC_I):
+        case RGUI_T(KC_A):
+        // QWERTY hrm
+        case LGUI_T(KC_A):
+        case LALT_T(KC_S):
+        case LSFT_T(KC_D):
+        case LCTL_T(KC_F):
+        case RCTL_T(KC_J):
+        case RSFT_T(KC_K):
+        case RALT_T(KC_L):
+        case RGUI_T(KC_SEMICOLON):
+            return 150;
+        default:
+            return 0;  // global_quick_tap is not applied
+    }
+};
+
+// Quick tapping term
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LT(4, KC_ESC):
+        case LT(5, KC_SPC): 
+        case LT(6, KC_TAB):
+        case LT(7, KC_ENT): 
+        case LT(8, KC_BSPC): 
+        case LT(9, KC_DEL):
+            return 0; // 0 to disable
+        default:
+            return QUICK_TAP_TERM;
+    }
+};
+
+// Hold on other key press per key
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // Immediately select the hold action when another key is pressed.
+        case LT(4, KC_ESC):
+        case LT(5, KC_SPC): 
+        case LT(6, KC_TAB):
+        case LT(7, KC_ENT): 
+        case LT(8, KC_BSPC): 
+        case LT(9, KC_DEL):
+        // hrm shifts
+        case LSFT_T(KC_N):
+        case RSFT_T(KC_E):
+        case LSFT_T(KC_D):
+        case RSFT_T(KC_K):
+            return true;
+        default:
+            return false;
+    }
+};
+
+// Tapping term per key
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // DWARF hrm
+        case LGUI_T(KC_S): 
+        case RGUI_T(KC_A):
+        // QWERTY hrm
+        case LGUI_T(KC_A):
+        case RGUI_T(KC_SEMICOLON):
+            return 300;
+        // Thumb keys
+        case LT(4, KC_ESC):
+        case LT(5, KC_SPC): 
+        case LT(6, KC_TAB):
+        case LT(7, KC_ENT): 
+        case LT(8, KC_BSPC): 
+        case LT(9, KC_DEL):
+            return 175;
+        default:
+            return TAPPING_TERM;
+    }
+};
+
+bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
+    // enable global quick tap before other processing. Note this will not work properly with capsword.
+    if (!process_global_quick_tap(keycode, record)) {return false; }
+    return true;
+};
+
 
 const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
     {{0,4}, {1,4}, {2,4}, {3,4}, {4,4}, {5,4}},

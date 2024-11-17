@@ -12,11 +12,11 @@
 #define EE_HANDS
 
 /* fix USB timeout issues */
-// #define SPLIT_USB_TIMEOUT 5000 // 2000 is default
-// #define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
+#define SPLIT_USB_TIMEOUT 2000 // 2000 is default
+#define SPLIT_USB_TIMEOUT_POLL 100 // 10 is default
 #define USB_SUSPEND_WAKEUP_DELAY 200 // 0 is default
 #define SPLIT_WATCHDOG_ENABLE
-#define SPLIT_WATCHDOG_TIMEOUT 3000
+#define SPLIT_WATCHDOG_TIMEOUT 5000
 
 /* bootmagic lite keys */
 #define BOOTMAGIC_LITE_ROW 0
