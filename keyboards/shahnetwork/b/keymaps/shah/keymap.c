@@ -99,11 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, _______, _______, _______, _______, _______, _______,
                 _______, _______, _______, _______, _______, _______, _______,
         
-        _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
-                _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______, _______,
+        _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, C(S(A(KC_M))), _______,
+                _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
                 
         _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
-                _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
+                _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
         
         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
                 _______, KC_DEL, KC_BACKSPACE, KC_TAB, KC_ENT, KC_INS,  _______,
