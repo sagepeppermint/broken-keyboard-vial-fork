@@ -65,7 +65,7 @@
 //#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
 //#define CAPS_WORD_IDLE_TIMEOUT 2000  // 5000 default
 /* one shot keys */
-#define ONESHOT_TAP_TOGGLE 10 // Tapping this number of times holds the key until tapped once again
+#define ONESHOT_TAP_TOGGLE 2 // Tapping this number of times holds the key until tapped once again
 #define ONESHOT_TIMEOUT 500 // 5000 default
 /* tapping toggle */
 #define TAPPING_TOGGLE 5 // 5 default
