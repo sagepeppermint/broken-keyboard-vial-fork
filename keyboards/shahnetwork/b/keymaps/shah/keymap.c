@@ -142,10 +142,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
                 _______, _______, _______, _______, _______, _______, _______,
                 
-        _______, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, _______,
+        _______, KC_SLSH, KC_4, KC_5, KC_6, KC_EQL, _______,
                 _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
-        _______, KC_GRV, KC_1, KC_2, KC_3, KC_EQL, _______,
+        _______, KC_GRV, KC_1, KC_2, KC_3, KC_BSLS, _______,
                 _______, _______, SELECTWORD, _______, _______, _______, _______,
         
         _______, _______, _______, 
@@ -163,10 +163,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
                 _______, _______, _______, _______, _______, _______, _______,
                 
-        KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, _______,
+        KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PLUS, _______,
                 _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
         
-        _______, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PLUS, _______,
+        _______, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PIPE, _______,
                 _______, _______, SELECTWORD, _______, _______, _______, _______,
         
         _______, _______, _______, 
