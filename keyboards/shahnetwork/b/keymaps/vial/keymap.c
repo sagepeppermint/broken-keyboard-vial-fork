@@ -382,7 +382,7 @@ bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     // caps word lock
     process_caps_word_lock(keycode, record);
-    if (!process_caps_word_lock_shortcuts(keycode, record)) { return false; };
+//     if (!process_caps_word_lock_shortcuts(keycode, record)) { return false; };
     // select word
     if (!process_select_word(keycode, record, SELECTWORD)) { return false; };
 

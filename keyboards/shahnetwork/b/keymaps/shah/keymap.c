@@ -16,8 +16,8 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [0] = LAYOUT_5x7( // DWARF HRM
-        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
-                TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
+        KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, _______,
+                OSL(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
                 CAPS_WORD_LOCK, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [1] = LAYOUT_5x7( // DWARF
         KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
-                TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
+                OSL(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V, KC_GRV,
                 CAPS_WORD_LOCK, KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
@@ -57,7 +57,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         
     [2] = LAYOUT_5x7( // QWERTY HRM
         KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
-                TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
+                OSL(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_GRV,
                 KC_CAPS, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [3] = LAYOUT_5x7( // QWERTY
         KC_EQUAL, KC_1, KC_2, KC_3, KC_4, KC_5, QK_SWAP_HANDS_TOGGLE,
-                TG(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
+                OSL(8), KC_6, KC_7, KC_8, KC_9, KC_0, KC_MINUS,
         
         KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T, KC_GRV,
                 KC_CAPS, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS,
