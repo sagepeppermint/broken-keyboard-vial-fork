@@ -41,4 +41,3 @@
 #        define RGB_MATRIX_MAXIMUM_BRIGHTNESS 120
 #    endif
 #endif
-
