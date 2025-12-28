@@ -39,3 +39,12 @@
 // #define TAPPING_FORCE_HOLD
 // #define TAPPING_FORCE_HOLD_PER_KEY
 
+/* OLED */
+#ifdef OLED_ENABLE
+#define I2C1_SCL_PIN        GP3
+#define I2C1_SDA_PIN        GP2
+#define OLED_BRIGHTNESS 8 // 128 default?
+#define OLED_TIMEOUT 3000  // ms
+#define SPLIT_LAYER_STATE_ENABLE
+#define SPLIT_LED_STATE_ENABLE
+#endif

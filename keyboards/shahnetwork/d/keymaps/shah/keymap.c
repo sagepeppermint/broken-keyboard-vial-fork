@@ -1,20 +1,21 @@
 #include QMK_KEYBOARD_H
 
 #include "features/global_quick_tap.h"
+#include "features/oled.c"
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       
      [0] = LAYOUT_split_3x6_3( // DWARF HRM
         
-        _______, KC_F, KC_L, KC_H, KC_D, KC_V,
-            KC_Z, KC_G, KC_O, KC_U, KC_DOT, _______,
+        KC_TAB, KC_F, KC_L, KC_H, KC_D, KC_V,
+            KC_Z, KC_G, KC_O, KC_U, KC_DOT, KC_BSLS,
         
-        _______, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M,
+        KC_ESC, LGUI_T(KC_S), LALT_T(KC_R), LSFT_T(KC_N), LCTL_T(KC_T), KC_M,
             KC_P, RCTL_T(KC_Y), RSFT_T(KC_E), RALT_T(KC_I), RGUI_T(KC_A), KC_SLASH,
         
-        _______, KC_X, KC_J, KC_B, KC_K, KC_Q,
-            KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, _______,
+        KC_LSFT, KC_X, KC_J, KC_B, KC_K, KC_Q,
+            KC_C, KC_W, KC_QUOTE, KC_COMMA, KC_SEMICOLON, KC_RSFT,
         
         LT(4, KC_ESC), LT(5, KC_BSPC), LT(6, KC_ENT),
             LT(7, KC_TAB), LT(8, KC_SPACE), LT(9, KC_DEL)
@@ -82,14 +83,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        
      [5] = LAYOUT_split_3x6_3( // NAVIGATION
      
-        _______, _______, _______, _______, _______, _______,
-            S(G(KC_Z)), C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
+        _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______,
+            KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______, _______,
         
-        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_HYPR,
-            KC_CAPS, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
+        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS,
+            KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
         
-        _______, _______, _______, _______, _______, _______,
-            KC_INS, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
+        _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
+            _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______,
         KC_TAB, KC_SPACE, KC_DEL
