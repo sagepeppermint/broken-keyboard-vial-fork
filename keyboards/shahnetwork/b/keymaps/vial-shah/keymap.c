@@ -2,7 +2,7 @@
 
 enum custom_keycodes {
     CAPS_WORD_LOCK = SAFE_RANGE,
-    SELECTWORD,
+    
     // Other custom keys...
 };
 
@@ -10,7 +10,6 @@ enum custom_keycodes {
 #include "features/global_quick_tap.h"
 #include "features/caps_word_lock.c"
 #include "features/oled.c"
-#include "features/select_word.h"
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -95,82 +94,82 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         
     ),
  
-    [4] = LAYOUT_5x7( // Left main
+    [4] = LAYOUT_5x7( // Left main number
         _______, _______, _______, _______, _______, _______, _______,
                 _______, _______, _______, _______, _______, _______, _______,
         
-        _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, C(S(A(KC_M))), _______,
-                _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END, _______,
+        _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
+                _______, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
                 
         QK_LAYER_LOCK, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
-                _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,
+                _______, KC_SLSH, KC_4, KC_5, KC_6, KC_BSLS, KC_DOT,
         
         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
-                _______, KC_DEL, KC_BACKSPACE, KC_TAB, KC_ENT, KC_INS,  _______,
+                _______, KC_EQL, KC_1, KC_2, KC_3, KC_GRV, _______,
         
         _______, _______, _______, 
         _______, _______, _______, _______,
-        KC_TAB, KC_SPACE, _______, _______, 
+        KC_MINS, KC_0, _______, _______, 
         _______, _______, _______
         
     ),
  
-    [5] = LAYOUT_5x7( // Left alt
+    [5] = LAYOUT_5x7( // Left alt symbols
         QK_BOOT, _______, _______, _______, _______, _______, _______,
                 _______, _______, TO(0), TO(1), TO(2), TO(3), _______,
         
         _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______, _______,
-                _______, KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
+                _______, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
                 
         QK_LAYER_LOCK, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS, _______,
-                _______, KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, _______,
+                _______, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, KC_LEFT_PAREN,
         
         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), LSG(KC_S), _______,
-                _______, KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
+                _______, KC_PLUS, KC_EXCLAIM, KC_AT, KC_HASH, KC_TILDE, _______,
         
         _______, _______, _______, 
         _______, _______, _______, _______,
-        KC_TAB, KC_SPACE, _______, _______, 
+        KC_UNDERSCORE, KC_RIGHT_PAREN, _______, _______, 
         _______, _______, _______
         
     ),
 
-      [6] = LAYOUT_5x7( // Right main
+      [6] = LAYOUT_5x7( // Right main nav
         _______, _______, _______, _______, _______, _______, _______,
                 _______, _______, _______, _______, _______, _______, _______,
         
-        _______, KC_LBRC, KC_7, KC_8, KC_9, KC_RBRC, _______,
+        _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END, KC_INS, _______,
                 _______, _______, _______, _______, _______, _______, _______,
                 
-        _______, KC_SLSH, KC_4, KC_5, KC_6, KC_EQL, _______,
+        KC_DEL, KC_LEFT, KC_UP, KC_DOWN, KC_RIGHT, KC_CAPS, _______,
                 _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, QK_LAYER_LOCK,
         
-        _______, KC_GRV, KC_1, KC_2, KC_3, KC_BSLS, _______,
-                _______, _______, SELECTWORD, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______, _______,
+                _______, _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______, 
-        KC_DOT, _______, KC_0, KC_MINS,
+        _______, _______, KC_BSPC, KC_ENT,
         _______, _______, _______, _______, 
         _______, _______, _______
         
     ),
 
 
-      [7] = LAYOUT_5x7( // Right alt
+      [7] = LAYOUT_5x7( // Right alt fn
         _______, _______, _______, _______, _______, _______, _______,
                 _______, _______, _______, _______, _______, _______, _______,
         
-        _______, KC_LCBR, KC_AMPERSAND, KC_ASTERISK, KC_LEFT_PAREN, KC_RCBR, _______,
+        _______, KC_F1, KC_F2, KC_F3, KC_F4, KC_PSCR, _______,
                 _______, _______, _______, _______, _______, _______, _______,
                 
-        KC_ESC, KC_QUESTION, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PLUS, _______,
+        KC_APP, KC_F5, KC_F6, KC_F7, KC_F8, KC_SCRL, _______,
                 _______, KC_CAPS, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, QK_LAYER_LOCK,
         
-        _______, KC_TILDE, KC_EXCLAIM, KC_AT, KC_HASH, KC_PIPE, _______,
-                _______, _______, SELECTWORD, _______, _______, _______, _______,
+        _______, KC_F9, KC_F10, KC_F11, KC_F12, KC_PAUS, _______,
+                _______, _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______, 
-        KC_LEFT_PAREN, _______, KC_RIGHT_PAREN, KC_UNDERSCORE,
+        _______, _______, KC_BSPC, KC_ENT,
         _______, _______, _______, _______, 
         _______, _______, _______
         
@@ -371,41 +370,34 @@ uint16_t get_global_quick_tap_ms(uint16_t keycode) {
 };
 
  
-
-
 bool pre_process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // enable global quick tap before other processing. Note this will not work properly with capsword.
-    if (!process_global_quick_tap(keycode, record)) {return false; }
-    return true;
-};
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // caps word lock
-    process_caps_word_lock(keycode, record);
-//     if (!process_caps_word_lock_shortcuts(keycode, record)) { return false; };
-    // select word
-    if (!process_select_word(keycode, record, SELECTWORD)) { return false; };
-
-  // Macros
-    switch (keycode) {
-    
-    case CAPS_WORD_LOCK:
-        // Toggle `caps_word_lock_on`
-        if (record->event.pressed) {
-            if (caps_word_lock_on) {
-                caps_word_lock_disable();
-                return false;
-            } else {
-                caps_word_lock_enable();
-                return false;
-            }}
-        return false; break;
-
+        // enable global quick tap before other processing. Note this will not work properly with capsword.
+        if (!process_global_quick_tap(keycode, record)) {return false; }
+        return true;
     };
-      
-  return true;
-};
-
-void matrix_scan_user(void) {
-    select_word_task();
-};
+    
+    bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+        // caps word lock
+        process_caps_word_lock(keycode, record);
+    //     if (!process_caps_word_lock_shortcuts(keycode, record)) { return false; };
+    
+      // Macros
+        switch (keycode) {
+        
+        case CAPS_WORD_LOCK:
+            // Toggle `caps_word_lock_on`
+            if (record->event.pressed) {
+                if (caps_word_lock_on) {
+                    caps_word_lock_disable();
+                    return false;
+                } else {
+                    caps_word_lock_enable();
+                    return false;
+                }}
+            return false; break;
+    
+        };
+          
+      return true;
+    };
+    

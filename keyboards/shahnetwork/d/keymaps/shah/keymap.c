@@ -66,19 +66,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             LT(7, KC_TAB), LT(8, KC_SPACE), LT(9, KC_DEL)
     ),
     
-     [4] = LAYOUT_split_3x6_3( // MEDIA 
+     [4] = LAYOUT_split_3x6_3(
      
-        _______, QK_BOOT, DF(0), DF(1), QK_REBOOT, _______,
-            _______, DF(2), DF(3), _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,
+            _______, _______, _______, _______, _______, _______,
         
-        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_HYPR,
-            _______, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______,
+        _______, _______, _______, _______, _______, _______,
+            _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______, _______,
         
         _______, _______, _______,
-            KC_MSTP, KC_MPLY, KC_MUTE
+            _______, _______, _______
     ),
        
      [5] = LAYOUT_split_3x6_3( // NAVIGATION
@@ -90,25 +90,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______, _______,
         
         _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
-            _______, _______, _______, _______, _______, _______,
+            KC_DEL, KC_BACKSPACE, KC_TAB, KC_ENT, KC_INS, _______,
         
         _______, _______, _______,
-        KC_TAB, KC_SPACE, KC_DEL
+        KC_TAB, KC_SPACE, _______
     ),
        
-    [6] = LAYOUT_split_3x6_3( // MOUSE
+    [6] = LAYOUT_split_3x6_3( // FUNCTION
         
-        _______, _______, _______, _______, _______, _______,
-            S(G(KC_Z)), C(KC_V), C(KC_C), C(KC_X), C(KC_Z), _______,
+        _______, KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, _______,
+            KC_PAUS, KC_F9, KC_F10, KC_F11, KC_F12, _______,
         
-        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_HYPR,
-            _______, KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______,
+        _______, KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_CAPS,
+            KC_SCRL, KC_F5, KC_F6, KC_F7, KC_F8, _______,
         
-        _______, _______, _______, _______, _______, _______,
-            _______, KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R, _______,
+        _______, C(KC_Z), C(KC_X), C(KC_C), C(KC_V), _______,
+            KC_PSCR, KC_F1, KC_F2, KC_F3, KC_F4, _______,
         
         _______, _______, _______,
-            KC_BTN2, KC_BTN1, KC_BTN3
+        KC_TAB, KC_SPACE, _______
     ),
     
     [7] = LAYOUT_split_3x6_3( // SYMBOL
@@ -141,18 +141,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
             _______, _______, _______
     ),
     
-    [9] = LAYOUT_split_3x6_3( // FUNCTION
+    [9] = LAYOUT_split_3x6_3(
         
-        _______, KC_F12, KC_F7, KC_F8, KC_F9, KC_PSCR,
+        _______, _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______, _______,
         
-        _______, KC_F11, KC_F4, KC_F5, KC_F6, KC_SCRL,
-            KC_HYPR, KC_RCTL, KC_RSFT, KC_RALT, KC_RGUI, _______,
-        
-        _______, KC_F10, KC_F1, KC_F2, KC_F3, KC_PAUS,
+        _______, _______, _______, _______, _______, _______,
             _______, _______, _______, _______, _______, _______,
         
-            KC_APP, KC_BSPC, KC_ENT,
+        _______, _______, _______, _______, _______, _______,
+            _______, _______, _______, _______, _______, _______,
+        
+        _______, _______, _______,
             _______, _______, _______ 
     ),
 
